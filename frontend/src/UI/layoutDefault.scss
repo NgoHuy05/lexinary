@@ -18,6 +18,8 @@
   min-height: 100vh;
   
 }
+
+// Header
 .header {
   display: flex;
   align-items: center;
@@ -102,40 +104,39 @@
     }
 
     .btn__login {
-      border: 2px solid white;
-      color: white;
-      background-color: transparent;
+      border: 2px solid $primary-color;
+      color: $primary-color;
+      background-color: white;
       font-weight: bold;
-      padding: 12px 30px;
-      font-size: 18px;
+      padding: 30px 40px;
+      font-size: 20px;
       border-radius: 35px;
-      box-shadow: none;
-      transition: all 0.3s ease-in-out;
+      box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
 
       &:hover {
-        background-color: white;
-        color: $primary-color;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        background-color: $hover-color;
+        color: white;
+        box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.15);
       }
     }
 
     .btn__register {
-      border: 2px solid white;
+      border: 2px solid $primary-color;
       color: white;
-      background-color: $hover-color;
+      background-color: #58CC02;
       font-weight: bold;
-      padding: 12px 30px;
-      font-size: 18px;
+      padding: 30px 40px;
+      font-size: 20px;
       border-radius: 35px;
-      box-shadow: none;
-      transition: all 0.3s ease-in-out;
+      box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
 
       &:hover {
-        background-color: lighten($hover-color, 10%);
+        background-color: $hover-color;
         color: white;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.15);
       }
     }
+    
   }
 }
 
