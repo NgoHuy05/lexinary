@@ -1,7 +1,7 @@
 // API cho Lesson
 import axios from "axios";
 
-const BASE_LESSON_URL = "http://localhost:8888/api/v1/lessons";  // Thay đổi theo route backend của Lesson
+const BASE_LESSON_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/lessons`
 
 export const getLessons = (chapterId) =>
   axios.get(`${BASE_LESSON_URL}/${chapterId}`, { withCredentials: true }); // Lấy danh sách bài học theo chapterId

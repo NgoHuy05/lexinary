@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_EXERCISE_URL = "http://localhost:8888/api/v1/exercises";  // Thay đổi theo route backend của Exercise
+const BASE_EXERCISE_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/exercises`
 
 // Lấy tất cả bài tập theo lessonId
 export const getExercisesByLesson = (lessonId) =>

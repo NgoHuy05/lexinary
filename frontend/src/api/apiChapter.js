@@ -1,7 +1,7 @@
 // API cho Chapter
 import axios from "axios";
 
-const BASE_CHAPTER_URL = "http://localhost:8888/api/v1/chapters";  // Thay đổi theo route backend của Chapter
+const BASE_CHAPTER_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/chapters`;
 
 export const getChapters = (courseId) =>
   axios.get(`${BASE_CHAPTER_URL}/${courseId}`, {withCredentials: true }); // Lấy danh sách chương theo courseId

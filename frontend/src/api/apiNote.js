@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8888/api/v1/notes"; 
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/notes`
 export const getNotes = async () => {
   try {
     const response = await axios.get(BASE_URL, { withCredentials: true });

@@ -9,13 +9,18 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const path = require("path"); // <== THÊM DÒNG NÀY
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
-// Cho phép frontend truy cập
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://lexinary.vercel.app",
+];
+
 app.use(cors({
-    origin: "http://localhost:3000",  // Nếu deploy: thay thành domain thật
-    credentials: true  
+  origin: allowedOrigins,
+  credentials: true
 }));
+
 
 database.connect();
 app.use(bodyParser.json());

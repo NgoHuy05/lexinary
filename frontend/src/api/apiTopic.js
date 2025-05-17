@@ -1,7 +1,6 @@
   import axios from "axios";
 
-  const BASE_URL = "http://localhost:8888/api/v1/topics";
-
+  const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/topics`
   // Lấy tất cả topic công khai
   export const getPublicTopics = async () => {
     try {

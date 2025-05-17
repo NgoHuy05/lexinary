@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8888/api/v1/users"; // trùng route backend
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/users`
 
 // Đăng ký người dùng mới
 export const registerUser = (name, email, password) =>

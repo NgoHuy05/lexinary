@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8888/api/v1/flashcards";
+const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/flashcards`
 
 // Lấy flashcard theo topicId (sửa phần này lại)
 export const getFlashcardsByTopic = async (topicId) => {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_GRAMMAR_URL = "http://localhost:8888/api/v1/grammars";  // Đảm bảo URL này khớp với backend
+const BASE_GRAMMAR_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/grammars`
 
 // Lấy tất cả ngữ pháp
 export const getAllGrammars = () =>

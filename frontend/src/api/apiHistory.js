@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // URL cơ sở cho API lịch sử làm bài
-const BASE_HISTORY_URL = "http://localhost:8888/api/v1/histories";  // Đảm bảo URL này khớp với backend của bạn
+const BASE_HISTORY_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/histories`
 
 // Lấy tất cả lịch sử làm bài theo userId
 export const getHistoryByUser = (userId, courseId, chapterId, lessonId) =>

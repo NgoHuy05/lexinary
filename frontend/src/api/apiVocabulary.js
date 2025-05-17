@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_VOCABULARY_URL = "http://localhost:8888/api/v1/vocabularies";  // Đảm bảo URL này khớp với backend
+const BASE_VOCABULARY_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/vocabularies`
 
 // Lấy tất cả từ vựng theo lessonId
 export const getVocabularyByLesson = (lessonId) =>

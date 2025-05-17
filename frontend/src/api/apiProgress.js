@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_PROGRESS_URL = "http://localhost:8888/api/v1/progresses"; // Thay theo route backend
+const BASE_PROGRESS_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/progresses`
 
 // Lấy toàn bộ tiến trình học của người dùng
 export const getUserProgress = (userId) =>

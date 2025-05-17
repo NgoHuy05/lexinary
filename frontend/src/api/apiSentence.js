@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_SENTENCE_URL = "http://localhost:8888/api/v1/sentences";  // Đảm bảo URL này khớp với backend
+const BASE_SENTENCE_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/sentences`
 
 // Lấy tất cả câu
 export const getAllSentences = () =>
