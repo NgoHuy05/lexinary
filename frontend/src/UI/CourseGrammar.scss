@@ -1,0 +1,71 @@
+.course-grammar {
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    
+    &__header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    &__lesson {
+        margin-bottom: 20px;
+    }
+
+    &__lesson-title {
+        font-size: 20px;
+        color: #555;
+    }
+
+    &__loading {
+        font-size: 16px;
+        color: #999;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    &__no-grammars {
+        font-size: 16px;
+        color: #999;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    &__grammar-table {
+        width: 100%;
+        margin-top: 20px;
+        
+        .ant-table {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .ant-table-thead {
+            background-color: #f0f0f0;
+        }
+
+        .ant-table-tbody {
+            background-color: white;
+        }
+
+        .ant-table-tbody > tr > td {
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .ant-table-thead > tr > th {
+            padding: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+            background-color: #f0f0f0;
+        }
+
+        .ant-table-row:hover {
+            background-color: #f7f7f7;
+        }
+    }
+}

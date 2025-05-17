@@ -1,0 +1,220 @@
+.review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+.flashcard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #1890ff;
+}
+
+.flashcard-term h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+  text-align: center;
+  color: #333;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cột */
+  gap: 20px;
+  max-width: 600px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.option-card {
+  cursor: pointer;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  &.correct {
+    background-color: #52c41a;
+    color: white;
+    border-color: #52c41a;
+  }
+
+  &.wrong {
+    background-color: #f5222d;
+    color: white;
+    border-color: #f5222d;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+}
+
+.next-button {
+  display: flex;
+  align-items: center; /* Căn giữa biểu tượng và văn bản */
+  justify-content: center; /* Căn giữa biểu tượng và văn bản */
+  gap: 8px; /* Khoảng cách giữa văn bản và biểu tượng */
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  margin-top: 16px;
+  width: auto; /* Đảm bảo nút có chiều rộng tự động để phù hợp với nội dung */
+
+  &:hover {
+    background-color: #40a9ff;
+  }
+
+  &:disabled {
+    background-color: #d9d9d9;
+    cursor: not-allowed;
+  }
+}
+
+.review-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 20px;
+    margin: 8px 0;
+  }
+
+  .ant-progress {
+    margin: 20px 0;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+}
+
+.loading-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-flashcards {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 100px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.button-container .button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+
+  &:hover {
+    background-color: #40a9ff;
+  }
+
+  &:disabled {
+    background-color: #d9d9d9;
+    cursor: not-allowed;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center; /* Căn giữa các nút */
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.back-button, .next-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+
+  &.back-button {
+    background-color: #f5222d; // Màu đỏ cho nút quay lại
+    border: 1px solid #f5222d;
+
+    &:hover {
+      background-color: #ff4d4f;
+      border-color: #ff4d4f;
+    }
+
+    &:disabled {
+      background-color: #d9d9d9;
+      cursor: not-allowed;
+      border-color: #d9d9d9;
+    }
+  }
+
+  &.next-button {
+    background-color: #52c41a; // Màu xanh lá cho nút tiếp theo
+    border: 1px solid #52c41a;
+
+    &:hover {
+      background-color: #73d13d;
+      border-color: #73d13d;
+    }
+
+    &:disabled {
+      background-color: #d9d9d9;
+      cursor: not-allowed;
+      border-color: #d9d9d9;
+    }
+  }
+
+  .anticon {
+    margin-left: 8px; // Để khoảng cách giữa biểu tượng và văn bản
+  }
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}

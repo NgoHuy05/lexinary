@@ -1,0 +1,170 @@
+.course-ex {
+  padding: 20px;
+  background-color: #f4f6f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &__lesson-header {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  &__lesson-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  &__exercise-section {
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .course-ex__exercise-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .course-ex__exercise-item {
+      margin-bottom: 20px;
+    }
+
+    &__exercise-card {
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+      }
+    }
+  
+.course-ex__correct-card {
+  background: linear-gradient(135deg, #67d967, #a3e9a3); /* Gradient từ màu xanh nhạt (a3e9a3) sang xanh lá tươi (67d967) */
+  color: white; /* Chữ màu trắng */
+  border-radius: 8px; /* Viền bo tròn */
+}
+
+.course-ex__incorrect-card {
+  background: linear-gradient(135deg, #f4b8b8, #f9d6d6); /* Gradient từ hồng pastel nhạt sang hồng đậm nhẹ */
+  color: white;
+  border-radius: 8px;
+}
+
+
+.course-ex__correct-answer {
+  color: red; /* Màu xanh lá tươi cho chữ đúng */
+}
+
+
+
+
+    .course-ex__options-list {
+      padding-left: 20px;
+      margin-top: 10px;
+
+      .course-ex__options-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        input[type='radio'],
+        input[type='checkbox'] {
+          margin-right: 10px;
+          accent-color: #4caf50; // Tạo màu xanh cho checkbox/radio
+        }
+
+        label {
+          font-size: 1rem;
+          color: #333;
+        }
+      }
+    }
+
+    .course-ex__exercise-fill-in {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    
+    
+      input[type='text'] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: border 0.3s ease;
+
+        &:focus {
+          border-color: #4caf50;
+          outline: none;
+        }
+      }
+    }
+    .course-ex__correct-answer-container {
+      margin-top: 10px; /* Tạo khoảng cách giữa input và đáp án đúng */
+      font-size: 14px;
+      color: #333;
+    }
+    .course-ex__submit-button,
+    .course-ex__history-button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4caf50;
+      color: white;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #45a049;
+      }
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+
+    .course-ex__no-exercises {
+      font-size: 1.2rem;
+      color: #888;
+      text-align: center;
+    }
+
+
+
+
+    .course-ex__options-item input:disabled {
+      opacity: 0.5;  // Giảm độ mờ cho các ô kiểm tra khi vô hiệu hóa
+    }
+
+    .course-ex__options-item input[type="radio"]:checked + label,
+    .course-ex__options-item input[type="checkbox"]:checked + label {
+      font-weight: bold;
+    }
+  }
+}
+.answer-icon {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.answer-icon.correct {
+  color: #28a745; /* Xanh cho dấu ✔️ */
+}
+
+.answer-icon.incorrect {
+  color: #dc3545; /* Đỏ cho dấu ❌ */
+}

@@ -1,0 +1,124 @@
+.course-library {
+    background: linear-gradient(to bottom, #38bdf8, #ffffff);
+    &__container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    &__title {
+      font-size: 2rem;
+      text-align: center;
+      color: white!important;
+      margin-bottom: 10px;
+    }
+  
+    &__description {
+      text-align: center;
+      color: white;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+  
+    &__filter {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 30px;
+    }
+  
+    &__filter-option {
+      font-size: 3rem;
+    }
+  
+    &__filter-group {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  
+    &__section {
+      margin-bottom: 40px;
+    }
+  
+    &__section-title {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    &__grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  
+    &__grid-item {
+      margin-bottom: 20px;
+      width: 100%;
+      
+      @media (min-width: 576px) {
+        width: 48%;
+      }
+  
+      @media (min-width: 768px) {
+        width: 32%;
+      }
+    }
+  
+    &__card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    }
+    &__icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  
+    &__card-title {
+      font-size: 1.25rem;
+      color: #333;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  
+    &__card-description {
+      font-size: 1rem;
+      color: #666;
+      text-align: center;
+    }
+  
+    &__card-level {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  
+    &__card-name {
+      font-size: 1rem;
+      color: #666;
+      text-align: center;
+    }
+  
+    &__card-purpose {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  
+    &__card-filter {
+      font-size: 1rem;
+      color: #666;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+}

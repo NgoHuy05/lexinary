@@ -1,0 +1,98 @@
+.course-result {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 100vh;
+    &__title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+  
+    &__summary {
+      margin-bottom: 24px;
+  
+      &-item {
+        font-size: 18px;
+        margin: 4px 0;
+      }
+    }
+  
+    &__subtitle {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+  
+    &__list {
+      list-style: none;
+      padding: 0;
+    }
+  
+    &__item {
+      background-color: #f9f9f9;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  
+      p {
+        margin: 4px 0;
+      }
+    }
+  }
+  .course-result__res {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Chia đều không gian giữa các phần tử */
+    max-width: 700px; /* Mở rộng thêm không gian nếu cần */
+    margin: 0 auto 32px;
+  }
+  
+  .course-result__summary {
+    flex: 1; /* Đảm bảo phần tóm tắt chiếm không gian còn lại bên trái */
+    padding-right: 16px; /* Thêm khoảng cách giữa tóm tắt và chart */
+  }
+  
+  .course-result__chart {
+    max-width: 300px;
+    flex-shrink: 0; /* Đảm bảo chart không bị co lại */
+    margin: 0 auto 32px;
+  }
+  
+  .course-result__retry {
+    display: flex;
+    gap: 20px;
+  }
+  .course-result__retry-btn,
+  .course-result__toggle-btn,
+  .course-ex__back-button,
+  .course-result__review-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #52c41a; /* Màu xanh lá */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+  
+    &:hover {
+      background-color: #45a049; /* Màu xanh lá đậm khi hover */
+      transform: scale(1.05); /* Tăng nhẹ kích thước khi hover */
+    }
+  
+    &:focus {
+      outline: none; /* Bỏ viền khi nhấn */
+      box-shadow: 0 0 5px rgba(82, 196, 26, 0.5); /* Hiệu ứng shadow khi focus */
+    }
+  
+    &:active {
+      background-color: #387c2b; /* Màu khi nhấn */
+    }
+  }
+
+  

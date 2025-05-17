@@ -1,0 +1,164 @@
+  @use "./variables.scss" as *;
+  .homeContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 800px;
+      width: 100%;
+      background-color: $primary-color;
+      padding: 20px;
+
+      img {
+          max-width: 100px;
+          height: auto;
+          margin-bottom: 20px;
+      }
+
+      .text01 {
+          font-size: 24px;
+          font-weight: 600;
+          color: white;
+          margin: 10px 0;
+      }
+      .text02 {
+          display: flex;
+          flex-direction: column; /* Sắp xếp theo cột */
+          align-items: center; /* Căn giữa phần tử theo trục ngang */
+          justify-content: center; /* Căn giữa theo trục dọc */
+          color: white;
+          font-size: 20px; /* Đặt kích thước font */
+          font-weight: normal; /* Đặt font weight cho văn bản */
+          text-align: center; /* Căn chỉnh chữ theo chiều ngang */
+
+          .text021 {
+              font-size: 50px;
+              font-weight: bold;
+              color: white;
+              margin: 10px 0;
+              width: 22ch; /* Đặt chiều rộng theo số ký tự */
+              white-space: nowrap;
+              overflow: hidden;
+              animation: typing 2s steps(20) 0.5s forwards;
+              margin-bottom: 5px;
+
+          }
+          
+          .text022 {
+              font-size: 50px;
+              font-weight: bold;
+              color: white;
+              margin: 10px 0;
+              width: 22ch; /* Đặt chiều rộng theo số ký tự */
+              white-space: nowrap;
+              overflow: hidden;
+              animation: typing 2s steps(20) 2.2s forwards;
+          }
+          
+
+          
+
+      }   
+      
+      @keyframes typing {
+          from {
+              width: 0;
+          }
+          to {
+              width: 22ch; /* Chiều rộng tối đa của đoạn văn */
+          }
+      }
+
+      .ant-btn1 {
+          background: #58CC02;
+          margin-top: 15px;
+          width: 400px;
+          height: 55px;
+          border-radius: 18px;
+          margin-bottom: 15px;
+          border-bottom: 4px solid #0050C7;
+          &:hover {
+              background: $hover-color!important;
+          }
+      }
+      .ant-btn2 {
+
+          background: #0064D6;
+          width: 400px;
+          height: 55px;
+          border-radius: 18px;
+          font-family: 'balootammabold';
+          border-bottom: 4px solid #0050C7;
+          &:hover {
+              background: $hover-color!important;
+          }
+      }
+  }
+
+
+  .homeCloudImg {
+          background-image: url(../assets/images/home-cloud-bg.png);
+          height: 160px;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -10px;
+  }
+
+  .homeTarget {
+    margin-top: 150px;
+    text-align: center;
+    margin-bottom: 50px;
+    .targetTitle {
+      color: rgba(26, 24, 24, 0.789);
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 50px;
+    }
+
+    .targetBox {
+      background-color: $primary-color;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      h3 {
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+      }
+
+      p {
+        font-size: 20px;
+        color: white;
+        margin: 10px 0;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      li {
+        font-size: 20px;
+        color: white;
+        margin: 5px 0;
+      }
+    }
+  }
+.login-register {
+  display: flex;
+  flex-direction: column;
+}

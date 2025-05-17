@@ -1,0 +1,58 @@
+.game {
+  background: #f9f9f9;
+  min-height: 100vh;
+  padding: 40px 0;
+
+  &__title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 60px;
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__card {
+    width: 100%;
+    max-width: 380px;
+    height: 550px;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    .ant-card-body {
+      padding: 12px 16px;
+      background-color: #fff;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__image {
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  &__meta {
+    text-align: center;
+    justify-content: end;
+    .ant-card-meta-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #222;
+    }
+  }
+}

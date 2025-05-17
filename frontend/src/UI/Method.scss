@@ -1,0 +1,56 @@
+@use "./variables.scss" as *;
+
+
+.method__main {
+  margin-top: 20px;
+  text-align: center;
+  color: $primary-color;
+  font-size: 2rem;
+ 
+}
+
+.method__title {
+  color: $secondary-color;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.method__content--main {
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.method__content {
+
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  max-width: 1400px;
+}
+.method__content p {
+    text-indent: 40px; /* Điều chỉnh giá trị theo mong muốn */
+  }
+ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 30px;  
+  .method__item {
+    margin-left: 20px;  
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: $border-radius;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    .method__img {
+        width: 900px;
+        height: auto;
+    }
+    .method__item--strong {
+      color: $primary-color;
+      font-size: 1.2rem;
+    }
+
+  }
+}

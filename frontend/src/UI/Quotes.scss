@@ -1,0 +1,29 @@
+@use "./variables.scss" as *;
+.quotes__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    color: $primary-color;
+}
+
+
+.quotes__content {
+    counter-reset: list-counter;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.quotes__item {
+    counter-increment: list-counter;
+    list-style: none;
+    font-size: 20px;
+}
+
+.quotes__item::before {
+    content: counter(list-counter) ". ";
+    font-weight: bold;
+}

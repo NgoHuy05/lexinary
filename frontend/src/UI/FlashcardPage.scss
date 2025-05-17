@@ -1,0 +1,64 @@
+/* src/styles/FlashcardPage.scss */
+
+/* Block: flashcard-page */
+.flashcard-page {
+    display: flex;
+    height: 100vh; /* Đảm bảo full chiều cao màn hình */
+}
+
+/* Phần Sidebar */
+.flashcard-page__sider {
+    padding-top: 15px;
+    background-color: #f0f2f5;
+}
+
+/* Phần menu */
+.flashcard-page__menu {
+    background-color: #f0f2f5;
+    border-right: none; /* Xóa border bên phải của sidebar */
+}
+
+/* Áp dụng cho các menu item */
+.flashcard-page__menu .ant-menu-item {
+    font-size: 16px;
+    color: #000;
+    transition: background-color 0.3s; /* Thêm hiệu ứng khi hover */
+}
+
+/* Hover effect */
+.flashcard-page__menu .ant-menu-item:hover {
+    background-color: #e0e0e0; /* Màu nền khi hover */
+}
+
+/* Selected item style */
+.flashcard-page__menu .ant-menu-item-selected {
+    background-color: #1890ff !important; /* Màu nền khi item được chọn */
+    color: #fff !important; /* Màu chữ khi chọn */
+}
+
+/* Phần content */
+.flashcard-page__content {
+    margin: 0;
+    min-height: 280px;
+    background-color: #fff;
+}
+
+.flashcard-page__btn {
+    margin: 16px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1890ff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #40a9ff;
+    }
+  
+  }
+  

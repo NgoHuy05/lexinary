@@ -1,0 +1,23 @@
+import axios from "axios";
+
+const BASE_EXERCISE_URL = "http://localhost:8888/api/v1/exercises";  // Thay đổi theo route backend của Exercise
+
+// Lấy tất cả bài tập theo lessonId
+export const getExercisesByLesson = (lessonId) =>
+  axios.get(`${BASE_EXERCISE_URL}/lesson/${lessonId}`, { withCredentials: true });
+
+// Lấy chi tiết bài tập theo ID
+export const getExerciseDetail = (id) =>
+  axios.get(`${BASE_EXERCISE_URL}/detail/${id}`, { withCredentials: true });
+
+// Tạo mới bài tập
+export const createExercise = (data) =>
+  axios.post(`${BASE_EXERCISE_URL}/create`, data, { withCredentials: true });
+
+// Chỉnh sửa bài tập
+export const editExercise = (id, data) =>
+  axios.patch(`${BASE_EXERCISE_URL}/update/${id}`, data, { withCredentials: true });
+
+// Xóa bài tập
+export const deleteExercise = (id) =>
+  axios.delete(`${BASE_EXERCISE_URL}/delete/${id}`, { withCredentials: true });

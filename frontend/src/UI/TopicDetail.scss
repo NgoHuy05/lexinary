@@ -1,0 +1,222 @@
+.flashcard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+  width: 100%;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.flip-card {
+  width: 700px;
+  height: 400px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+  position: relative;
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card .front, .flip-card .back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #e5e2e2; /* Màu xanh nhạt gần trắng */
+  color: #333333; /* Chữ màu đen để dễ đọc */
+}
+
+.front {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.back {
+  background-color: #e5e2e2; /* Màu xanh nhạt gần trắng */
+    padding: 20px;
+  text-align: left;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  color: #333333; /* Chữ màu đen */
+}
+
+.back .pronunciation {
+  color: #1890ff;
+  font-weight: 500;
+}
+
+.back .definition {
+  color: #333333;
+}
+
+.back .example {
+  color: #52c41a;
+  font-style: italic;
+}
+
+.term, .definition {
+  text-align: center;
+}
+
+.pagination-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  font-size: 18px;
+
+  button {
+    padding: 8px 12px;
+    background-color: #1890ff;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  
+    &:hover:not(:disabled) {
+      background-color: #40a9ff;
+    }
+  
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  
+    svg {
+      font-size: 18px;
+    }
+  }
+}
+
+.ant-pagination {
+  margin-top: 50px;
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    button {
+      background-color: #1890ff!important;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #40a9ff!important;
+      }
+
+      &:disabled {
+        background-color: #ccc!important;
+        cursor: not-allowed;
+      }
+
+      svg {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.ant-pagination-simple-pager input {
+  width: 45px;
+  font-size: 20px;
+}
+.ant-pagination-simple-pager {
+  font-size: 20px;
+}
+.ant-pagination-item-link {
+  font-size: 20px!important;
+}
+
+.slide-out-left {
+  animation: slideOutLeft 0.3s forwards;
+}
+.slide-out-right {
+  animation: slideOutRight 0.3s forwards;
+}
+.slide-in-left {
+  animation: slideInLeft 0.4s forwards;
+}
+.slide-in-right {
+  animation: slideInRight 0.4s forwards;
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

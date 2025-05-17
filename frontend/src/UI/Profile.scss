@@ -1,0 +1,78 @@
+@use "./variables.scss" as *;
+.profile {
+    &__card {
+      width: 90%;
+      height: 70vh;
+      margin: 50px 100px;
+      align-items: center;
+      position: relative; /* Để có thể dùng absolute position cho phần tử con */
+    }
+  
+    &__title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+  
+      &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+  
+      &__save-button,
+      &__cancel-button {
+        background: transparent;
+        border: none;
+        color: $primary-color;
+        cursor: pointer;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      &__edit-button {
+        background: transparent;
+        border: none;
+        color: $primary-color;
+        cursor: pointer;
+        position: absolute; /* Đặt nút ở vị trí tuyệt đối */
+        bottom: 20px; /* Căn nút cách dưới của Card 20px */
+        right: 20px; /* Căn nút sang bên phải của Card */
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      &__input-disabled {
+        background-color: #f5f5f5;
+      }
+  
+      &__radio-group {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  
+    &__spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+.profile__input .ant-input{
+    width: 500px;
+  }
+
+.profile__button-group {
+    display: flex;
+    justify-content: flex-end;
+}

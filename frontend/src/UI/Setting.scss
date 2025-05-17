@@ -1,0 +1,120 @@
+.setting-sider-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.setting-sider {
+  width: 260px;
+  padding: 20px;
+  background-color: #fff;
+  border-right: 1px solid #e8e8e8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .ant-menu-item-selected {
+    background-color: #1890ff !important;
+    color: white !important;
+  }
+}
+
+.setting-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+
+}
+
+.setting-content__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.setting-avatar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .ant-avatar {
+    background-color: #58cc02;
+    margin-right: 16px;
+  }
+
+  .setting-avatar__button {
+    width: auto;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #58CC02;
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #a9dd82 !important;
+    }
+  }
+}
+
+.setting-content__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+
+  .setting-content__button {
+    width: auto;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #58CC02;
+
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #a9dd82 !important;
+    }
+  }
+}
+
+.setting-row {
+  margin-bottom: 20px;
+  font-size: 16px;
+
+  span {
+    font-weight: 500;
+    color: #333;
+  }
+}
+
+.setting__form {
+  max-width: 800px;
+  margin-top: 20px;
+
+  .ant-form-item-label {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .ant-input,
+  .ant-radio-group {
+    border-radius: 4px;
+  }
+}
+
+.change-password__button {
+  width: auto;
+    height: 40px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #58CC02;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #a9dd82 !important;
+  }
+}

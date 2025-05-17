@@ -1,0 +1,254 @@
+@use "./variables.scss" as *;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+// Reset styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  
+}
+
+// Layout tổng thể
+.layout {
+  background: $background-color;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+}
+
+// Header
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $primary-color;
+  padding: 20px 50px;
+  height: 100px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  position: fixed;  // Đặt header cố định
+  top: 0;           // Đặt vị trí của header ở đầu trang
+  left: 0;          // Đặt vị trí từ trái màn hình
+  z-index: 1000;    // Đảm bảo header luôn ở trên cùng
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    img {
+      height: 60px;
+    }
+  }
+
+  &__brand {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .header__nav {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .header__nav--left {
+    display: flex;
+    gap: 40px;
+    position: absolute;
+    left: 40%;
+    transform: translateX(-50%);
+
+    a, .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      font-size: 20px;
+
+      &:hover {
+        color: $hover-color;
+      }
+
+      &.active {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+  }
+
+  .header__nav--right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    right: 0;
+
+    .user__info {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      gap: 20px;
+    }
+
+  
+    .ant-avatar {
+        width: 50px;
+        height: 50px;
+        background-color: #58CC02; // Màu nền cho avatar nếu không có ảnh
+      }
+
+    .ant-btn {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn__login {
+      border: 2px solid $primary-color;
+      color: $primary-color;
+      background-color: white;
+      font-weight: bold;
+      padding: 30px 40px;
+      font-size: 20px;
+      border-radius: 35px;
+      box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background-color: $hover-color;
+        color: white;
+        box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .btn__register {
+      border: 2px solid $primary-color;
+      color: white;
+      background-color: #58CC02;
+      font-weight: bold;
+      padding: 30px 40px;
+      font-size: 20px;
+      border-radius: 35px;
+      box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background-color: $hover-color;
+        color: white;
+        box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.15);
+      }
+    }
+    
+  }
+}
+
+// Dropdown menu
+.ant-dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 10px 0;
+
+  .ant-dropdown-menu-item {
+    padding: 20px 20px !important;
+    font-size: 18px !important;
+    border-bottom: 1px solid #ddd;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $hover-color !important;
+      color: white !important;
+    }
+  }
+}
+.ant-layout-content {
+  // overflow-x: hidden!important;
+  overflow-x: hidden;
+  overflow-y: visible !important;  
+ 
+}
+
+// Content
+.content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 95px;
+  flex: 1;
+  
+}
+
+// Footer
+.footer {
+  background: $primary-color;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  .btn__footer {
+    background: #58CC02;
+    margin: 15px 0;
+    width: 100px;
+    height: 55px;
+    border-radius: 18px;
+    border-bottom: 4px solid #0050C7;
+
+    &:hover {
+      background: $hover-color !important;
+    }
+  }
+
+  &__title {
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    h2 {
+      font-size: 30px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 200px 60px;
+
+    &--left,
+    &--mid,
+    &--right {
+      color: white;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      h3 {
+        margin-bottom: 30px;
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.697);
+
+        &:hover {
+          color: white !important;
+          transform: translateX(5px) !important;
+        }
+      }
+
+      div {
+        color: rgba(255, 255, 255, 0.697);
+      }
+    }
+  }
+}

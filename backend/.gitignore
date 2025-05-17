@@ -1,0 +1,52 @@
+# =========================
+# Node.js / Express Backend
+# =========================
+
+# Dependency directory
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Coverage reports
+coverage/
+
+# Cache & temp
+.npm/
+.eslintcache
+
+# PM2 logs
+.pids/
+logs/
+
+# TypeScript build artifacts
+*.tsbuildinfo
+
+# OS and editor specific
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*~

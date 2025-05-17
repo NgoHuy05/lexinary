@@ -1,0 +1,49 @@
+/* course-history.scss */
+.course-history {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  
+    &__title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  
+    &__no-history {
+      font-size: 16px;
+      color: #888;
+    }
+  
+    &__list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    &__item {
+      background-color: #fff;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  
+    &__item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    &__lesson-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  
+    &__result {
+      font-size: 16px;
+      color: #4caf50; /* Có thể thay đổi màu sắc nếu muốn */
+    }
+  }
+  

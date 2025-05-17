@@ -1,0 +1,22 @@
+@use "./variables.scss" as *;
+
+.container__admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 89vh; /* Chiều cao tối thiểu = toàn bộ màn hình */
+    width: 100%; /* Đảm bảo rộng toàn màn hình */
+    background-color: $primary-color;
+}
+
+
+.card__admin {
+    width: 500px; /* Tăng kích thước card */
+    padding: 32px; /* Giãn cách nội dung bên trong */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-bottom: 450px;
+}

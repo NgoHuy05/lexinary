@@ -1,0 +1,132 @@
+@use "./variables.scss" as *;
+
+.logo__web {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px; /* Đảm bảo logo không bị ẩn */
+    margin: 16px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+
+    .logo__img {
+        height: 40px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .logo__title {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        margin-left: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+/* ✅ Khi sidebar thu gọn */
+.logo__web.collapsed {
+    justify-content: center;
+    .logo__img {
+        height: 32px; /* Giữ kích thước logo nhỏ */
+    }
+    .logo__title {
+        display: none;
+    }
+}
+
+// ✅ Phần Header chính
+.header__admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 0 20px;
+    height: 64px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative; // Đảm bảo các phần tử con không tràn ra ngoài
+    z-index: 1000; // Giữ Header luôn ở trên cùng
+}
+
+// ✅ Icon Menu (☰) bên trái
+.menu-icon {
+    font-size: 25px;
+    cursor: pointer;
+    color: black;
+    transition: color 0.3s ease;
+    
+    &:hover {
+        color: #1890ff; // Màu xanh của Ant Design khi hover
+    }
+}
+
+// ✅ Phần bên phải Header
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 20px; // Khoảng cách giữa các icon
+
+    &--item {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .header-icon {
+        font-size: 25px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        margin-left: 20px;
+        color: black;
+        &:hover {
+            transform: scale(1.1);
+            color: #1890ff; // Màu xanh khi hover
+        }
+    }
+
+    .header-avatar {
+        width: 45px;
+        height: 45px;
+        border: 2px solid #ddd;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+
+        &:hover {
+            border-color: #1890ff;
+        }
+    }
+}
+
+/* ✅ Dark Mode Toàn Bộ Giao Diện */
+body.dark-theme {
+    background-color: #181818;
+    color: white;
+  }
+  
+  /* ✅ Header Dark Mode */
+  .dark-theme .header__admin {
+    background: #1f1f1f;
+    color: white;
+  }
+  
+  /* ✅ Sidebar Dark Mode */
+  .dark-theme .ant-layout-sider {
+    background: #121212;
+  }
+  
+  /* ✅ Content Dark Mode */
+  .dark-theme .ant-layout-content {
+    background: #1f1f1f;
+    color: white;
+  }
+  
+  /* ✅ Footer Dark Mode */
+  .dark-theme .ant-layout-footer {
+    background: #121212;
+    color: white;
+  }
+  
+  /* ✅ Icon Dark Mode */
+  .dark-theme .header-icon {
+    color: white;
+  }
+  

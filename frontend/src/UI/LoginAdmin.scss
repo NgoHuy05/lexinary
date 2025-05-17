@@ -1,0 +1,20 @@
+@use "./variables.scss" as *;
+
+.header__admin {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    background: $primary-color;
+    padding: 20px 50px;
+    height: 100px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Đảm bảo chữ ở giữa */
+.header__admin--title {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}

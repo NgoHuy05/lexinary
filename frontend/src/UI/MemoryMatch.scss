@@ -1,0 +1,139 @@
+.memory-match {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    text-align: center;
+    min-height: 100vh;
+  
+    &__title {
+      font-size: 3rem;
+      color: #333;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+  
+    &__turns {
+      font-size: 1.5rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+  
+    .ant-select {
+      width: 200px;
+      margin: 10px;
+      background-color: #f7f7f7;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 5px;
+  
+      &:focus {
+        border-color: #1890ff;
+      }
+    }
+  
+    .memory-match__card {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+  
+      &.flipped {
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        
+      }
+  
+      .memory-match__text {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+        transition: color 0.3s ease;
+      }
+  
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+  
+    .memory-match__restart {
+      margin-top: 20px;
+      cursor: pointer;
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #40a9ff;
+        transform: scale(1.05);
+      }
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  
+    .ant-select-selector {
+      border-radius: 8px;
+    }
+  
+    .ant-card {
+      border-radius: 8px;
+    }
+  
+    .ant-row {
+      margin-top: 20px;
+    }
+  
+    .memory-match__button {
+      background-color: #1890ff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #4caf50;
+        transform: scale(1.05);
+      }
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  
+  }
+  .memory-match__gameover,
+  .memory-match__win {
+    text-align: center;
+    margin-top: 100px;
+    min-height: 100vh;
+    h2 {
+      font-size: 32px;
+      color: #ff4d4f;
+    }
+  
+    p {
+      font-size: 18px;
+      margin: 8px 0;
+    }
+  
+    button {
+      font-size: 16px;
+      padding: 8px 16px;
+    }
+  }
+  
