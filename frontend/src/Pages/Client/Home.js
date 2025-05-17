@@ -53,10 +53,6 @@ function Home() {
                 
             </div>
 
-            <div className="homeCloud">
-                <div className="homeCloudImg"></div>
-            </div>
-
             <div className="homeTarget">
                 <h2 className="targetTitle">Khám phá các tính năng</h2>
                 <Row gutter={[30, 30]} justify="center">
