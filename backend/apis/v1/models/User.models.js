@@ -5,6 +5,8 @@
       name: { type: String, required: true },
       email: { type: String, required: true, unique: true },
       password: { type: String, required: true },
+      token: String,
+      enrolledCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }], // Khóa học đã tham gia
       progress: [
         {
           lesson: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson" },

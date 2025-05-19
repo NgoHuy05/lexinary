@@ -4,7 +4,7 @@ const Course = require("../models/Course.models");
 // Lấy danh sách khóa học với phân trang và tìm kiếm
 module.exports.index = async (req, res) => {
     try {
-        const find = {};
+        const find = { deleted: false };
 
         if (req.query.categoryType) {
             find.categoryType = req.query.categoryType;
@@ -14,7 +14,7 @@ module.exports.index = async (req, res) => {
         res.json(courses);
     } catch (error) {
         console.error("Lỗi lấy dữ liệu khóa học:", error);
-        res.status(500).json({ message: "Lỗi server.." });
+        res.status(500).json({ message: "Lỗi server" });
     }
 };
 
