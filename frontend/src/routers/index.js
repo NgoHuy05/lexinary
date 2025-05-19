@@ -110,10 +110,9 @@ export const routers = [
         element: <MemoryMatch />,
       },
       {
-        path: "game/advanture",
+        path: "game/adventure",
         element: <VocabularyAdventure />,
       },
-      
       {
         path: "method",
         element: <Method />,
