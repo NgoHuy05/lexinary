@@ -32,6 +32,7 @@ import MemoryMatch from "../Pages/Client/Features/Game/MemoryMatch";
 import CourseGrammar from "../Pages/Client/Courses/CourseGrammar";
 import CourseSentence from "../Pages/Client/Courses/CourseSentence";
 import Progress from "../Pages/Client/Progress";
+import VocabularyAdventure from "../Pages/Client/Features/Game/VocabularyAdventure";
 
 export const routers = [
   {
@@ -107,6 +108,10 @@ export const routers = [
       {
         path: "game/memory",
         element: <MemoryMatch />,
+      },
+      {
+        path: "game/advanture",
+        element: <VocabularyAdventure />,
       },
       
       {

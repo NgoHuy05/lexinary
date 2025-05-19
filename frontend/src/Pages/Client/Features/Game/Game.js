@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import "../../../../UI/Game.scss";
 import Cookies from "js-cookie";
 import memory from "../../../../assets/images/memory.jpg";
-
+import adventure from "../../../../assets/images/vocabulary-adventures.png"
 const games = [
   { title: "🧠 Memory Match", path: "/game/memory", img: memory },
-  { title: "🗺 Vocabulary Adventure", path: "/game/adventure", img: "/img/adventure.jpg" },
+  { title: "🗺 Vocabulary Adventure", path: "/game/adventure", img: adventure },
 ];
 
 export default function Game() {
