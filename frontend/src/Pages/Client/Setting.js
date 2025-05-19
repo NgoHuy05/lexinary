@@ -61,9 +61,7 @@ export default function SettingPage() {
       });
   }, [navigate, form]);
 
-  const toggleDarkMode = (checked) => {
-    setIsDarkMode(checked);
-  };
+
 
   const handleUpdate = (values) => {
     updateUserProfile(values.name, values.email, values.phone, values.gender, values.address)
@@ -149,47 +147,7 @@ export default function SettingPage() {
             )}
           </>
         );
-      case "interface":
-        return (
-          <div className="setting-content__section">
-            <h2 className="setting-content__title">Hình thức</h2>
-            <Divider className="setting-content__divider" />
-            <div className="setting-row">
-              <span>Chế độ: </span>
-              <Switch
-                checked={isDarkMode} // Điều kiện kiểm tra chế độ hiện tại
-                onChange={toggleDarkMode} // Hàm toggle để chuyển đổi chế độ
-                checkedChildren="Tối" // Hiển thị khi chọn chế độ tối
-                unCheckedChildren="Sáng" // Hiển thị khi chọn chế độ sáng
-              />
-            </div>
-          </div>
-        );
-      case "language":
-        return (
-          <div className="setting-content__section">
-            <h2 className="setting-content__title">Giao diện</h2>
-            <Divider className="setting-content__divider" />
-            <div className="setting-row">
-              <span>Ngôn ngữ:  </span>
-              <Select value={language} style={{ width: 150 }} onChange={setLanguage}>
-                <Option value="vi">Tiếng Việt</Option>
-                <Option value="en">English</Option>
-              </Select>
-            </div>
-          </div>
-        );
-      case "notification":
-        return (
-          <div className="setting-content__section">
-            <h2 className="setting-content__title">Thông báo</h2>
-            <Divider className="setting-content__divider" />
-            <div className="setting-row">
-              <span>Gửi email thông báo:  </span>
-              <Switch checked={emailNotif} onChange={setEmailNotif} />
-            </div>
-          </div>
-        );
+  
       case "security":
         return (
           <>
@@ -212,9 +170,6 @@ export default function SettingPage() {
           onClick={({ key }) => setSelectedKey(key)}
           items={[
             { key: "account", icon: <UserOutlined />, label: "Tài khoản" },
-            { key: "language", icon: <GlobalOutlined />, label: "Ngôn ngữ" },
-            { key: "interface", icon: <IoColorPaletteOutline />, label: "Hình thức" },
-            { key: "notification", icon: <BellOutlined />, label: "Thông báo" },
             { key: "security", icon: <LockOutlined />, label: "Bảo mật" },
           ]}
         />
