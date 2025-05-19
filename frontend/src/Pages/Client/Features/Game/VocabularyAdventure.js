@@ -5,14 +5,14 @@ export default function VocabularyAdventure() {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      background: 'linear-gradient(to right, #e0f7fa, #e1bee7)', 
+      background: 'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)', 
       display: 'flex', 
       alignItems: 'center', 
       justifyContent: 'center',
       padding: '2rem'
     }}>
       <Result
-        icon={<SmileOutlined />}
+        icon={<SmileOutlined style={{ color: '#1890ff' }} />}
         title="Bảo trì"
         subTitle="Trò chơi 'Vocabulary Adventure' đang trong giai đoạn hoàn thiện phát triển. Vui lòng quay lại sau!"
         extra={
@@ -20,6 +20,12 @@ export default function VocabularyAdventure() {
             Quay lại trang chủ
           </Button>
         }
+        style={{ 
+          background: 'white', 
+          padding: '2rem', 
+          borderRadius: '1rem', 
+          boxShadow: '0 8px 24px rgba(0,0,0,0.1)' 
+        }}
       />
     </div>
   );
