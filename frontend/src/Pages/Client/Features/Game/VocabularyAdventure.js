@@ -20,7 +20,6 @@ export default function VocabularyAdventure() {
             Quay lại trang chủ
           </Button>
         }
-        style={{ background: 'white', padding: '2rem', borderRadius: '1rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
       />
     </div>
   );
