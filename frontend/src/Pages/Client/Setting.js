@@ -4,8 +4,6 @@ import {
   Menu,
   Form,
   Input,
-  Select,
-  Switch,
   Button,
   Upload,
   Avatar,
@@ -19,8 +17,6 @@ import {
 import {
   UploadOutlined,
   UserOutlined,
-  GlobalOutlined,
-  BellOutlined,
   LockOutlined,
   EditOutlined
 } from "@ant-design/icons";
@@ -29,21 +25,14 @@ import { useForm } from "antd/es/form/Form";
 import "../../UI/Setting.scss";
 import ChangePassword from "./Auth/ChangePassword";
 import Cookies from "js-cookie";
-import { IoColorPaletteOutline } from "react-icons/io5";
 import { getUserProfile, updateUserProfile } from "../../api/apiUser";
 const { Sider, Content } = Layout;
-const { Option } = Select;
-
 export default function SettingPage() {
   const [selectedKey, setSelectedKey] = useState("account");
-  const [language, setLanguage] = useState("vi");
-  const [emailNotif, setEmailNotif] = useState(true);
   const [user, setUser] = useState(null);
   const [form] = useForm();
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // Lưu trạng thái chế độ (sáng/tối)
-
 
   const navigate = useNavigate();
   const email = Cookies.get("email");

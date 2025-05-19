@@ -11,25 +11,25 @@ function Home() {
         {
             title: "Học từ vựng theo chủ đề",
             description: "Học từ vựng dễ dàng hơn bằng cách chia theo các chủ đề phổ biến.",
-            items: ["Chủ đề đa dạng", "Bài tập theo chủ đề", "Gợi ý từ liên quan"],
+            items: ["Chủ đề đa dạng", "Bài tập theo chủ đề"],
             link: "/courses",
         },
         {
             title: "Ghi chú",
             description: "Ghi lại các từ vựng quan trọng và mẹo nhớ giúp bạn dễ dàng ôn tập.",
-            items: ["Tạo ghi chú cá nhân", "Đánh dấu từ quan trọng", "Nhắc nhở ôn tập định kỳ"],
+            items: ["Tạo ghi chú cá nhân", "Tạo được các task nhỏ"],
             link: "/note",
         },
         {
             title: "Học từ vựng hiệu quả",
             description: "Phương pháp lặp lại cách quãng giúp ghi nhớ lâu dài.",
-            items: ["Flashcards thông minh", "Bài học từ vựng hàng ngày", "Thống kê tiến độ"],
+            items: ["Flashcards thông minh", "Ôn luyện các chủ đề bằng flashcard",],
             link: "/flashcard",
         },
         {
             title: "Chơi game & luyện tập",
             description: "Trò chơi thú vị giúp cải thiện từ vựng mà không nhàm chán.",
-            items: ["Game thi đấu từ vựng", "Mục tiêu học tập mỗi ngày", "Thử thách từ vựng"],
+            items: ["Game nối từ vựng", "Thử thách trí nhớ", "Giải trí sau giờ học căng thẳng"],
             link: "/game",
         },
     ];
