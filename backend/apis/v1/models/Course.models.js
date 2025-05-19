@@ -13,7 +13,6 @@ const courseSchema = new mongoose.Schema({
   chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chapter" }],
   lessons: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lesson" }], // ✅ thêm dòng này
   status: { type: String, default: "pending" },
-  listUser: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   deleted: { type: Boolean, default: false },
   target: { type: String },
