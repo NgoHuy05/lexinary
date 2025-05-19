@@ -36,10 +36,12 @@ useEffect(() => {
     if (lesson) {
       setSelectedLesson(lesson);
     } else {
+        setLoading(true);
       // Nếu không tìm thấy trong chapter, thì fallback gọi API (nếu có sẵn API getLessonDetail)
       getLessonDetail(lessonId)
         .then((res) => setSelectedLesson(res.data))
-        .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err));
+        .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err))
+        .finally(() => setLoading(false));
     }
   }
 }, [selectedChapter, lessonId]);
@@ -47,9 +49,12 @@ useEffect(() => {
   // Load exercises
   useEffect(() => {
     if (!selectedLesson) return;
+      setLoading(true);
     getGrammarByLesson(selectedLesson._id)
       .then((res) => setGrammars(res.data || []))
-      .catch((err) => console.error("Lỗi khi tải bài tập:", err));
+      .catch((err) => console.error("Lỗi khi tải bài tập:", err))
+      .finally(() => setLoading(false));
+
   }, [selectedLesson]);
 
   const columns = [
@@ -98,6 +103,13 @@ useEffect(() => {
     },
   ];
   
+  if (loading ) {
+  return (
+    <div style={{ textAlign: "center", padding: 100 }}>
+      <Spin size="large" tip="Đang tải dữ liệu..." />
+    </div>
+  );
+}
 
 return (
         <div className="course-grammar">

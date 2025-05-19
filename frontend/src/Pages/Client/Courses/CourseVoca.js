@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table } from "antd";
+import { Spin, Table } from "antd";
 import { useParams } from "react-router-dom";
 import { getChapters } from "../../../api/apiChapter";
 import { getLessonDetail } from "../../../api/apiLesson";
@@ -13,57 +13,54 @@ const CourseVoca = () => {
     const [vocabularies, setVocabularies] = useState([]);
     const [loading, setLoading] = useState(false);
     const { courseId, lessonId, chapterId } = useParams();
+// Load chương
+useEffect(() => {
+    setLoading(true);
+    getChapters(courseId)
+        .then((res) => {
+            const chapterList = res.data || [];
+            setChapters(chapterList);
+            const chapter = chapterList.find((chap) => chap._id === chapterId);
+            setSelectedChapter(chapter || chapterList[0]);
+        })
+        .catch((err) => {
+            console.error("Lỗi khi tải chương:", err);
+        })
+        .finally(() => setLoading(false)); // Gộp lại
+}, [courseId, chapterId]);
 
-    // Load chương
-    useEffect(() => {
-        setLoading(true);
-        getChapters(courseId)
-            .then((res) => {
-                const chapterList = res.data || [];
-                setChapters(chapterList);
-                // Tìm chương đã chọn dựa trên chapterId
-                const chapter = chapterList.find((chap) => chap._id === chapterId);
-                setSelectedChapter(chapter || chapterList[0]);  // Chọn chương mặc định nếu không tìm thấy
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.error("Lỗi khi tải chương:", err);
-                setLoading(false);
-            });
-    }, [courseId, chapterId]);  // Thêm chapterId để theo dõi khi nó thay đổi
-
- 
- useEffect(() => {
-   if (selectedChapter && selectedChapter.lessons) {
-     const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
-     if (lesson) {
-       setSelectedLesson(lesson);
-     } else {
-       // Nếu không tìm thấy trong chapter, thì fallback gọi API (nếu có sẵn API getLessonDetail)
-       getLessonDetail(lessonId)
-         .then((res) => setSelectedLesson(res.data))
-         .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err));
-     }
-   }
- }, [selectedChapter, lessonId]);
- 
-    // Load từ vựng theo bài học
-    useEffect(() => {
-        if (selectedLesson && selectedLesson._id) {
-            setLoading(true);
-            getVocabularyByLesson(selectedLesson._id)
-                .then((res) => {
-                    setVocabularies(res.data || []);
-                    setLoading(false);
-                })
-                .catch((err) => {
-                    console.error("Lỗi khi tải từ vựng:", err);
-                    setLoading(false);
-                });
+// Load bài học theo chương
+useEffect(() => {
+    if (selectedChapter && selectedChapter.lessons) {
+        const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
+        if (lesson) {
+            setSelectedLesson(lesson);
         } else {
-            setVocabularies([]);
+            setLoading(true); // Bật loading khi gọi API
+            getLessonDetail(lessonId)
+                .then((res) => setSelectedLesson(res.data))
+                .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err))
+                .finally(() => setLoading(false));
         }
-    }, [selectedLesson]);
+    }
+}, [selectedChapter, lessonId]);
+
+// Load từ vựng theo bài học
+useEffect(() => {
+    if (selectedLesson && selectedLesson._id) {
+        setLoading(true);
+        getVocabularyByLesson(selectedLesson._id)
+            .then((res) => setVocabularies(res.data || []))
+            .catch((err) => {
+                console.error("Lỗi khi tải từ vựng:", err);
+                setVocabularies([]);
+            })
+            .finally(() => setLoading(false)); // Gộp xử lý loading
+    } else {
+        setVocabularies([]);
+        setLoading(false); // Tránh loading treo nếu không có bài học
+    }
+}, [selectedLesson]);
 
     // Table cột từ vựng
     const columns = [
@@ -77,6 +74,15 @@ const CourseVoca = () => {
         { title: "Phát âm", dataIndex: "pronunciation", key: "pronunciation" },
         { title: "Ví dụ", dataIndex: "example", key: "example" },
     ];
+
+    
+  if (loading ) {
+  return (
+    <div style={{ textAlign: "center", padding: 100 }}>
+      <Spin size="large" tip="Đang tải dữ liệu..." />
+    </div>
+  );
+}
 
     return (
         <div className="course-voca">

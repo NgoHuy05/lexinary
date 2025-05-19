@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "antd";
+import { Card, Spin } from "antd";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { getChapters } from "../../../api/apiChapter";
 import { getLessonDetail } from "../../../api/apiLesson";
@@ -16,44 +16,47 @@ const CourseEx = () => {
   const [selectedLesson, setSelectedLesson] = useState(null);
   const [exercises, setExercises] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const { courseId, lessonId, chapterId } = useParams();
   const navigate = useNavigate();
   const userId = Cookies.get("id");
   // Load chapters
-  useEffect(() => {
-    getChapters(courseId)
-      .then((res) => {
-        const data = res.data || [];
-        setChapters(data);
-        const initial = data.find((c) => c._id === chapterId) || data[0];
-        setSelectedChapter(initial);
-      })
-      .catch((err) => console.error("Lỗi khi tải chương:", err));
-  }, [courseId, chapterId]);
+useEffect(() => {
+  setLoading(true);
+  getChapters(courseId)
+    .then((res) => {
+      const data = res.data || [];
+      setChapters(data);
+      const initial = data.find((c) => c._id === chapterId) || data[0];
+      setSelectedChapter(initial);
+    })
+    .catch((err) => console.error("Lỗi khi tải chương:", err))
+    .finally(() => setLoading(false));
+}, [courseId, chapterId]);
 
 useEffect(() => {
-  if (selectedChapter && selectedChapter.lessons) {
-    const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
-    if (lesson) {
-      setSelectedLesson(lesson);
-    } else {
-      // Nếu không tìm thấy trong chapter, thì fallback gọi API (nếu có sẵn API getLessonDetail)
-      getLessonDetail(lessonId)
-        .then((res) => setSelectedLesson(res.data))
-        .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err));
-    }
+  if (!selectedChapter || !selectedChapter.lessons) return;
+
+  const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
+  if (lesson) {
+    setSelectedLesson(lesson);
+  } else {
+    setLoading(true);
+    getLessonDetail(lessonId)
+      .then((res) => setSelectedLesson(res.data))
+      .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err))
+      .finally(() => setLoading(false));
   }
 }, [selectedChapter, lessonId]);
 
-
-  // Load exercises
-  useEffect(() => {
-    if (!selectedLesson) return;
-    getExercisesByLesson(selectedLesson._id)
-      .then((res) => setExercises(res.data || []))
-      .catch((err) => console.error("Lỗi khi tải bài tập:", err));
-  }, [selectedLesson]);
+useEffect(() => {
+  if (!selectedLesson) return;
+  setLoading(true);
+  getExercisesByLesson(selectedLesson._id)
+    .then((res) => setExercises(res.data || []))
+    .catch((err) => console.error("Lỗi khi tải bài tập:", err))
+    .finally(() => setLoading(false));
+}, [selectedLesson]);
 
   // Xử lý chọn đáp án cho các loại bài tập
   const handleAnswerSelect = (exerciseId, selectedAnswer, correctAnswer) => {
@@ -239,6 +242,14 @@ const handleSubmit = () => {
     console.error("Lỗi khi nộp bài:", error);
   }
 };
+
+  if (loading ) {
+  return (
+    <div style={{ textAlign: "center", padding: 100 }}>
+      <Spin size="large" tip="Đang tải dữ liệu..." />
+    </div>
+  );
+}
 
   return (
     <>
