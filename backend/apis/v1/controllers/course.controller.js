@@ -14,7 +14,7 @@ module.exports.index = async (req, res) => {
         res.json(courses);
     } catch (error) {
         console.error("Lỗi lấy dữ liệu khóa học:", error);
-        res.status(500).json({ message: "Lỗi server" });
+        res.status(500).json({ message: "Lỗi server.." });
     }
 };
 

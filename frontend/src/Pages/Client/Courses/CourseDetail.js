@@ -31,16 +31,13 @@ useEffect(() => {
     try {
       setLoading(true);
 
-      // 1. Lấy thông tin khóa học
       const courseResponse = await getCourseDetail(courseId);
       setCourse(courseResponse.data);
 
-      // 2. Lấy chương
       const chaptersResponse = await getChapters(courseId);
       const chaptersData = chaptersResponse.data || [];
       setChapters(chaptersData);
 
-      // 3. Lấy bài học từ các chương
       const lessonsIds = chaptersData.reduce((ids, chapter) => {
         return ids.concat(chapter.lessons);
       }, []);
