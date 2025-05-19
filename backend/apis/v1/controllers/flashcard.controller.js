@@ -113,16 +113,23 @@ module.exports.updateFlashcard = async (req, res) => {
 // Xoá flashcard
 module.exports.deleteFlashcard = async (req, res) => {
   try {
-    const flashcardId = req.params.id;
 
-    const deleted = await Flashcard.findByIdAndDelete(flashcardId);
-    if (!deleted) return res.status(404).json({ message: "Không tìm thấy flashcard" });
+    // Tìm flashcard trước để lấy topicId
+    const flashcard = await Flashcard.findByIdAndDelete(req.params.id);
+    if (!flashcard) return res.status(404).json({ message: "Không tìm thấy flashcard" });
 
-    res.json({ message: "Đã xoá flashcard" });
+    // Cập nhật topic: xoá flashcardId khỏi mảng flashcards
+    await Topic.findByIdAndUpdate(flashcard.topicId, {
+      $pull: { flashcards: flashcard._id },
+    });
+
+    res.json({ message: "Đã xoá flashcard và cập nhật topic" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Lỗi khi xoá flashcard" });
   }
 };
+
 
 module.exports.getFlashcardsByTopic = async (req, res) => {
   try {

@@ -139,7 +139,7 @@ export const routers = [
           { path: "create", element: <CreateTopicAndFlashcards /> },
           { path: "library/topic/:id", element: <TopicDetail /> },
           { path: "home/topic/:id", element: <TopicDetail /> },
-          { path: "edit/:id", element: <EditTopic /> }, 
+          { path: "update/:id", element: <EditTopic /> }, 
           { path: "review/:id", element: <ReviewFlashcards /> }, 
         ],
       },
@@ -153,13 +153,7 @@ export const routers = [
   {
     path: "/admin",
     element: <LayoutAdmin />,
-    children: [
-      // Thêm route cho Dashboard Admin (nếu cần)
-      // {
-      //   index: true,
-      //   element: <PrivateRoute element={<AdminDashboard />} />,
-      // }
-    ],
+
   },
   {
     path: "/admin/login",

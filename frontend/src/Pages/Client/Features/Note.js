@@ -4,6 +4,7 @@ import { Card, Modal, Input, Button, message, Popconfirm } from "antd";
 import "../../../UI/Note.scss";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const NotePage = () => {
   const [notes, setNotes] = useState([]);
@@ -14,7 +15,15 @@ const NotePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const userId = Cookies.get("id");
+  
+  useEffect(() => {
+    if (!userId) {
+      message.warning("Vui lòng đăng nhập để xem ghi chú");
+      navigate("/login");
+    }
+  }, []);
+  
   useEffect(() => {
     loadNotes();
   }, [location.key]);

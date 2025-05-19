@@ -42,7 +42,7 @@ const TopicLibrary = () => {
   };
 
   const handleEditTopic = (id) => {
-    navigate(`/flashcard/edit/${id}`);
+    navigate(`/flashcard/update/${id}`);
   };
 
   const handleDeleteTopic = async (id) => {

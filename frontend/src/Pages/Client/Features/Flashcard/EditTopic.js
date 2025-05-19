@@ -61,15 +61,24 @@ const EditTopic = () => {
     setFlashcards(updated);
   };
 
-  // Handle deleting a flashcard
-  const handleDeleteFlashcard = (index) => {
-    const updated = [...flashcards];
-    const removed = updated.splice(index, 1)[0];
-    setFlashcards(updated);
+const handleDeleteFlashcard = async (index) => {
+  const removed = flashcards[index];
+  try {
     if (removed._id) {
-      setDeletedFlashcardIds([...deletedFlashcardIds, removed._id]);
+      await deleteFlashcard(removed._id);  // Gọi API xóa flashcard ngay
     }
-  };
+    // Cập nhật lại state flashcards bỏ flashcard đã xóa
+    const updated = [...flashcards];
+    updated.splice(index, 1);
+    setFlashcards(updated);
+
+    // Nếu xóa thành công thì cũng không cần lưu ID nữa
+    setDeletedFlashcardIds(deletedFlashcardIds.filter(id => id !== removed._id));
+  } catch (error) {
+    message.error("Xóa flashcard thất bại!");
+  }
+};
+
 
   // Handle adding a new flashcard
   const handleAddFlashcard = () => {

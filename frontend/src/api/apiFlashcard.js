@@ -46,7 +46,7 @@ export const createFlashcard = async (term, definition, example, pronunciation, 
 // Sửa flashcard
 export const editFlashcard = async (id, term, definition, example, pronunciation ) => {
   try {
-    const res = await axios.patch(`${BASE_URL}/edit/${id}`, {term, definition, example, pronunciation}, {
+    const res = await axios.patch(`${BASE_URL}/update/${id}`, {term, definition, example, pronunciation}, {
       withCredentials: true,
     });
     return res.data;

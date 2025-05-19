@@ -10,7 +10,7 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons";
-
+import Cookies from "js-cookie";
 const { Sider, Content } = Layout;
 
 const FlashcardPage = () => {
@@ -18,6 +18,15 @@ const FlashcardPage = () => {
   const [loading, setLoading] = useState(true); // Trạng thái loading
   const location = useLocation(); // Lấy pathname hiện tại
   const [collapsed, setCollapsed] = useState(false);
+  const userId = Cookies.get("id");
+  
+  useEffect(() => {
+    if (!userId) {
+      message.warning("Vui lòng đăng nhập để xem chủ đề flashcard");
+      navigate("/login");
+    }
+  }, []);
+  
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   }

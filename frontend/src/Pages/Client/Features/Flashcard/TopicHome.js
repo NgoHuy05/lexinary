@@ -83,7 +83,7 @@ const TopicHome = () => {
   };
 
   const handleEditTopic = (id) => {
-    navigate(`/flashcard/edit/${id}`);
+    navigate(`/flashcard/update/${id}`);
   };
 
   if (loading) return <Spin size="large" />;

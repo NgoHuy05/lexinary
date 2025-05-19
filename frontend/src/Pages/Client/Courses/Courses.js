@@ -21,6 +21,13 @@ export default function CourseLibrary() {
   const userId = Cookies.get("id");
 
   useEffect(() => {
+    if (!userId) {
+      message.warning("Vui lòng đăng nhập để xem khóa học");
+      navigate("/login");
+    }
+  }, []);
+  
+  useEffect(() => {
     // Lấy dữ liệu từ API khi component được render
     setLoading(true);
 
