@@ -5,9 +5,10 @@ html, body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  zoom: 95%;
+  box-sizing: border-box;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: "Poppins", sans-serif;
 }

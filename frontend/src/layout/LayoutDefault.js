@@ -15,7 +15,8 @@ function LayoutDefault() {
   const navigate = useNavigate();
   const [status, setStatus] = useState(null);
   const [name, setName] = useState("");
-  const userId = Cookies.get("id");
+  const location = useLocation().pathname;
+  const showFooter = location === "/" || location === "/method" || location === "/quotes";
 
   useEffect(() => {
     const name = Cookies.get("name");
@@ -110,7 +111,7 @@ function LayoutDefault() {
       <Content className="content">
         <Outlet />
       </Content>
-
+    {showFooter && (
         <footer className="footer">
           <div className="footer__title">
             <h2>Học tiếng anh với Lexinary.</h2>
@@ -136,6 +137,8 @@ function LayoutDefault() {
             </div>
           </div>
         </footer>
+    )
+}
     </Layout>
     </>
   );

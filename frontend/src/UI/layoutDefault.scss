@@ -1,15 +1,6 @@
 @use "./variables.scss" as *;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
-// Reset styles
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  
-}
-
 // Layout tổng thể
 .layout {
   background: $background-color;
