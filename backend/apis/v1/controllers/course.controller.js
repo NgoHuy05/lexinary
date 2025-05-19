@@ -4,7 +4,7 @@ const Course = require("../models/Course.models");
 // Lấy danh sách khóa học với phân trang và tìm kiếm
 module.exports.index = async (req, res) => {
     try {
-        const find = { deleted: false };
+        const find = {};
 
         if (req.query.categoryType) {
             find.categoryType = req.query.categoryType;
