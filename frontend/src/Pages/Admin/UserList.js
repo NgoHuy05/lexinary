@@ -1,18 +1,11 @@
-import React, { useEffect } from "react";
-import { Table, Button, message, Modal, Form, Input, Select } from "antd";
+import React, { useEffect, useState } from "react";
+import { Table, Button, message } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import {listUser, updateUser } from "../../api/apiUser";
-
-const { Option } = Select;
+import { listUser } from "../../api/apiUser";
 
 function UserList() {
-  const [users, setUsers] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-
-  // Modal state
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState(null);
-  const [form] = Form.useForm();
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchUsers();
@@ -22,7 +15,7 @@ function UserList() {
     setLoading(true);
     try {
       const res = await listUser();
-      setUsers(res.data || []);
+      setUsers(res.data.users);
     } catch (err) {
       message.error("Lỗi khi tải danh sách người dùng!");
       console.error(err);
@@ -49,7 +42,6 @@ function UserList() {
         <Button
           type="link"
           icon={<EditOutlined />}
-        //   onClick={() => handleEdit(record)}
         />
       ),
     },
@@ -65,44 +57,6 @@ function UserList() {
         loading={loading}
         pagination={{ pageSize: 10 }}
       />
-
-      {/* <Modal
-        title="Chỉnh sửa người dùng"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okText="Lưu"
-      >
-        <Form form={form} layout="vertical" name="editUserForm">
-          <Form.Item
-            name="name"
-            label="Tên"
-            rules={[{ required: true, message: "Vui lòng nhập tên!" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="email"
-            label="Email"
-            rules={[
-              { required: true, message: "Vui lòng nhập email!" },
-              { type: "email", message: "Email không hợp lệ!" },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="role"
-            label="Role"
-            rules={[{ required: true, message: "Vui lòng chọn role!" }]}
-          >
-            <Select>
-              <Option value="user">User</Option>
-              <Option value="admin">Admin</Option>
-            </Select>
-          </Form.Item>
-        </Form>
-      </Modal> */}
     </div>
   );
 }
