@@ -31,7 +31,7 @@ function LayoutDefault() {
       removeAllCookies();
       setStatus(false);
       setName("");
-      navigate("/");
+      window.location.href = "/";
     } catch (error) {
       console.error("Có lỗi khi đăng xuất:", error);
     }

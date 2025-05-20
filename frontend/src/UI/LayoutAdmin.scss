@@ -1,132 +1,141 @@
-@use "./variables.scss" as *;
+.admin {
+    min-height: 111vh;
 
-.logo__web {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 64px; /* Đảm bảo logo không bị ẩn */
-    margin: 16px;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-
-    .logo__img {
-        height: 40px;
-        transition: all 0.3s ease-in-out;
+    &__sider {
+        background-color: #001529;
     }
 
-    .logo__title {
-        font-size: 18px;
-        font-weight: bold;
-        color: white;
-        margin-left: 10px;
-        transition: all 0.3s ease-in-out;
-    }
-}
-
-/* ✅ Khi sidebar thu gọn */
-.logo__web.collapsed {
-    justify-content: center;
-    .logo__img {
-        height: 32px; /* Giữ kích thước logo nhỏ */
-    }
-    .logo__title {
-        display: none;
-    }
-}
-
-// ✅ Phần Header chính
-.header__admin {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
-    padding: 0 20px;
-    height: 64px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative; // Đảm bảo các phần tử con không tràn ra ngoài
-    z-index: 1000; // Giữ Header luôn ở trên cùng
-}
-
-// ✅ Icon Menu (☰) bên trái
-.menu-icon {
-    font-size: 25px;
-    cursor: pointer;
-    color: black;
-    transition: color 0.3s ease;
-    
-    &:hover {
-        color: #1890ff; // Màu xanh của Ant Design khi hover
-    }
-}
-
-// ✅ Phần bên phải Header
-.header__right {
-    display: flex;
-    align-items: center;
-    gap: 20px; // Khoảng cách giữa các icon
-
-    &--item {
+    &__logo {
         display: flex;
         align-items: center;
-        position: relative;
-    }
+        justify-content: center;
+        padding: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
 
-    .header-icon {
-        font-size: 25px;
-        cursor: pointer;
-        transition: transform 0.2s ease-in-out;
-        margin-left: 20px;
-        color: black;
-        &:hover {
-            transform: scale(1.1);
-            color: #1890ff; // Màu xanh khi hover
+        &--collapsed {
+            justify-content: center;
         }
     }
 
-    .header-avatar {
-        width: 45px;
-        height: 45px;
-        border: 2px solid #ddd;
-        cursor: pointer;
-        transition: border-color 0.3s ease;
+    &__logo-title {
+        color: #fff;
+    }
 
-        &:hover {
-            border-color: #1890ff;
+    &__menu {
+        margin-top: 10px;
+    }
+
+    &__header {
+        background: #fff;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+        &-left {
+            display: flex;
+            align-items: center;
         }
+
+        &-right {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            gap: 40px;
+            
+        }
+
+        &-item {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    &__menu-toggle {
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    &__icon {
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    &__avatar {
+        cursor: pointer;
+    }
+
+    &__content {
+
+        padding: 24px;
+        background: #fff;
+        min-height: 280px;
+    }
+
+    &__footer {
+        text-align: center;
+        padding: 16px;
+        background: #f0f2f5;
     }
 }
+/* DARK THEME SUPPORT */
+.dark-theme {
+    background-color: #141414;
+    color: #ffffff;
 
-/* ✅ Dark Mode Toàn Bộ Giao Diện */
-body.dark-theme {
-    background-color: #181818;
-    color: white;
-  }
-  
-  /* ✅ Header Dark Mode */
-  .dark-theme .header__admin {
-    background: #1f1f1f;
-    color: white;
-  }
-  
-  /* ✅ Sidebar Dark Mode */
-  .dark-theme .ant-layout-sider {
-    background: #121212;
-  }
-  
-  /* ✅ Content Dark Mode */
-  .dark-theme .ant-layout-content {
-    background: #1f1f1f;
-    color: white;
-  }
-  
-  /* ✅ Footer Dark Mode */
-  .dark-theme .ant-layout-footer {
-    background: #121212;
-    color: white;
-  }
-  
-  /* ✅ Icon Dark Mode */
-  .dark-theme .header-icon {
-    color: white;
-  }
-  
+    .admin__header {
+        background-color: #1f1f1f;
+        color: #fff;
+        box-shadow: none;
+    }
+
+    .admin__content {
+        background-color: #1a1a1a;
+        color: #fff;
+    }
+
+    .admin__footer {
+        background-color: #1f1f1f;
+        color: #aaa;
+    }
+
+    .admin__icon,
+    .admin__menu-toggle {
+        color: #fff;
+    }
+
+    .admin__logo-title {
+        color: #fff;
+    }
+
+    .ant-menu-dark {
+        background: #001529 !important;
+    }
+
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+        color: #ccc !important;
+    }
+
+    .ant-menu-item-selected {
+        background-color: #1890ff !important;
+        color: #fff !important;
+    }
+
+    .ant-menu-submenu-selected > .ant-menu-submenu-title {
+        color: #fff !important;
+    }
+
+    .ant-badge-count {
+        background-color: #722ed1 !important;
+    }
+
+    .admin__avatar {
+        border: 2px solid #fff;
+    }
+}

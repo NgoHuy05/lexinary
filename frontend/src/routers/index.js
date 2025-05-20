@@ -33,6 +33,8 @@ import CourseGrammar from "../Pages/Client/Courses/CourseGrammar";
 import CourseSentence from "../Pages/Client/Courses/CourseSentence";
 import Progress from "../Pages/Client/Progress";
 import VocabularyAdventure from "../Pages/Client/Features/Game/VocabularyAdventure";
+import AdminDashboard from "../Pages/Admin/Dashboard";
+import UserList from "../Pages/Admin/UserList";
 
 export const routers = [
   {
@@ -65,11 +67,11 @@ export const routers = [
       },
       {
         path: "courses",
-        element: <Courses/>,
+        element: <Courses />,
       },
       {
         path: "courses/:courseId",
-        element: <CourseDetail/>,
+        element: <CourseDetail />,
         children: [
           {
             path: "chapter/:chapterId/lesson/:lessonId/vocabulary",
@@ -99,7 +101,7 @@ export const routers = [
       },
       {
         path: "courses/:courseId/chapter/:chapterId/lesson/:lessonId/result",
-        element: <CourseResult/>
+        element: <CourseResult />
       },
       {
         path: "game",
@@ -143,8 +145,8 @@ export const routers = [
           { path: "create", element: <CreateTopicAndFlashcards /> },
           { path: "library/topic/:id", element: <TopicDetail /> },
           { path: "home/topic/:id", element: <TopicDetail /> },
-          { path: "update/:id", element: <EditTopic /> }, 
-          { path: "review/:id", element: <ReviewFlashcards /> }, 
+          { path: "update/:id", element: <EditTopic /> },
+          { path: "review/:id", element: <ReviewFlashcards /> },
         ],
       },
 
@@ -157,14 +159,20 @@ export const routers = [
   {
     path: "/admin",
     element: <LayoutAdmin />,
-
+    children: [
+      {
+        index: true,
+        element: <AdminDashboard />,
+      },
+      {
+        path: "users",
+        element: <UserList />
+      },
+    ]
   },
   {
     path: "/admin/login",
     element: <LoginAdmin />,
   },
-  {
-    path: "/admin/*", // Chuyển hướng về login nếu chưa đăng nhập
-    element: <LoginAdmin />,
-  },
+
 ];

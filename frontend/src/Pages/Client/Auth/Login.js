@@ -25,7 +25,8 @@ const Login = () => {
                 Cookies.set("name", userData.name, { expires: 1, path: "/" });
                 Cookies.set("email", userData.email, { expires: 1, path: "/" });
                 Cookies.set("status", true, { expires: 1, path: "/" });
-
+                Cookies.set("role", userData.role, { expires: 1, path: "/" });
+                
                 const progressResponse = await getUserProgress(userData._id);
                 if (progressResponse.data.message === "Progress not found") {
                     await createProgress({ userId: userData._id });  

@@ -270,22 +270,19 @@ module.exports.updateUserProfile = async (req, res) => {
   
   
 
-// Lấy danh sách người dùng
 module.exports.listUser = async (req, res) => {
-    try {
-        const users = await User.find({ deleted: false }).select("name email");
-        res.json({
-            code: 200,
-            message: "Danh sách người dùng", users
-        });
-    } catch (error) {
-        console.error("Lỗi lấy danh sách:", error);
-        res.status(500).json({
-            code: 500,
-            message: "Lỗi máy chủ"
-        });
-    }
+  try {
+    const users = await User.find({ deleted: false });
+    res.json(users);
+  } catch (error) {
+    console.error("Lỗi lấy danh sách:", error);
+    res.status(500).json({
+      code: 500,
+      message: "Lỗi máy chủ",
+    });
+  }
 };
+
 
 module.exports.markLessonCompleted = async (req, res) => {
     try {
