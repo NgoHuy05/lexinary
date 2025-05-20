@@ -235,20 +235,7 @@ module.exports.getUserProfile = async (req, res) => {
     }
 };
 
-module.exports.listUser = async (req, res) => {
-  try {
-    const users = await User.find({}).select("-password");
 
-    res.json(users);
-    
-  } catch (error) {
-    console.error("Lỗi lấy danh sách:", error);
-    res.status(500).json({
-      code: 500,
-      message: "Lỗi máy chủ",
-    });
-  }
-};
 
 
 
@@ -283,7 +270,20 @@ module.exports.updateUserProfile = async (req, res) => {
     }
   };
   
+module.exports.listUser = async (req, res) => {
+  try {
+    const users = await User.find({}).select("-password");
 
+    res.json(users);
+    
+  } catch (error) {
+    console.error("Lỗi lấy danh sách:", error);
+    res.status(500).json({
+      code: 500,
+      message: "Lỗi máy chủ",
+    });
+  }
+};
 
 module.exports.markLessonCompleted = async (req, res) => {
     try {
