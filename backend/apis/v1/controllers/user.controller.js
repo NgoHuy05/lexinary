@@ -267,13 +267,15 @@ module.exports.updateUserProfile = async (req, res) => {
     }
   };
   
-  
-  
 
 module.exports.listUser = async (req, res) => {
   try {
-    const users = await User.find({ deleted: false });
-    res.json(users);
+    const users = await User.find({ deleted: false }).select("-password");
+    res.json({
+      code: 200,
+      message: "Danh sách người dùng",
+      users: users,
+    });
   } catch (error) {
     console.error("Lỗi lấy danh sách:", error);
     res.status(500).json({
