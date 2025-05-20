@@ -5,8 +5,9 @@ html, body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  zoom: 95%;
+  zoom: 85%;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 code {

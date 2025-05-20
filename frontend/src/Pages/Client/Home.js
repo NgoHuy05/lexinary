@@ -36,6 +36,8 @@ function Home() {
     return (
         <>
             <div className="homeContent">
+
+                <div className="text00">Welcome</div>
                 <div className="text01">Chào mừng bạn đến với Lexinary</div>
                 <div className="text02">
                     <div className="text021">Hệ thống học tiếng Anh </div>
