@@ -76,6 +76,7 @@
           width: 400px;
           height: 55px;
           border-radius: 18px;
+          font-weight: bold;
           margin-bottom: 15px;
           border-bottom: 4px solid #0050C7;
           &:hover {
@@ -88,7 +89,7 @@
           width: 400px;
           height: 55px;
           border-radius: 18px;
-          font-family: 'balootammabold';
+          font-weight: bold;
           border-bottom: 4px solid #0050C7;
           &:hover {
               background: $hover-color!important;
@@ -100,7 +101,7 @@
   .homeTarget {
     margin-top: 150px;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 300px;
     height: 550px;
     .targetTitle {
       color: rgba(26, 24, 24, 0.789);
@@ -128,13 +129,13 @@
       }
 
       h3 {
-        font-size: 20px;
+        font-size: 35px;
         font-weight: bold;
         color: white;
       }
 
       p {
-        font-size: 15px;
+        font-size: 25px;
         color: white;
         margin: 10px 0;
       }
@@ -145,7 +146,7 @@
       }
 
       li {
-        font-size: 15px;
+        font-size: 22px;
         color: white;
         margin: 5px 0;
       }
