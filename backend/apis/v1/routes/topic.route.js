@@ -9,6 +9,8 @@ const checkAdminMiddleware = require("../middleware/checkAdmin.middleware");
 router.get("/public", verifyMiddleware.verifyToken, controllers.getPublicTopics);
 router.get("/public/:id", verifyMiddleware.verifyToken, controllers.getPublicTopicById);
 
+router.get("/all", verifyMiddleware.verifyToken, controllers.getAllTopics);
+
 // Lấy tất cả topic của người dùng (chỉ admin hoặc chính người dùng đó mới xem được)
 router.get("/user", verifyMiddleware.verifyToken, controllers.getUserTopics);
 router.get("/user/:id", verifyMiddleware.verifyToken, controllers.getUserTopicById);

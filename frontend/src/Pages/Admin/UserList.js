@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button, message } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import { Table, message } from "antd";
 import { listUser } from "../../api/apiUser";
+
 
 function UserList() {
   const [users, setUsers] = useState([]);
@@ -15,17 +15,21 @@ function UserList() {
     setLoading(true);
     try {
       const res = await listUser();
-      setUsers(res.data.users);
+      setUsers(res.data);
     } catch (err) {
       message.error("Lỗi khi tải danh sách người dùng!");
-      console.error(err);
     } finally {
       setLoading(false);
     }
-  };;
+  };
 
 
   const columns = [
+    {
+      title: "STT",
+      key: "stt",
+      render: (_, __, index) => index + 1,
+    },
     { title: "Tên", dataIndex: "name", key: "name" },
     { title: "Email", dataIndex: "email", key: "email" },
     { title: "Role", dataIndex: "role", key: "role" },
@@ -34,17 +38,7 @@ function UserList() {
       dataIndex: "createdAt",
       key: "createdAt",
       render: (text) => new Date(text).toLocaleDateString("vi-VN"),
-    },
-    {
-      title: "Hành động",
-      key: "action",
-      render: (_, record) => (
-        <Button
-          type="link"
-          icon={<EditOutlined />}
-        />
-      ),
-    },
+    }
   ];
 
   return (

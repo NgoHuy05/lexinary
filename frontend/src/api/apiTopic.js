@@ -27,6 +27,18 @@
     }
   };
 
+  export const getAllTopics = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/all`, {
+        withCredentials: true, // Gửi thông tin cookie nếu cần thiết
+      });
+      return res.data.topics; // Trả về danh sách topic của người dùng
+    } catch (err) {
+      console.error("Lỗi khi lấy danh sách topic của người dùng:", err);
+      throw err; // Ném lỗi để có thể xử lý ở nơi gọi API
+    }
+  };
+
   // Lấy 1 topic kèm flashcards (dùng cho Edit)
   export const getTopicWithFlashcards = async (id) => {
     try {

@@ -35,6 +35,10 @@ import Progress from "../Pages/Client/Progress";
 import VocabularyAdventure from "../Pages/Client/Features/Game/VocabularyAdventure";
 import AdminDashboard from "../Pages/Admin/Dashboard";
 import UserList from "../Pages/Admin/UserList";
+import AllCourses from "../Pages/Admin/AllCourses";
+import AddCourse from "../Pages/Admin/AddCourse";
+import AllTopics from "../Pages/Admin/AllTopics";
+import AddTopic from "../Pages/Admin/AddTopic";
 
 export const routers = [
   {
@@ -167,6 +171,22 @@ export const routers = [
       {
         path: "users",
         element: <UserList />
+      },
+      {
+        path: "courses/all",
+        element: <AllCourses />
+      },
+      {
+        path: "courses/add",
+        element: <AddCourse />
+      },
+      {
+        path: "topics/all",
+        element: <AllTopics />
+      },
+      {
+        path: "topics/add",
+        element: <AddTopic />
       },
     ]
   },

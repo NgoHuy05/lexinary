@@ -335,4 +335,3 @@ module.exports.markLessonCompleted = async (req, res) => {
       res.status(500).json({ error: "Không thể lấy progress" });
     }
   };
-  

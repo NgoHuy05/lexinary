@@ -66,6 +66,16 @@ module.exports.getUserTopicById = async (req, res) => {
     res.status(500).json({ message: "Lỗi khi lấy topic" });
   }
 };
+// Lấy tất cả topic (bao gồm public và private) - chỉ admin được gọi
+module.exports.getAllTopics = async (req, res) => {
+  try {
+    const topics = await Topic.find().sort({ createdAt: -1 });
+    res.json({ topics });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Lỗi khi lấy tất cả topic" });
+  }
+};
 
 // Tạo topic mới
 module.exports.createTopic = async (req, res) => {

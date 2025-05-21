@@ -76,16 +76,16 @@ function LayoutAdmin() {
       key: "3",
       label: "Courses",
       children: [
-        { key: "3-1", label: "All Courses" },
-        { key: "3-2", label: "Add Course" },
+        { key: "3-1", label: <NavLink to="/admin/courses/all">All Courses</NavLink> },
+        { key: "3-2", label: <NavLink to="/admin/courses/add">Add Courses</NavLink>  },
       ],
     },
     {
       key: "4",
       label: "Topics",
       children: [
-        { key: "4-1", label: "All Topics" },
-        { key: "4-2", label: "Add Topics" },
+        { key: "4-1", label: <NavLink to="/admin/topics/all">All Topics</NavLink> },
+        { key: "4-2", label: <NavLink to="/admin/topics/add">Add Topics</NavLink> },
       ],
     },
     {

@@ -45,3 +45,6 @@ export const markLessonCompleted = (userId, lessonId) =>
 // Lấy danh sách lesson đã hoàn thành của user
 export const getCompletedLessons = (userId) =>
   axios.get(`${BASE_URL}/${userId}/completed-lessons`, { withCredentials: true });
+
+export const updateUserById = (id, data) =>
+  axios.patch(`${BASE_URL}/${id}`, data , { withCredentials: true });
