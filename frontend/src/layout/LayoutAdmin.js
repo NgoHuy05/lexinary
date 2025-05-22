@@ -7,6 +7,8 @@ import {
   MenuOutlined,
   MoonOutlined,
   SunOutlined,
+  BookOutlined,       // thêm
+  AppstoreOutlined,  
 } from "@ant-design/icons";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "../UI/LayoutAdmin.scss";
@@ -61,43 +63,46 @@ function LayoutAdmin() {
     },
   ];
 
-  const items = [
-    {
-      key: "1",
-      icon: <DashboardOutlined />,
-      label: <NavLink to="/admin">Dashboard</NavLink>,
-    },
-    {
-      key: "2",
-      icon: <UserOutlined />,
-      label: <NavLink to="/admin/users">Users</NavLink>,
-    },
-    {
-      key: "3",
-      label: "Courses",
-      children: [
-        { key: "3-1", label: <NavLink to="/admin/courses/all">All Courses</NavLink> },
-        { key: "3-2", label: <NavLink to="/admin/courses/add">Add Courses</NavLink>  },
-      ],
-    },
-    {
-      key: "4",
-      label: "Topics",
-      children: [
-        { key: "4-1", label: <NavLink to="/admin/topics/all">All Topics</NavLink> },
-        { key: "4-2", label: <NavLink to="/admin/topics/add">Add Topics</NavLink> },
-      ],
-    },
-    {
-      key: "5",
-      icon: <SettingOutlined />,
-      label: "Settings",
-      children: [
-        { key: "5-1", label: "General" },
-        { key: "5-2", label: "Security" },
-      ],
-    },
-  ];
+const items = [
+  {
+    key: "1",
+    icon: <DashboardOutlined />,
+    label: <NavLink to="/admin">Dashboard</NavLink>,
+  },
+  {
+    key: "2",
+    icon: <UserOutlined />,
+    label: <NavLink to="/admin/users">Users</NavLink>,
+  },
+  {
+    key: "3",
+    icon: <BookOutlined />,  // thêm icon
+    label: "Courses",
+    children: [
+      { key: "3-1", label: <NavLink to="/admin/courses/all">All Courses</NavLink> },
+      { key: "3-2", label: <NavLink to="/admin/courses/add">Add Courses</NavLink>  },
+    ],
+  },
+  {
+    key: "4",
+    icon: <AppstoreOutlined />, // thêm icon
+    label: "Topics",
+    children: [
+      { key: "4-1", label: <NavLink to="/admin/topics/all">All Topics</NavLink> },
+      { key: "4-2", label: <NavLink to="/admin/topics/add">Add Topics</NavLink> },
+    ],
+  },
+  {
+    key: "5",
+    icon: <SettingOutlined />,
+    label: "Settings",
+    children: [
+      { key: "5-1", label: "General" },
+      { key: "5-2", label: "Security" },
+    ],
+  },
+];
+
 
   return (
     <Layout className="admin">

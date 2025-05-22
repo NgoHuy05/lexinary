@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 import { markLessonCompleted } from "../../../api/apiUser";
 import { updateProgress } from "../../../api/apiProgress";
 
-const CourseEx = () => {
+const CourseExercise = () => {
   const [chapters, setChapters] = useState([]);
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [selectedLesson, setSelectedLesson] = useState(null);
@@ -337,4 +337,4 @@ const handleSubmit = () => {
   );
 };
 
-export default CourseEx;
+export default CourseExercise;

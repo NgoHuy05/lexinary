@@ -23,8 +23,6 @@ import ReviewFlashcards from "../Pages/Client/Features/Flashcard/ReviewFlashcard
 import Courses from "../Pages/Client/Courses/Courses";
 import CourseDetail from "../Pages/Client/Courses/CourseDetail";
 import CourseResult from "../Pages/Client/Courses/CourseResult";
-import CourseVoca from "../Pages/Client/Courses/CourseVoca";
-import CourseEx from "../Pages/Client/Courses/CourseEx";
 import CourseReview from "../Pages/Client/Courses/CourseReview";
 import CourseHistory from "../Pages/Client/Courses/CourseHistory";
 import Game from "../Pages/Client/Features/Game/Game";
@@ -39,6 +37,8 @@ import AllCourses from "../Pages/Admin/AllCourses";
 import AddCourse from "../Pages/Admin/AddCourse";
 import AllTopics from "../Pages/Admin/AllTopics";
 import AddTopic from "../Pages/Admin/AddTopic";
+import CourseExercise from "../Pages/Client/Courses/CourseExercise";
+import CourseVocabulary from "../Pages/Client/Courses/CourseVocabulary";
 
 export const routers = [
   {
@@ -79,7 +79,7 @@ export const routers = [
         children: [
           {
             path: "chapter/:chapterId/lesson/:lessonId/vocabulary",
-            element: <CourseVoca />
+            element: <CourseVocabulary />
           },
           {
             path: "chapter/:chapterId/lesson/:lessonId/grammar",
@@ -91,7 +91,7 @@ export const routers = [
           },
           {
             path: "chapter/:chapterId/lesson/:lessonId/exercise",
-            element: <CourseEx />
+            element: <CourseExercise />
           },
           {
             path: "chapter/:chapterId/lesson/:lessonId/review",

@@ -6,7 +6,7 @@ import { getLessonDetail } from "../../../api/apiLesson";
 import { getVocabularyByLesson } from "../../../api/apiVocabulary";
 import "../../../UI/CourseVoca.scss";
 
-const CourseVoca = () => {
+const CourseVocabulary = () => {
     const [chapters, setChapters] = useState([]);
     const [selectedChapter, setSelectedChapter] = useState(null);
     const [selectedLesson, setSelectedLesson] = useState(null);
@@ -115,4 +115,4 @@ useEffect(() => {
     );
 };
 
-export default CourseVoca;
+export default CourseVocabulary;
