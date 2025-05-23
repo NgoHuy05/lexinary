@@ -1,5 +1,54 @@
 const mongoose = require("mongoose");
 const Course = require("../models/Course.models");
+const User = require("../models/User.models");
+const Chapter = require("../models/Chapter.models");
+const Lesson = require("../models/Lesson.models");
+const Vocabulary = require("../models/Vocabulary.models");
+const Sentence = require("../models/Sentence.models");
+const Exercises = require("../models/Exercise.models");
+const Topic = require("../models/Topic.models");
+const Flashcard = require("../models/Flashcard.models");
+
+exports.getAdminStats = async (req, res) => {
+  try {
+    const [
+      users,
+      courses,
+      chapters,
+      lessons,
+      vocabularies,
+      sentences,
+      exercises,
+      topics,
+      flashcards
+    ] = await Promise.all([
+      User.countDocuments(),
+      Course.countDocuments(),
+      Chapter.countDocuments(),
+      Lesson.countDocuments(),
+      Vocabulary.countDocuments(),
+      Sentence.countDocuments(),
+      Exercises.countDocuments(),
+      Topic.countDocuments(),
+      Flashcard.countDocuments()
+    ]);
+
+    res.status(200).json({
+      users,
+      courses,
+      chapters,
+      lessons,
+      vocabularies,
+      sentences,
+      exercises,
+      topics,
+      flashcards
+    });
+  } catch (error) {
+    console.error("Lỗi lấy thống kê:", error);
+    res.status(500).json({ message: "Lỗi server", error });
+  }
+};
 
 // Lấy danh sách khóa học với phân trang và tìm kiếm
 module.exports.index = async (req, res) => {

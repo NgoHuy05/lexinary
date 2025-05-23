@@ -335,3 +335,38 @@ module.exports.markLessonCompleted = async (req, res) => {
       res.status(500).json({ error: "Không thể lấy progress" });
     }
   };
+
+module.exports.updateUserById = async (req, res) => {
+  const userId = req.params.id;
+  const updateData = req.body; // dữ liệu gửi lên để cập nhật
+
+  try {
+    // Tìm user và cập nhật, trả về user mới sau cập nhật
+    const updatedUser = await User.findByIdAndUpdate(userId, updateData, {
+      new: true, // trả về bản cập nhật mới
+      runValidators: true, // kiểm tra valid theo schema
+    });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Người dùng không tồn tại" });
+    }
+
+    res.status(200).json({ message: "Cập nhật thành công", data: updatedUser });
+  } catch (error) {
+    console.error("Lỗi update user:", error);
+    res.status(500).json({ message: "Lỗi server khi cập nhật người dùng" });
+  }
+};
+
+module.exports.deleteUserById = async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const deleted = await User.findByIdAndDelete(userId);
+    if (!deleted) {
+      return res.status(404).json({ message: "Không tìm thấy người dùng" });
+    }
+    res.json({ message: "Xóa người dùng thành công" });
+  } catch (error) {
+    res.status(500).json({ message: "Lỗi server khi xóa người dùng" });
+  }
+};

@@ -11,4 +11,6 @@ router.post("/create", controllers.createCourses);          // Tạo khóa học
 router.patch("/update/:id", controllers.updateCourse);         // Chỉnh sửa khóa học
 router.delete("/delete/:id", controllers.deleteCourse);   // Xóa khóa học
 
+router.get("/stats", controllers.getAdminStats);                        // Lấy danh sách khóa học
+
 module.exports = router;

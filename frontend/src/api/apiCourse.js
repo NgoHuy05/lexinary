@@ -22,3 +22,6 @@
 
   export const changeMulti = (payload) =>
     axios.patch(`${BASE_URL}/change-multi`, payload, { withCredentials: true });
+
+  export const getAdminStats = () =>
+  axios.get(`${BASE_URL}/stats`, { withCredentials: true }); 

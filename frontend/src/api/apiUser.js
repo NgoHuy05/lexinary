@@ -47,4 +47,6 @@ export const getCompletedLessons = (userId) =>
   axios.get(`${BASE_URL}/${userId}/completed-lessons`, { withCredentials: true });
 
 export const updateUserById = (id, data) =>
-  axios.patch(`${BASE_URL}/${id}`, data , { withCredentials: true });
+  axios.patch(`${BASE_URL}/update/${id}`, data , { withCredentials: true });
+export const deleteUserById = (id) =>
+  axios.delete(`${BASE_URL}/delete/${id}` , { withCredentials: true });

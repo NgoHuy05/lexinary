@@ -16,5 +16,8 @@ router.get("/list", controllers.listUser);
 router.post("/:userId/marked-complete-lesson/:lessonId", controllers.markLessonCompleted);
 router.get("/:userId/completed-lessons", controllers.getCompletedLessons);
 
+router.patch("/update/:id", controllers.updateUserById);
+
+router.delete("/delete/:id", controllers.deleteUserById);
 
 module.exports = router;

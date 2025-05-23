@@ -6,7 +6,7 @@ const verifyMiddleware = require("../middleware/verifyToken.middleware");
 const checkAdminMiddleware = require("../middleware/checkAdmin.middleware");
 
 // Lấy tất cả topic công khai
-router.get("/public", verifyMiddleware.verifyToken, controllers.getPublicTopics);
+router.get("/public", controllers.getPublicTopics);
 router.get("/public/:id", verifyMiddleware.verifyToken, controllers.getPublicTopicById);
 
 router.get("/all", verifyMiddleware.verifyToken, controllers.getAllTopics);
