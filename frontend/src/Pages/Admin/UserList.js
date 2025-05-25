@@ -72,6 +72,7 @@ function UserList() {
     {
       title: "STT",
       key: "stt",
+      width: "5%",
       render: (_, __, index) => index + 1,
     },
     { title: "Tên", dataIndex: "name", key: "name" },
@@ -86,6 +87,7 @@ function UserList() {
     {
       title: "Action",
       key: "action",
+      width: "10%",
       render: (_, record) => (
         <Space size="middle">
           <Button type="primary" icon={<EditOutlined />} onClick={() => openEditModal(record)}>
