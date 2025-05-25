@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button, message } from "antd";
 import "../../UI/LoginAdmin.scss";
 import Cookies from "js-cookie";
@@ -8,6 +8,12 @@ import { removeAllCookies } from "../../utils/cookie";
 
 function LoginAdmin() {
     const navigate = useNavigate();
+    const role = Cookies.get("role");
+    useEffect(() => {
+        if (role === "admin") {
+        navigate("/admin");
+        }
+    }, []);
 
     const onFinish = async (values) => {
         try {

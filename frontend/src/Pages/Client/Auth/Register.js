@@ -112,7 +112,7 @@ function Register() {
                         </Form.Item>
                     </Form>
 
-                    <Divider className="divider">Hoặc</Divider>
+                    {/* <Divider className="divider">Hoặc</Divider>
 
                     <div className="authButtons">
                         <Button icon={<GoogleOutlined />} className="google">
@@ -121,7 +121,7 @@ function Register() {
                         <Button icon={<FacebookOutlined />} className="facebook">
                             Đăng ký với Facebook
                         </Button>
-                    </div>
+                    </div> */}
 
                     <div className="login">
                         Bạn đã có tài khoản? <NavLink to="/login">Đăng nhập</NavLink>

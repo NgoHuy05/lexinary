@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.webp";
 import { Form, Input, Button, Divider, message } from "antd";
@@ -11,6 +11,13 @@ import { createProgress, getUserProgress } from "../../../api/apiProgress";
 
 const Login = () => {
     const navigate = useNavigate();
+        const userId = Cookies.get("id");
+        useEffect(() => {
+            if (userId) {
+            navigate("/");
+            }
+        }, []);
+    
     const onFinish = async (values) => {
         try {
             // Gửi request đăng nhập
@@ -95,7 +102,7 @@ const Login = () => {
                         </Form.Item>
                     </Form>
 
-                    <Divider className="divider">Hoặc</Divider>
+                    {/* <Divider className="divider">Hoặc</Divider>
 
                     <div className="authButtons">
                         <Button icon={<GoogleOutlined />} className="google">
@@ -104,7 +111,7 @@ const Login = () => {
                         <Button icon={<FacebookOutlined />} className="facebook">
                             Đăng nhập với Facebook
                         </Button>
-                    </div>
+                    </div> */}
 
                     <div className="register">
                         Bạn chưa có tài khoản? <NavLink to="/register">Đăng ký</NavLink>

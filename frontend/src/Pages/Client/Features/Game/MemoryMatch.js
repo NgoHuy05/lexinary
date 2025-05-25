@@ -80,6 +80,7 @@ export default function MemoryMatch() {
     const [cardLimit, setCardLimit] = useState(50);  // Default card limit
     const timeRemainingRef = useRef(timeLimit);
     const [loading, setLoading] = useState(false);
+    const [isHowToPlayVisible, setIsHowToPlayVisible] = useState(false);
 
 
     useEffect(() => {
@@ -162,6 +163,11 @@ export default function MemoryMatch() {
                 }, 1000);
             }
         }
+        if (remainingGuesses - 1 <= 0 && !isWin) {
+        setTimeout(() => {
+            setGameOver(true);
+        }, 1200); // Chờ cho hiệu ứng lật thẻ xong
+    }
     };
 const restart = async () => {
     setLoading(true); // Bắt đầu loading
@@ -241,37 +247,58 @@ const restart = async () => {
     };
 
     return (
-        <>
-            {isWin ? (
-                <div className="memory-match__win">
-                    <h2>🎉 Congratulation!</h2>
-                    <p>Bạn đã ghép đúng tất cả các cặp từ.</p>
-                    <p>Tổng số lượt đoán: {turns}</p>
-                    <Button
-                        type="primary"
-                        icon={<ReloadOutlined />}
-                        onClick={restart}
-                        style={{ marginTop: 20 }}
-                    >
-                        Chơi lại
-                    </Button>
-                </div>
-            ) :
-                gameOver ? (
-                    <div className="memory-match__gameover">
-                        <h2>🛑 Game Over!</h2>
-                        <p>Bạn đã hết thời gian hoặc lượt đoán.</p>
-                        <p>Tổng số lượt đoán: {turns}</p>
-                        <Button
-                            type="primary"
-                            icon={<ReloadOutlined />}
-                            onClick={restart}
-                            style={{ marginTop: 20 }}
-                        >
-                            Chơi lại
-                        </Button>
-                    </div>
-                ) : (
+        <> 
+{isWin ? (
+    <div className="memory-match__result" style={{ textAlign: 'center', padding: 40 }}>
+        <Card
+            style={{
+                maxWidth: 500,
+                margin: '0 auto',
+                background: '#e6fff5',
+                borderRadius: 16,
+                boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
+            }}
+        >
+            <h2 style={{ fontSize: 28 }}>🎉 Chúc mừng!</h2>
+            <p style={{ fontSize: 18 }}>Bạn đã ghép đúng tất cả các cặp từ 🎯</p>
+            <p style={{ fontSize: 16 }}>Tổng số lượt đoán: <strong>{turns}</strong></p>
+            <Button
+                type="primary"
+                icon={<ReloadOutlined />}
+                onClick={restart}
+                size="large"
+                style={{ marginTop: 20, borderRadius: 8 }}
+            >
+                 Chơi lại
+            </Button>
+        </Card>
+    </div>
+) : gameOver ? (
+    <div className="memory-match__result" style={{ textAlign: 'center', padding: 40 }}>
+        <Card
+            style={{
+                maxWidth: 500,
+                margin: '0 auto',
+                background: '#fff1f0',
+                borderRadius: 16,
+                boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
+            }}
+        >
+            <h2 style={{ fontSize: 28 }}>🛑 Game Over</h2>
+            <p style={{ fontSize: 18 }}>Bạn đã hết thời gian hoặc lượt đoán 😢</p>
+            <p style={{ fontSize: 16 }}>Tổng số lượt đoán: <strong>{turns}</strong></p>
+            <Button
+                type="primary"
+                icon={<ReloadOutlined />}
+                onClick={restart}
+                size="large"
+                style={{ marginTop: 20, borderRadius: 8 }}
+            >
+                 Chơi lại
+            </Button>
+        </Card>
+    </div>
+) : (
                     <div className="memory-match">
                         <h2 className="memory-match__title">🧠 Memory Match</h2>
                         {isChapterSelected && (
@@ -286,6 +313,61 @@ const restart = async () => {
                         >
                             Thiết lập Game
                         </Button>
+
+<Button
+    icon="❓"
+    onClick={() => {
+        setIsHowToPlayVisible(true);
+        togglePause(); // 👉 Pause game khi mở hướng dẫn
+    }}
+    style={{ marginLeft: 10 }}
+>
+    Hướng dẫn
+</Button>
+
+<Modal
+    title={
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span role="img" aria-label="guide">🧠</span>
+            <span>Hướng dẫn chơi Memory Match</span>
+        </div>
+    }
+    visible={isHowToPlayVisible}
+    onCancel={() => {
+        setIsHowToPlayVisible(false);
+        togglePause(); // 👉 Resume game khi đóng
+    }}
+    footer={[
+        <Button
+            key="ok"
+            type="primary"
+            onClick={() => {
+                setIsHowToPlayVisible(false);
+                togglePause(); // 👉 Resume game khi nhấn "Đã hiểu"
+            }}
+            style={{ borderRadius: 8, padding: '6px 20px' }}
+        >
+            Đã hiểu
+        </Button>
+    ]}
+    centered
+    bodyStyle={{
+        background: '#f9f9ff',
+        borderRadius: 10,
+        padding: 20,
+    }}
+>
+    <div style={{ fontSize: 16, lineHeight: 1.7 }}>
+        <ul style={{ paddingLeft: 20 }}>
+            <li><strong>📌 Chọn Chapter:</strong> để bắt đầu trò chơi với các từ đúng với nội dung chương bạn chọn.</li>
+            <li><strong>🃏 Lật thẻ:</strong> gồm từ tiếng Anh và nghĩa của nó.</li>
+            <li><strong>✅ Ghép đúng:</strong> thì sẽ biến mất, sai thì úp lại và bạn bị trừ 1 lần đoán.</li>
+            <li><strong>⏳ Lưu ý:</strong> bạn có giới hạn thời gian và lượt đoán.</li>
+            <li><strong>🏆 Mục tiêu:</strong> ghép hết tất cả các cặp trước khi hết thời gian!</li>
+        </ul>
+    </div>
+</Modal>
+
 
                         <Modal
                             title="Cài đặt Game"
