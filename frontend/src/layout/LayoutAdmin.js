@@ -24,9 +24,10 @@ function LayoutAdmin() {
   const navigate = useNavigate();
   const roleAd = Cookies.get("role");
 
+  
   useEffect(() => {
-    if (!roleAd) {
-      message.warning("Vui lòng đăng nhập");
+    if (roleAd !== "admin") {
+      message.warning("TVui lòng đăng nhập");
       navigate("/admin/login");
     }
   }, [roleAd, navigate]);
