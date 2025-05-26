@@ -39,6 +39,7 @@ import AllTopics from "../Pages/Admin/AllTopics";
 import AddTopic from "../Pages/Admin/AddTopic";
 import CourseExercise from "../Pages/Client/Courses/CourseExercise";
 import CourseVocabulary from "../Pages/Client/Courses/CourseVocabulary";
+import SettingAdminPage from "../Pages/Admin/SettingAdmin";
 
 export const routers = [
   {
@@ -187,6 +188,10 @@ export const routers = [
       {
         path: "topics/add",
         element: <AddTopic />
+      },
+      {
+        path: "setting",
+        element: <SettingAdminPage />
       },
     ]
   },

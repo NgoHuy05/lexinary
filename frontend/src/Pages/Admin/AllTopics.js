@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Table, message } from "antd";
+import { Table, message, Button, Space} from "antd";
 import { getPublicTopics } from "../../api/apiTopic";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 function AllTopics() {
   const [topics, setTopics] = useState([]);
@@ -38,6 +39,21 @@ function AllTopics() {
       key: "createdAt",
       render: (text) => new Date(text).toLocaleDateString("vi-VN"),
     },
+    {
+      title: "Action",
+      key: "action",
+      width: "10%",
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="primary" icon={<EditOutlined />} >
+            Sửa
+          </Button>
+          <Button danger icon={<DeleteOutlined />}>
+            Xóa
+          </Button>
+        </Space>
+      ),
+    },
   ];
 
   return (
@@ -51,6 +67,7 @@ function AllTopics() {
   pagination={{ pageSize: 10 }}
 />
 
+ 
     </div>
   );
 }

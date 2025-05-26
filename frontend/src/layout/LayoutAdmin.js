@@ -52,7 +52,6 @@ function LayoutAdmin() {
   };
 
   const menuItemSetting = [
-    { key: "setting", label: <NavLink to="/setting">Cài đặt</NavLink> },
     {
       key: "logout",
       label: (
@@ -95,11 +94,7 @@ const items = [
   {
     key: "5",
     icon: <SettingOutlined />,
-    label: "Settings",
-    children: [
-      { key: "5-1", label: "General" },
-      { key: "5-2", label: "Security" },
-    ],
+    label: <NavLink to="/admin/setting">Setting</NavLink>,
   },
 ];
 

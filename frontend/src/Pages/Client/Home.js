@@ -22,8 +22,8 @@ function Home() {
         },
         {
             title: "Học từ vựng hiệu quả",
-            description: "Phương pháp lặp lại cách quãng giúp ghi nhớ lâu dài.",
-            items: ["Flashcards thông minh", "Ôn luyện các chủ đề bằng flashcard",],
+            description: "Phương pháp học bằng flashcard thú vị.",
+            items: ["Flashcards thông minh", "Ôn luyện bằng flashcard",],
             link: "/flashcard",
         },
         {

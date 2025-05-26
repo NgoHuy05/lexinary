@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Table, message } from "antd";
+import { Button, Space, Table, message } from "antd";
 import { getCourses } from "../../api/apiCourse";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 function AllCourses() {
   const [courses, setCourses] = useState([]);
@@ -27,13 +28,13 @@ const columns = [
     title: "STT",
     key: "stt",
     render: (_, __, index) => index + 1,
-    width: 60,
+    width: "3%",
   },
   {
     title: "Tiêu đề",
     dataIndex: "title",
     key: "title",
-    width: 200,
+    width: "12%",
     // giữ ellipsis hoặc bỏ tùy bạn
     ellipsis: true,
   },
@@ -67,9 +68,24 @@ const columns = [
     title: "Ngày tạo",
     dataIndex: "createdAt",
     key: "createdAt",
-    width: 150,
+    width: "10%",
     render: (text) => new Date(text).toLocaleDateString("vi-VN"),
   },
+    {
+      title: "Action",
+      key: "action",
+      width: "15%",
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="primary" icon={<EditOutlined />} >
+            Sửa
+          </Button>
+          <Button danger icon={<DeleteOutlined />}>
+            Xóa
+          </Button>
+        </Space>
+      ),
+    },
 ];
 
 
