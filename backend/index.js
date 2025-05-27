@@ -16,11 +16,29 @@ const allowedOrigins = [
   "https://lexinary.vercel.app",
 ];
 
+// ✅ CORS đứng đầu tiên
 app.use(cors({
   origin: allowedOrigins,
   credentials: true
 }));
 
+// ✅ Xử lý preflight
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
+// ✅ Fallback set header thủ công
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  }
+  next();
+});
 
 database.connect();
 app.use(bodyParser.json());
