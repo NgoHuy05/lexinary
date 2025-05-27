@@ -52,10 +52,11 @@ module.exports.loginUser = async (req, res) => {
     const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: JWT_EXPIRES });
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       sameSite: "None",
-      maxAge: 24 * 60 * 60 * 1000 // 1 ngày
+      maxAge: 24 * 60 * 60 * 1000
     });
+
     res.json({
       code: 200,
       message: "Đăng nhập thành công"

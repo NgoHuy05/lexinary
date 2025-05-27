@@ -18,7 +18,7 @@ function LayoutAdmin() {
 
   useEffect(() => {
     if (roleAd !== "admin") {
-      message.warning("TVui lòng đăng nhập");
+      message.warning("Vui lòng đăng nhập");
       navigate("/admin/login");
     }
   }, [roleAd, navigate]);
