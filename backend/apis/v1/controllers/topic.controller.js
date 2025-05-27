@@ -4,14 +4,15 @@ const Flashcard = require("../models/Flashcard.models");
 // Lấy tất cả topic công khai
 module.exports.getPublicTopics = async (req, res) => {
   try {
-    // Sửa isPublic thành visibility để phù hợp với schema
     const topics = await Topic.find({ visibility: 'public' }).sort({ createdAt: -1 });
     res.json({ topics });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Lỗi khi lấy danh sách topic công khai!" });
   }
-};// Lấy 1 topic công khai theo ID
+};
+
+// Lấy 1 topic công khai theo ID
 module.exports.getPublicTopicById = async (req, res) => {
   try {
     const topicId = req.params.id;
@@ -66,6 +67,7 @@ module.exports.getUserTopicById = async (req, res) => {
     res.status(500).json({ message: "Lỗi khi lấy topic" });
   }
 };
+
 // Lấy tất cả topic (bao gồm public và private) - chỉ admin được gọi
 module.exports.getAllTopics = async (req, res) => {
   try {
@@ -88,7 +90,6 @@ module.exports.createTopic = async (req, res) => {
     } else if (!newVisibility) {
       newVisibility = 'private'; // Nếu không có visibility, gán là private
     }
-
 
     const newTopic = new Topic({
       title,

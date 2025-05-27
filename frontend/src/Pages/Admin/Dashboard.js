@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Row, Col, Spin, message } from "antd";
 import { getAdminStats } from "../../api/apiCourse";
 import "../../UI/AdminDashboard.scss"
+
 const displayNames = {
   users: "Số người dùng",
   courses: "Số khóa học",
@@ -21,7 +22,6 @@ function AdminDashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        console.log("URL gọi API:", `${process.env.REACT_APP_API_BASE_URL}/api/v1/courses/stats`);
         const res = await getAdminStats();
         setStats(res.data);
       } catch (error) {

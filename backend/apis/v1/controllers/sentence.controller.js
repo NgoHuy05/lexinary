@@ -1,5 +1,6 @@
 const Sentence = require("../models/Sentence.models");
 const Lesson = require("../models/Lesson.models");
+
 // Lấy tất cả câu
 module.exports.getAllSentences = async (req, res) => {
   try {
@@ -40,7 +41,7 @@ module.exports.getSentenceByLesson = async (req, res) => {
 // Thêm một hoặc nhiều câu mới
 module.exports.createSentence = async (req, res) => {
   try {
-    const sentenceArray = req.body; // Mảng câu
+    const sentenceArray = req.body;
 
     const savedSentences = await Sentence.insertMany(sentenceArray);
 

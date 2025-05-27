@@ -8,7 +8,7 @@ const flashcardSchema = new mongoose.Schema(
     pronunciation: { type: String },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 
-    topicId: { type: mongoose.Schema.Types.ObjectId, ref: "Topic", required: true }, // 👉 Thêm dòng này
+    topicId: { type: mongoose.Schema.Types.ObjectId, ref: "Topic", required: true }, 
   },
   { timestamps: true }
 );

@@ -11,10 +11,8 @@ function AddCourse() {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      // API createCourse nhận mảng courses, nên ta gửi 1 phần tử mảng
       const res = await createCourse([values]);
       message.success("Tạo khóa học thành công!");
-      // reset form hoặc làm gì đó nếu cần
     } catch (error) {
       message.error("Tạo khóa học thất bại: " + error.response?.data?.message || error.message);
     } finally {

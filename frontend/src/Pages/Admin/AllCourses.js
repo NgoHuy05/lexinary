@@ -15,7 +15,7 @@ function AllCourses() {
     setLoading(true);
     try {
       const res = await getCourses();
-      setCourses(res.data); // giả sử API trả về mảng courses ở res.data
+      setCourses(res.data);
     } catch (err) {
       message.error("Lỗi khi tải danh sách khóa học!");
     } finally {
@@ -23,54 +23,53 @@ function AllCourses() {
     }
   };
 
-const columns = [
-  {
-    title: "STT",
-    key: "stt",
-    render: (_, __, index) => index + 1,
-    width: "3%",
-  },
-  {
-    title: "Tiêu đề",
-    dataIndex: "title",
-    key: "title",
-    width: "12%",
-    // giữ ellipsis hoặc bỏ tùy bạn
-    ellipsis: true,
-  },
-  {
-    title: "Mô tả",
-    dataIndex: "description",
-    key: "description",
-    ellipsis: false,
-    onCell: () => ({
-      style: {
-        whiteSpace: 'normal', // cho phép xuống dòng
-        wordBreak: 'break-word', // ngắt từ khi dài
-        maxWidth: 300, // bạn chỉnh độ rộng phù hợp
-      }
-    })
-  },
-  {
-    title: "Đối tượng",
-    dataIndex: "target",
-    key: "target",
-    ellipsis: false,
-    onCell: () => ({
-      style: {
-        whiteSpace: 'normal',
-        wordBreak: 'break-word',
-        maxWidth: 300,
-      }
-    })
-  },
-  {
-    title: "Ngày tạo",
-    dataIndex: "createdAt",
-    key: "createdAt",
-    width: "10%",
-    render: (text) => new Date(text).toLocaleDateString("vi-VN"),
-  },
+  const columns = [
+    {
+      title: "STT",
+      key: "stt",
+      render: (_, __, index) => index + 1,
+      width: "3%",
+    },
+    {
+      title: "Tiêu đề",
+      dataIndex: "title",
+      key: "title",
+      width: "12%",
+      ellipsis: true,
+    },
+    {
+      title: "Mô tả",
+      dataIndex: "description",
+      key: "description",
+      ellipsis: false,
+      onCell: () => ({
+        style: {
+          whiteSpace: 'normal',
+          wordBreak: 'break-word',
+          maxWidth: 300,
+        }
+      })
+    },
+    {
+      title: "Đối tượng",
+      dataIndex: "target",
+      key: "target",
+      ellipsis: false,
+      onCell: () => ({
+        style: {
+          whiteSpace: 'normal',
+          wordBreak: 'break-word',
+          maxWidth: 300,
+        }
+      })
+    },
+    {
+      title: "Ngày tạo",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      width: "10%",
+      render: (text) => new Date(text).toLocaleDateString("vi-VN"),
+    },
     {
       title: "Action",
       key: "action",
@@ -86,7 +85,7 @@ const columns = [
         </Space>
       ),
     },
-];
+  ];
 
 
   return (

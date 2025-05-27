@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const vocabularySchema = new mongoose.Schema(
   {
-    word: { type: String, required: true },         // từ tiếng Anh
-    meaning: { type: String, required: true },       // nghĩa tiếng Việt
-    pronunciation: { type: String },                 // cách đọc (nếu cần)
-    example: { type: String },                       // câu ví dụ
-    lesson: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson", required: true }, // thuộc bài học nào
+    word: { type: String, required: true },         
+    meaning: { type: String, required: true },      
+    pronunciation: { type: String },                
+    example: { type: String },                       
+    lesson: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson", required: true }, 
     deleted: { type: Boolean, default: false }
   },
   { timestamps: true }

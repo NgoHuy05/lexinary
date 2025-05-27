@@ -24,7 +24,7 @@
 
 .options {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 cột */
+  grid-template-columns: repeat(2, 1fr); 
   gap: 20px;
   max-width: 600px;
   width: 100%;
@@ -67,9 +67,9 @@
 
 .next-button {
   display: flex;
-  align-items: center; /* Căn giữa biểu tượng và văn bản */
-  justify-content: center; /* Căn giữa biểu tượng và văn bản */
-  gap: 8px; /* Khoảng cách giữa văn bản và biểu tượng */
+  align-items: center; 
+  justify-content: center; 
+  gap: 8px;
   padding: 10px 20px;
   font-size: 1.2rem;
   font-weight: 600;
@@ -80,7 +80,7 @@
   color: white;
   border: none;
   margin-top: 16px;
-  width: auto; /* Đảm bảo nút có chiều rộng tự động để phù hợp với nội dung */
+  width: auto;
 
   &:hover {
     background-color: #40a9ff;
@@ -162,7 +162,7 @@
 
 .buttons {
   display: flex;
-  justify-content: center; /* Căn giữa các nút */
+  justify-content: center; 
   width: 100%;
   margin-top: 20px;
   padding: 0 20px;
@@ -179,7 +179,7 @@
   align-items: center;
 
   &.back-button {
-    background-color: #f5222d; // Màu đỏ cho nút quay lại
+    background-color: #f5222d; 
     border: 1px solid #f5222d;
 
     &:hover {
@@ -195,7 +195,7 @@
   }
 
   &.next-button {
-    background-color: #52c41a; // Màu xanh lá cho nút tiếp theo
+    background-color: #52c41a; 
     border: 1px solid #52c41a;
 
     &:hover {
@@ -211,7 +211,7 @@
   }
 
   .anticon {
-    margin-left: 8px; // Để khoảng cách giữa biểu tượng và văn bản
+    margin-left: 8px; 
   }
 }
 

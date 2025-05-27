@@ -5,7 +5,7 @@ const chapterSchema = new mongoose.Schema({
   description: { type: String },
   lessons: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lesson" }],
   course: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
-  order: { type: Number, default: 0 }, // thứ tự chương trong khoá học
+  order: { type: Number, default: 0 }, 
   deleted: { type: Boolean, default: false }
 }, { timestamps: true });
 

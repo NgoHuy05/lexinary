@@ -13,29 +13,29 @@ function Method() {
       <h3 className="method__title">1. Những phương pháp học từ vựng Tiếng Anh hiệu quả</h3>
 
       <div className="method__content--main">
-         Học từ vựng là một trong những yếu tố quan trọng để nâng cao khả năng
+        Học từ vựng là một trong những yếu tố quan trọng để nâng cao khả năng
         Tiếng Anh. Dưới đây là một số phương pháp học từ vựng hiệu quả:
       </div>
 
-      
+
 
       <ul>
         <li className="method__item">
           <strong className="method__item--strong">1.1 Học từ vựng qua hình ảnh:</strong>
           <div className="method__content">
-             Sử dụng hình ảnh để liên kết với từ vựng giúp bạn ghi nhớ từ lâu
+            Sử dụng hình ảnh để liên kết với từ vựng giúp bạn ghi nhớ từ lâu
             hơn. Ví dụ, khi học từ "apple" (quả táo), bạn có thể gắn kết nó với
             hình ảnh của một quả táo đỏ mọng. Các ứng dụng như Quizlet, Anki hay
             Memrise có thể giúp bạn học từ vựng thông qua hình ảnh một cách hiệu
             quả.
           </div>
-          <img className="method__img" src={vocaImg}  alt="tu-vung-theo-hinh-anh" />
+          <img className="method__img" src={vocaImg} alt="tu-vung-theo-hinh-anh" />
         </li>
         <li className="method__item">
           <strong className="method__item--strong">1.2 Học từ vựng theo chủ đề, sơ đồ tư duy:</strong>
 
           <div className="method__content">
-             Học từ vựng theo chủ đề giúp bạn dễ dàng ghi nhớ và ứng dụng từ
+            Học từ vựng theo chủ đề giúp bạn dễ dàng ghi nhớ và ứng dụng từ
             vào các tình huống thực tế. Ví dụ, khi học về chủ đề "Du lịch"
             (Travel), bạn có thể nhóm các từ như "passport" (hộ chiếu), "flight"
             (chuyến bay), "hotel" (khách sạn). Sơ đồ tư duy (mind map) giúp bạn
@@ -47,18 +47,18 @@ function Method() {
           <strong className="method__item--strong">1.3 Học từ vựng từ các thẻ flashcard:</strong>
 
           <div className="method__content">
-             Flashcard là một phương pháp hiệu quả để ôn tập từ vựng mỗi ngày.
+            Flashcard là một phương pháp hiệu quả để ôn tập từ vựng mỗi ngày.
             Bạn có thể viết từ vựng ở một mặt, mặt còn lại là nghĩa hoặc hình
             ảnh minh họa. Việc xem lại flashcard theo định kỳ giúp bạn ghi nhớ
             từ lâu hơn. Một số ứng dụng hỗ trợ học flashcard như Anki, Tinycards
             hay Quizlet.
           </div>
-          <img className="method__img" src={flashcardImg} alt="flashcardImg" /> 
+          <img className="method__img" src={flashcardImg} alt="flashcardImg" />
         </li>
         <li className="method__item">
           <strong className="method__item--strong">1.4 Học từ vựng qua game:</strong>
           <div className="method__content">
-             Chơi game giúp việc học từ vựng trở nên thú vị và không nhàm chán.
+            Chơi game giúp việc học từ vựng trở nên thú vị và không nhàm chán.
             Các trò chơi như Scrabble, Word Connect, Duolingo hay Kahoot giúp
             bạn vừa học vừa giải trí. Ngoài ra, bạn có thể tham gia các game
             nhập vai (RPG) bằng Tiếng Anh để tiếp xúc với từ vựng trong ngữ cảnh
@@ -71,7 +71,7 @@ function Method() {
           <strong className="method__item--strong">1.5 Học từ vựng qua bài hát & phim:</strong>
 
           <div className="method__content">
-             Nghe nhạc hoặc xem phim có phụ đề Tiếng Anh là cách học tự nhiên
+            Nghe nhạc hoặc xem phim có phụ đề Tiếng Anh là cách học tự nhiên
             và thú vị. Khi nghe bài hát, hãy chú ý đến lời bài hát, tra cứu
             nghĩa của từ mới và lặp lại chúng nhiều lần. Với phim ảnh, bạn có
             thể xem trước với phụ đề Tiếng Việt, sau đó chuyển sang phụ đề Tiếng
@@ -81,26 +81,26 @@ function Method() {
           <img className="method__img" src={MusicImg} alt="MusicImg" />
         </li>
 
-        
+
         <li className="method__item">
           <strong className="method__item--strong">1.6 Lặp lại từ nhiều lần:</strong>
 
           <div className="method__content">
-             Việc ôn tập từ vựng theo chu kỳ là rất quan trọng. Bạn có thể áp
+            Việc ôn tập từ vựng theo chu kỳ là rất quan trọng. Bạn có thể áp
             dụng phương pháp lặp lại cách quãng (Spaced Repetition System -
             SRS), nghĩa là ôn lại từ sau 1 ngày, 3 ngày, 1 tuần, 1 tháng… để đảm
             bảo từ vựng không bị quên. Ngoài ra, bạn có thể ghi chép từ mới vào
             sổ tay và ôn lại mỗi ngày.
           </div>
           <img className="method__img" src={SRSImg} alt="SRSImg" />
-         
+
         </li>
       </ul>
 
       <h3 className="method__title">2. Các cách học ngữ pháp Tiếng Anh đơn giản</h3>
       <div className="method__content--main">
         <p>Ngữ pháp là một phần quan trọng khi học Tiếng Anh. Dưới đây là các
-        cách học ngữ pháp đơn giản và hiệu quả:</p><br/>
+          cách học ngữ pháp đơn giản và hiệu quả:</p><br />
       </div>
 
       <ul>
@@ -108,15 +108,15 @@ function Method() {
           <strong className="method__item--strong">2.1 Học theo từng thành phần trong câu:</strong>
           <div className="method__content">
             <p>Học ngữ pháp từ những phần cơ bản như chủ ngữ, vị ngữ, tân ngữ
-            giúp bạn hiểu rõ cấu trúc câu. Ví dụ, khi học về thì hiện tại đơn
-            (Present Simple), bạn cần hiểu rõ cách sử dụng động từ với các chủ
-            ngữ khác nhau. Hãy tập phân tích câu đơn giản trước khi chuyển sang
-            câu phức tạp.</p>
-            
+              giúp bạn hiểu rõ cấu trúc câu. Ví dụ, khi học về thì hiện tại đơn
+              (Present Simple), bạn cần hiểu rõ cách sử dụng động từ với các chủ
+              ngữ khác nhau. Hãy tập phân tích câu đơn giản trước khi chuyển sang
+              câu phức tạp.</p>
+
             <p>- Khi học một thì mới, hãy chia các động từ theo từng ngôi để nhớ cách sử dụng đúng.</p>
             <p>- Đọc và phân tích các đoạn văn ngắn, xác định thành phần câu trong đó.</p>
             <p>- Luyện viết câu theo mẫu để quen với cấu trúc.</p>
-            
+
             <p>Ví dụ:</p>
             <p>- She always <strong>goes</strong> to school on time. (Cô ấy luôn đi học đúng giờ.)</p>
             <p>- They <strong>play</strong> football every Saturday. (Họ chơi bóng đá vào mỗi thứ Bảy.)</p>
@@ -126,14 +126,14 @@ function Method() {
           <strong className="method__item--strong">2.2 Chú ý các lỗi thường mắc phải:</strong>
           <div className="method__content">
             <p>Tránh các lỗi phổ biến như sai thì, sai chủ ngữ - động từ, quên
-            thêm “s” với động từ số ít trong thì hiện tại đơn, hoặc dùng sai
-            giới từ. Một cách hữu ích là ghi chú lại các lỗi thường gặp khi làm
-            bài tập để rút kinh nghiệm và sửa sai.</p>
-            
+              thêm “s” với động từ số ít trong thì hiện tại đơn, hoặc dùng sai
+              giới từ. Một cách hữu ích là ghi chú lại các lỗi thường gặp khi làm
+              bài tập để rút kinh nghiệm và sửa sai.</p>
+
             <p>- Ghi chép lại các lỗi sai khi làm bài tập và sửa ngay sau khi phát hiện.</p>
             <p>- So sánh các lỗi của mình với ví dụ đúng để hiểu bản chất sai lầm.</p>
             <p>- Luyện tập với các bài tập trắc nghiệm để kiểm tra và khắc phục lỗi sai.</p>
-            
+
             <p>Ví dụ:</p>
             <p>- <strong>Sai:</strong> She go to school every day.</p>
             <p>- <strong>Đúng:</strong> She <strong>goes</strong> to school every day.</p>
@@ -145,15 +145,15 @@ function Method() {
           <strong className="method__item--strong">2.3 Thực hành ngữ pháp thường xuyên:</strong>
           <div className="method__content">
             <p>Luyện tập qua bài tập ngữ pháp giúp bạn nắm vững lý thuyết. Bạn có
-            thể sử dụng các trang web như Grammarly, Cambridge Grammar hoặc sách
-            bài tập để kiểm tra và củng cố kiến thức của mình. Ngoài ra, việc
-            viết nhật ký bằng Tiếng Anh mỗi ngày cũng giúp cải thiện ngữ pháp
-            một cách tự nhiên.</p>
-            
+              thể sử dụng các trang web như Grammarly, Cambridge Grammar hoặc sách
+              bài tập để kiểm tra và củng cố kiến thức của mình. Ngoài ra, việc
+              viết nhật ký bằng Tiếng Anh mỗi ngày cũng giúp cải thiện ngữ pháp
+              một cách tự nhiên.</p>
+
             <p>- Làm bài tập với mức độ khó tăng dần, từ cơ bản đến nâng cao.</p>
             <p>- Viết câu chuyện ngắn bằng tiếng Anh và tự kiểm tra ngữ pháp.</p>
             <p>- Tham gia các diễn đàn học ngữ pháp để thực hành và nhận phản hồi.</p>
-            
+
             <p>Ví dụ bài luyện tập:</p>
             <p>- Điền từ đúng vào câu:</p>
             <p>  - She ___ (go/goes) to the market every morning. (<strong>goes</strong>)</p>
@@ -166,17 +166,17 @@ function Method() {
       <h3 className="method__title">3. Phương pháp học Tiếng Anh giao tiếp tại nhà</h3>
       <div className="method__content--main">
         <p>Để học Tiếng Anh giao tiếp hiệu quả tại nhà, bạn cần thực hiện những
-        phương pháp sau:</p>
+          phương pháp sau:</p>
       </div>
-      
+
       <ul>
         <li className="method__item">
           <strong className="method__item--strong">3.1 Vượt qua nỗi sợ tâm lý và kiên trì đến cùng:</strong>
           <div className="method__content">
             <p>- Đừng lo sợ khi nói, hãy thực hành và kiên trì. Hầu hết người học
-            đều e ngại mắc lỗi, nhưng sai sót là một phần của quá trình học. Hãy
-            luyện tập nói trước gương, ghi âm lại để kiểm tra cách phát âm và
-            ngữ điệu của mình, hoặc tìm bạn bè để luyện tập.</p>
+              đều e ngại mắc lỗi, nhưng sai sót là một phần của quá trình học. Hãy
+              luyện tập nói trước gương, ghi âm lại để kiểm tra cách phát âm và
+              ngữ điệu của mình, hoặc tìm bạn bè để luyện tập.</p>
             <p>- Một mẹo nhỏ là tự đặt câu với các từ vựng mới học và tự nói thành câu hoàn chỉnh. Việc lặp lại nhiều lần giúp bạn quen với cách diễn đạt và dần dần loại bỏ nỗi sợ hãi khi nói.</p>
           </div>
         </li>
@@ -184,9 +184,9 @@ function Method() {
           <strong className="method__item--strong">3.2 Chuẩn bị vốn “từ vựng” vững chắc:</strong>
           <div className="method__content">
             <p>- Từ vựng là yếu tố then chốt giúp bạn giao tiếp tự tin. Học từ vựng
-            theo tình huống thực tế như đi chợ, đặt hàng, hỏi đường… giúp bạn dễ
-            dàng ứng dụng ngay. Hãy sử dụng sổ tay từ vựng hoặc ứng dụng như
-            Anki, Quizlet để ôn tập hàng ngày.</p>
+              theo tình huống thực tế như đi chợ, đặt hàng, hỏi đường… giúp bạn dễ
+              dàng ứng dụng ngay. Hãy sử dụng sổ tay từ vựng hoặc ứng dụng như
+              Anki, Quizlet để ôn tập hàng ngày.</p>
             <p>- Bạn cũng có thể áp dụng phương pháp "Spaced Repetition" – lặp lại cách quãng để giúp trí nhớ lưu giữ từ vựng lâu hơn. Hãy ghi từ vựng lên giấy nhớ và dán quanh nhà để luôn nhìn thấy và nhớ lâu hơn.</p>
           </div>
         </li>
@@ -194,10 +194,10 @@ function Method() {
           <strong className="method__item--strong">3.3 Thay đổi cách học ngữ pháp theo kiểu truyền thống:</strong>
           <div className="method__content">
             <p>- Hãy học ngữ pháp qua giao tiếp và bài học thực tế thay vì học
-            thuộc lòng. Khi nói chuyện, thay vì nghĩ về quy tắc ngữ pháp, hãy
-            chú ý đến các mẫu câu thông dụng và cách người bản xứ sử dụng chúng.
-            Xem các cuộc hội thoại thực tế trong phim hoặc podcast để học cách
-            sử dụng ngữ pháp linh hoạt.</p>
+              thuộc lòng. Khi nói chuyện, thay vì nghĩ về quy tắc ngữ pháp, hãy
+              chú ý đến các mẫu câu thông dụng và cách người bản xứ sử dụng chúng.
+              Xem các cuộc hội thoại thực tế trong phim hoặc podcast để học cách
+              sử dụng ngữ pháp linh hoạt.</p>
             <p>- Ví dụ, khi học thì hiện tại hoàn thành, thay vì chỉ học lý thuyết, hãy đặt câu hỏi như "Have you ever traveled abroad?" rồi tự trả lời và thực hành nhiều lần.</p>
           </div>
         </li>
@@ -205,9 +205,9 @@ function Method() {
           <strong className="method__item--strong">3.4 Luyện phát âm chuẩn và nói chuyện lưu loát:</strong>
           <div className="method__content">
             <p>  - Luyện phát âm qua bài hát, phim hoặc giáo viên giúp bạn nói chuẩn hơn.
-            Hãy tập trung vào các âm khó như /θ/, /ð/, /r/, /l/ để cải thiện giọng
-            nói. Một số ứng dụng như Elsa Speak, BBC Learning English có thể giúp
-            bạn luyện phát âm chính xác.</p>
+              Hãy tập trung vào các âm khó như /θ/, /ð/, /r/, /l/ để cải thiện giọng
+              nói. Một số ứng dụng như Elsa Speak, BBC Learning English có thể giúp
+              bạn luyện phát âm chính xác.</p>
             <p>- Bạn có thể thực hành phương pháp "Shadowing" – bắt chước cách phát âm, nhấn nhá và ngữ điệu của người bản xứ bằng cách nghe và lặp lại ngay lập tức. Điều này giúp bạn cải thiện kỹ năng nghe – nói đồng thời.</p>
           </div>
         </li>
@@ -216,7 +216,7 @@ function Method() {
       <div className="method__content--main">
         <p>Sử dụng các công cụ hỗ trợ sẽ giúp việc học Tiếng Anh trở nên dễ dàng và thú vị hơn. Dưới đây là một số công cụ hữu ích:</p>
       </div>
-      
+
       <ul>
         <li className="method__item">
           <strong className="method__item--strong">4.1 Ứng dụng học Tiếng Anh trên điện thoại:</strong>
@@ -267,7 +267,7 @@ function Method() {
       <div className="method__content--main">
         <p> Để cải thiện kỹ năng nghe, bạn cần thực hiện các phương pháp sau:</p>
       </div>
-      
+
       <ul>
         <li className="method__item">
           <strong className="method__item--strong">5.1 Nghe Tiếng Anh mỗi ngày:</strong>
@@ -315,7 +315,7 @@ function Method() {
       <div className="method__content--main">
         <p> Kỹ năng đọc hiểu rất quan trọng để mở rộng vốn từ và cải thiện ngữ pháp. Dưới đây là một số phương pháp hiệu quả giúp bạn cải thiện kỹ năng đọc hiểu: </p>
       </div>
-      
+
       <ul>
         <li className="method__item">
           <strong className="method__item--strong">6.1 Bắt đầu với tài liệu phù hợp trình độ:</strong>
@@ -362,9 +362,9 @@ function Method() {
       <h3 className="method__title">7. Cách luyện kỹ năng viết Tiếng Anh</h3>
       <div className="method__content--main">
         <p> Thực hành viết thường xuyên giúp bạn cải thiện khả năng diễn đạt và ghi nhớ từ vựng.
-        Dưới đây là một số phương pháp hiệu quả giúp bạn nâng cao kỹ năng viết:</p>
+          Dưới đây là một số phương pháp hiệu quả giúp bạn nâng cao kỹ năng viết:</p>
       </div>
-      
+
       <ul>
         <li className="method__item">
           <strong className="method__item--strong">7.1 Viết nhật ký bằng Tiếng Anh:</strong>
@@ -408,9 +408,9 @@ function Method() {
         </li>
 
         <h3 className="method__title">8. Video hay giúp thay đổi mindset cách học tiếng anh</h3>
-      <div className="method__content--main">
-      <iframe width="1521" height="800" src="https://www.youtube.com/embed/_nuQ39Y4T5Q" title="Cách Tự Học Tiếng Anh | Áp dụng cho mọi người (phương pháp + tài liệu gợi ý) VyVocab Ep.110" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-      </div>
+        <div className="method__content--main">
+          <iframe width="1521" height="800" src="https://www.youtube.com/embed/_nuQ39Y4T5Q" title="Cách Tự Học Tiếng Anh | Áp dụng cho mọi người (phương pháp + tài liệu gợi ý) VyVocab Ep.110" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+        </div>
       </ul>
     </>
   );

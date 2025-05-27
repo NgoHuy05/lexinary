@@ -26,8 +26,10 @@ import "../../UI/Setting.scss";
 import Cookies from "js-cookie";
 import { getUserProfile, updateUserProfile } from "../../api/apiUser";
 import ChangePassword from "../Client/Auth/ChangePassword";
+
 const { Sider, Content } = Layout;
-export default function SettingAdminPage() {
+
+function SettingAdminPage() {
   const [selectedKey, setSelectedKey] = useState("account");
   const [user, setUser] = useState(null);
   const [form] = useForm();
@@ -36,6 +38,7 @@ export default function SettingAdminPage() {
 
   const navigate = useNavigate();
   const email = Cookies.get("email");
+
   useEffect(() => {
     getUserProfile()
       .then(res => {
@@ -49,8 +52,6 @@ export default function SettingAdminPage() {
         navigate("/login");
       });
   }, [navigate, form]);
-
-
 
   const handleUpdate = (values) => {
     updateUserProfile(values.name, values.email, values.phone, values.gender, values.address)
@@ -136,7 +137,7 @@ export default function SettingAdminPage() {
             )}
           </>
         );
-  
+
       case "security":
         return (
           <>
@@ -171,3 +172,4 @@ export default function SettingAdminPage() {
     </Layout>
   );
 }
+export default SettingAdminPage;

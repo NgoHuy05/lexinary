@@ -4,7 +4,7 @@ const lessonSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
     description: { type: String },
-    course: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },  // ✅ Thêm trường này
+    course: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },  
     chapter: { type: mongoose.Schema.Types.ObjectId, ref: "Chapter", required: true },
     vocabulary: [{ type: mongoose.Schema.Types.ObjectId, ref: "Vocabulary" }],
     exercises: [{ type: mongoose.Schema.Types.ObjectId, ref: "Exercise" }],

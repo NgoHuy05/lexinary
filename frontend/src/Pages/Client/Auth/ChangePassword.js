@@ -5,18 +5,18 @@ import { useNavigate } from "react-router-dom";
 
 const ChangePassword = ({ email }) => {
   const [loading, setLoading] = React.useState(false);
-  const [form] = Form.useForm();  // Khởi tạo form instance
+  const [form] = Form.useForm();
   const navigate = useNavigate();
   const handleResetPassword = async (values) => {
     const { password } = values;
     setLoading(true);
     try {
-      const res = await resetPassword(email, password); // Kiểm tra cú pháp API
+      const res = await resetPassword(email, password);
       if (res.data.code === 200) {
         notification.success({
           message: "Đặt lại mật khẩu thành công",
         });
-        form.resetFields();  // Reset các trường sau khi thành công
+        form.resetFields();
         navigate("/");
       }
     } catch (err) {

@@ -9,7 +9,7 @@ module.exports.verifyToken = async (req, res, next) => {
     jwt.verify(token, JWT_SECRET, (err, user) => {
       if (err) return res.status(403).json({ message: "Token is not valid" });
 
-      req.user = user; // user = { id, name, role, ... }
+      req.user = user; 
       next();
     });
   } catch (error) {

@@ -10,9 +10,8 @@ module.exports.checkAdminOrOwner = async (req, res, next) => {
           return res.status(404).json({ message: "Topic không tồn tại!" });
       }
 
-      // Kiểm tra nếu là admin hoặc chủ sở hữu topic
       if (req.user.role === "admin" || topic.userId.toString() === userId.toString()) {
-          return next(); // Cho phép tiếp tục
+          return next();
       } else {
           return res.status(403).json({ message: "Bạn không có quyền xóa topic này!" });
       }

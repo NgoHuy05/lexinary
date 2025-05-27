@@ -4,7 +4,7 @@
   flex-direction: column;
 
   &__sider {
-    width: 240px; // Giảm chiều rộng của Sider
+    width: 240px; 
     background: #fff;
     position: relative;
   }
@@ -23,7 +23,7 @@
   }
 
   &__menu {
-    height: calc(100% - 64px); // Trừ chiều cao toggle
+    height: calc(100% - 64px); 
     border-right: 0;
   }
 
@@ -181,7 +181,6 @@
   }
 }
 
-/* Overview Styling for Course */
 .course-detail__overview {
   padding: 20px;
   background: linear-gradient(135deg, #f8d0e1, #fff4b3); /* Hồng nhạt và vàng nhạt */
@@ -322,9 +321,8 @@
     opacity: 1;
   }
 }
-/* Thêm vào file CSS */
+
 .green-checkmark {
-  ba: green;
-  font-size: 18px; /* Chỉnh kích thước nếu cần */
-  margin-left: 10px; /* Khoảng cách nếu cần */
+  font-size: 18px; 
+  margin-left: 10px; 
 }

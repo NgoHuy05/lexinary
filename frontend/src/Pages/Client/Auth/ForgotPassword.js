@@ -1,7 +1,6 @@
-// ForgotPassword.js
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, notification, Spin } from "antd";
-import ChangePassword from "./ChangePassword"; // Import component mới
+import ChangePassword from "./ChangePassword";
 import "../../../UI/ForgotPassword.scss";
 import { forgotPassword, verifyOtp } from "../../../api/apiUser";
 
@@ -41,7 +40,7 @@ const ForgotPassword = () => {
     setLoading(true);
     setButtonText(`Gửi lại OTP`);
     try {
-      const res = await forgotPassword (email);
+      const res = await forgotPassword(email);
       if (res.data.code === 200) {
         notification.success({
           message: "OTP đã được gửi",
@@ -64,7 +63,7 @@ const ForgotPassword = () => {
     const { otp } = values;
     setLoading(true);
     try {
-      const res = await verifyOtp (email, otp);
+      const res = await verifyOtp(email, otp);
       if (res.data.code === 200) {
         notification.success({
           message: "Xác thực OTP thành công",
@@ -91,7 +90,7 @@ const ForgotPassword = () => {
     setIsButtonDisabled(true);
     setCountdown(30);
     try {
-      const res = await forgotPassword ({ email });
+      const res = await forgotPassword({ email });
       if (res.data.code === 200) {
         notification.success({
           message: "OTP đã được gửi lại",

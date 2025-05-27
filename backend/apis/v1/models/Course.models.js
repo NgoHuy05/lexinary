@@ -11,7 +11,7 @@ const courseSchema = new mongoose.Schema({
   color: { type: String },
   icon: { type: String },
   chapters: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chapter" }],
-  lessons: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lesson" }], // ✅ thêm dòng này
+  lessons: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lesson" }], 
   status: { type: String, default: "pending" },
   listUser: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },

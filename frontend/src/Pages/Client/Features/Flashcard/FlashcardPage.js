@@ -14,9 +14,9 @@ import Cookies from "js-cookie";
 const { Sider, Content } = Layout;
 
 const FlashcardPage = () => {
-  const [topics, setTopics] = useState([]); // Lưu trữ danh sách topic
-  const [loading, setLoading] = useState(true); // Trạng thái loading
-  const location = useLocation(); // Lấy pathname hiện tại
+  const [topics, setTopics] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const location = useLocation(); 
   const [collapsed, setCollapsed] = useState(false);
   const userId = Cookies.get("id");
   
@@ -35,21 +35,17 @@ const FlashcardPage = () => {
   useEffect(() => {
     const fetchTopics = async () => {
       try {
-        setLoading(true); // Bắt đầu loading khi gọi API
+        setLoading(true); 
         let response;
-
-        // Kiểm tra để xác định gọi API phù hợp
         if (location.pathname === "/flashcard/home") {
-          response = await getPublicTopics(); // Lấy topic công khai cho trang Home
+          response = await getPublicTopics(); 
         } else if (location.pathname === "/flashcard/library") {
-          response = await getUserTopics(); // Lấy topic của người dùng cho trang Library
+          response = await getUserTopics(); 
         } else {
           return;
         }
-
-        // Kiểm tra kết quả từ API
         if (Array.isArray(response)) {
-          setTopics(response); // Cập nhật danh sách topic
+          setTopics(response); 
         } else {
           message.error("Dữ liệu topics không hợp lệ!");
         }
@@ -57,11 +53,11 @@ const FlashcardPage = () => {
         message.warning("Vui lòng đăng nhập để xem các chủ đề flashcard");
         navigate("/login");
       } finally {
-        setLoading(false); // Kết thúc loading
+        setLoading(false); 
       }
     };
 
-    fetchTopics(); // Gọi hàm fetchTopics mỗi khi pathname thay đổi
+    fetchTopics(); 
   }, [location.pathname]);
 
   const menuItems = [
@@ -90,7 +86,7 @@ const FlashcardPage = () => {
         className="flashcard-page__sider"
         collapsible
         collapsed={collapsed}
-        trigger={null} // tắt trigger mặc định
+        trigger={null} 
       >
         <button
           type="primary"
@@ -111,7 +107,6 @@ const FlashcardPage = () => {
 
       <Layout>
         <Content className="flashcard-page__content">
-          {/* Chuyển trang với Outlet */}
           <Outlet />
         </Content>
       </Layout>

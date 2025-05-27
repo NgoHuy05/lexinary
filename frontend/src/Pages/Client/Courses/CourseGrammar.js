@@ -13,7 +13,6 @@ const CourseGrammar = () => {
   const [loading, setLoading] = useState(false);
   const { courseId, lessonId, chapterId } = useParams();
 
-  // Load chương
   useEffect(() => {
     setLoading(true);
     getChapters(courseId)
@@ -30,26 +29,24 @@ const CourseGrammar = () => {
       });
   }, [courseId, chapterId]);
 
-useEffect(() => {
-  if (selectedChapter && selectedChapter.lessons) {
-    const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
-    if (lesson) {
-      setSelectedLesson(lesson);
-    } else {
+  useEffect(() => {
+    if (selectedChapter && selectedChapter.lessons) {
+      const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
+      if (lesson) {
+        setSelectedLesson(lesson);
+      } else {
         setLoading(true);
-      // Nếu không tìm thấy trong chapter, thì fallback gọi API (nếu có sẵn API getLessonDetail)
-      getLessonDetail(lessonId)
-        .then((res) => setSelectedLesson(res.data))
-        .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err))
-        .finally(() => setLoading(false));
+        getLessonDetail(lessonId)
+          .then((res) => setSelectedLesson(res.data))
+          .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err))
+          .finally(() => setLoading(false));
+      }
     }
-  }
-}, [selectedChapter, lessonId]);
+  }, [selectedChapter, lessonId]);
 
-  // Load exercises
   useEffect(() => {
     if (!selectedLesson) return;
-      setLoading(true);
+    setLoading(true);
     getGrammarByLesson(selectedLesson._id)
       .then((res) => setGrammars(res.data || []))
       .catch((err) => console.error("Lỗi khi tải bài tập:", err))
@@ -62,7 +59,7 @@ useEffect(() => {
       title: "STT",
       key: "index",
       width: '3%',
-      render: (text, record, index) => index + 1,  // Đếm số thứ tự từ 1
+      render: (text, record, index) => index + 1,
     },
     {
       title: 'Loại',
@@ -102,44 +99,44 @@ useEffect(() => {
       ),
     },
   ];
-  
-  if (loading ) {
+
+  if (loading) {
+    return (
+      <div style={{ textAlign: "center", padding: 100 }}>
+        <Spin size="large" tip="Đang tải dữ liệu..." />
+      </div>
+    );
+  }
+
   return (
-    <div style={{ textAlign: "center", padding: 100 }}>
-      <Spin size="large" tip="Đang tải dữ liệu..." />
+    <div className="course-grammar">
+      {selectedChapter ? (
+        <h2 className="course-grammar__header">{selectedChapter.title}</h2>
+      ) : (
+        <h2 className="course-grammar__header">Chưa có chương</h2>
+      )}
+
+      {selectedLesson && (
+        <div className="course-grammar__lesson">
+          <h3 className="course-grammar__lesson-title">{`${selectedLesson.title}: ${selectedLesson.description}`}</h3>
+        </div>
+      )}
+
+      {loading ? (
+        <p className="course-grammar__loading">Đang tải dữ liệu...</p>
+      ) : grammars.length > 0 ? (
+        <Table
+          columns={columns}
+          dataSource={grammars}
+          rowKey="_id"
+          pagination={false}
+          className="course-grammar__grammar-table"
+        />
+      ) : (
+        <p className="course-grammar__no-grammars">Chưa có ngữ pháp cho bài học này.</p>
+      )}
     </div>
   );
-}
-
-return (
-        <div className="course-grammar">
-            {selectedChapter ? (
-                <h2 className="course-grammar__header">{selectedChapter.title}</h2>
-            ) : (
-                <h2 className="course-grammar__header">Chưa có chương</h2>
-            )}
-
-            {selectedLesson && (
-                <div className="course-grammar__lesson">
-                    <h3 className="course-grammar__lesson-title">{`${selectedLesson.title}: ${selectedLesson.description}`}</h3>
-                </div>
-            )}
-
-            {loading ? (
-                <p className="course-grammar__loading">Đang tải dữ liệu...</p>
-            ) : grammars.length > 0 ? (
-                <Table
-                    columns={columns}
-                    dataSource={grammars}
-                    rowKey="_id"
-                    pagination={false}
-                    className="course-grammar__grammar-table"
-                />
-            ) : (
-                <p className="course-grammar__no-grammars">Chưa có ngữ pháp cho bài học này.</p>
-            )}
-        </div>
-    );
 };
 
 

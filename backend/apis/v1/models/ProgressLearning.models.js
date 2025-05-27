@@ -11,12 +11,10 @@ const progressSchema = new mongoose.Schema(
     ],
     streak: { type: Number, default: 0 },
     lastStudyDate: { type: Date },
-    
-    // Thêm history vào đây
     studyHistory: [
       {
         date: { type: Date, required: true },
-        count: { type: Number, default: 1 }, // số lần học trong ngày
+        count: { type: Number, default: 1 }, 
       }
     ],
   },

@@ -6,14 +6,9 @@ const { Option } = Select;
 
 function AddTopic() {
   const [loading, setLoading] = useState(false);
-
-  // visibility: admin mặc định 'public', user khác gửi 'private' hoặc 'public' theo chọn
-  // Nếu muốn ẩn trường visibility với user không phải admin, có thể xử lý sau frontend
-
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      // values = { title, description, visibility }
       await createTopic(values);
       message.success("Tạo chủ đề thành công!");
     } catch (error) {

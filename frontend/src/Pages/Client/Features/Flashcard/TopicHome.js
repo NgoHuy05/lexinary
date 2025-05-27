@@ -1,19 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  message,
-  Spin,
-  Empty,
-  List,
-  Card,
-  Input,
-  Popconfirm,
-  Button,
-  Space,
-} from "antd";
-import {
-  getPublicTopics,
-  deleteTopic,
-} from "../../../../api/apiTopic";
+import { message, Spin, Empty, List, Card, Input, Popconfirm, Button, Space, } from "antd";
+import { getPublicTopics, deleteTopic, } from "../../../../api/apiTopic";
 import { getUserProfile } from "../../../../api/apiUser";
 import { useNavigate } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -30,7 +17,6 @@ const TopicHome = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch topics và user profile
     const fetchTopics = async () => {
       try {
         setLoading(true);
@@ -55,7 +41,7 @@ const TopicHome = () => {
 
     fetchUser();
     fetchTopics();
-  }, []); // chỉ chạy một lần khi component mount
+  }, []);
 
   const handleSearch = (value) => {
     setSearchTerm(value);
@@ -73,7 +59,6 @@ const TopicHome = () => {
     try {
       await deleteTopic(id);
       message.success("Xoá topic thành công!");
-      // Cập nhật danh sách topics sau khi xoá
       setTopics((prev) => prev.filter((topic) => topic._id !== id));
       setFilteredTopics((prev) => prev.filter((topic) => topic._id !== id));
     } catch (err) {

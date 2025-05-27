@@ -1,7 +1,7 @@
 const Lesson = require("../models/Lesson.models");
 const Chapter = require("../models/Chapter.models");
 
-// Lấy danh sách bài học của chương (chỉ lấy bài chưa bị xoá)
+// Lấy danh sách bài học của chương
 module.exports.getLessons = async (req, res) => {
   try {
     const chapterId = req.params.chapterId;
@@ -22,7 +22,7 @@ module.exports.getLessons = async (req, res) => {
   }
 };
 
-// ✅ Lấy chi tiết bài học có thêm course & chapter
+// Lấy chi tiết bài học 
 module.exports.getLessonDetail = async (req, res) => {
   try {
     const lessonId = req.params.id;
@@ -32,7 +32,7 @@ module.exports.getLessonDetail = async (req, res) => {
       .populate("exercises")
       .populate("grammar")
       .populate("sentence")
-      .populate("course", "title") // ✅ chỉ lấy _id và title của khóa học
+      .populate("course", "title")
       .populate("chapter", "title");
 
     if (!lesson || lesson.deleted) {
@@ -46,7 +46,7 @@ module.exports.getLessonDetail = async (req, res) => {
   }
 };
 
-// ✅ Tạo nhiều bài học, cần truyền thêm courseId
+// Tạo nhiều bài học
 module.exports.createLesson = async (req, res) => {
   try {
     const lessonsData = req.body;
@@ -56,12 +56,12 @@ module.exports.createLesson = async (req, res) => {
       return res.status(400).json({ message: "Chương học không tồn tại" });
     }
 
-    const courseId = lessonsData[0].courseId; // ✅ Lấy courseId từ client
+    const courseId = lessonsData[0].courseId;
 
     const newLessons = lessonsData.map(lesson => ({
       title: lesson.title,
       description: lesson.description,
-      course: courseId, // ✅ thêm khóa học
+      course: courseId,
       chapter: lesson.chapterId,
       order: lesson.order,
       vocabulary: lesson.vocabulary || [],
@@ -71,8 +71,6 @@ module.exports.createLesson = async (req, res) => {
     }));
 
     const savedLessons = await Lesson.insertMany(newLessons);
-
-    // Gắn lesson vào chương
     chapter.lessons.push(...savedLessons.map(lesson => lesson._id));
     await chapter.save();
 
@@ -83,7 +81,7 @@ module.exports.createLesson = async (req, res) => {
   }
 };
 
-// ✅ Chỉnh sửa bài học
+//  Chỉnh sửa bài học
 module.exports.updateLesson = async (req, res) => {
   try {
     const {
@@ -109,7 +107,7 @@ module.exports.updateLesson = async (req, res) => {
         grammar,
         sentence,
         order,
-        course, // ✅ cập nhật nếu cần
+        course,
       },
       { new: true }
     );
@@ -125,16 +123,13 @@ module.exports.updateLesson = async (req, res) => {
   }
 };
 
-// Xoá mềm bài học
+// Xoá bài học
 module.exports.deleteLesson = async (req, res) => {
   try {
     const lessonId = req.params.id;
 
-    const deletedLesson = await Lesson.findByIdAndUpdate(
-      lessonId,
-      { deleted: true },
-      { new: true }
-    );
+    // Tìm và xoá bài học
+    const deletedLesson = await Lesson.findByIdAndDelete(lessonId);
 
     if (!deletedLesson) {
       return res.status(404).json({ message: "Bài học không tồn tại" });
@@ -145,7 +140,7 @@ module.exports.deleteLesson = async (req, res) => {
       $pull: { lessons: deletedLesson._id },
     });
 
-    res.json({ message: "Bài học đã bị xoá" });
+    res.json({ message: "Bài học đã bị xoá vĩnh viễn" });
   } catch (error) {
     console.error("Lỗi khi xoá bài học:", error);
     res.status(500).json({ message: "Lỗi server" });

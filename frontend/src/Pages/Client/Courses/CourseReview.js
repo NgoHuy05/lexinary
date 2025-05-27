@@ -8,7 +8,7 @@ import "../../../UI/CourseEx.scss";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
-  ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CourseReview = () => {
   const [chapters, setChapters] = useState([]);
@@ -50,7 +50,6 @@ const CourseReview = () => {
       },
     },
   };
-  // Load chapters
   useEffect(() => {
     getChapters(courseId)
       .then((res) => {
@@ -62,24 +61,20 @@ const CourseReview = () => {
       .catch((err) => console.error("Lỗi khi tải chương:", err));
   }, [courseId, chapterId]);
 
-  // Load lessons
-
-useEffect(() => {
-  if (selectedChapter && selectedChapter.lessons) {
-    const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
-    if (lesson) {
-      setSelectedLesson(lesson);
-    } else {
-      // Nếu không tìm thấy trong chapter, thì fallback gọi API (nếu có sẵn API getLessonDetail)
-      getLessonDetail(lessonId)
-        .then((res) => setSelectedLesson(res.data))
-        .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err));
+  useEffect(() => {
+    if (selectedChapter && selectedChapter.lessons) {
+      const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
+      if (lesson) {
+        setSelectedLesson(lesson);
+      } else {
+        getLessonDetail(lessonId)
+          .then((res) => setSelectedLesson(res.data))
+          .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err));
+      }
     }
-  }
-}, [selectedChapter, lessonId]);
+  }, [selectedChapter, lessonId]);
 
 
-  // Load exercises
   useEffect(() => {
     if (!selectedLesson) return;
     getExercisesByLesson(selectedLesson._id)
@@ -92,151 +87,151 @@ useEffect(() => {
   }
   return (
     <>
-    <div className="course-ex">
-      <h2 className="course-ex__lesson-header">
-        {selectedChapter?.title || "Chưa có chương"}
-      </h2>
-      <h3 className="course-ex__lesson-title">
-        {selectedLesson ? `${selectedLesson.title}: ${selectedLesson.description}` : "Chưa có bài học"}
-      </h3>
-          <div className="course-result__res">
-            
-            <div className="course-result__chart">
-              <Pie data={pieData} options={pieOptions} />
-            </div>
-            <div className="course-result__summary">
-              <p className="course-result__summary-item">Số câu đúng: {correctCount}</p>
-              <p className="course-result__summary-item">Số câu sai: {incorrectCount}</p>
-            </div>
+      <div className="course-ex">
+        <h2 className="course-ex__lesson-header">
+          {selectedChapter?.title || "Chưa có chương"}
+        </h2>
+        <h3 className="course-ex__lesson-title">
+          {selectedLesson ? `${selectedLesson.title}: ${selectedLesson.description}` : "Chưa có bài học"}
+        </h3>
+        <div className="course-result__res">
+
+          <div className="course-result__chart">
+            <Pie data={pieData} options={pieOptions} />
           </div>
-      <div className="course-ex__exercise-section">
-        <ul className="course-ex__exercise-list">
-          {exercises.length > 0 ? (
-            exercises.map((ex, idx) => (
-              <li key={ex._id} className="course-ex__exercise-item">
-<Card
-  title={`${idx + 1}. ${ex.question}`}
-  className={`course-ex__exercise-card ${allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer === ex.correctAnswer ? 'course-ex__correct-card' : 'course-ex__incorrect-card'}`}
->
-{ex.type === "multiple-choice" && (
-  <ul className="course-ex__options-list">
-    {ex.options.map((opt, i) => {
-      const userAnswerObj = allAnswers.find((a) => a.exerciseId === ex._id);
-      const isUserSelected = userAnswerObj?.selectedAnswer === opt;  // Kiểm tra nếu người dùng chọn đáp án này
-      const isCorrect = ex.correctAnswer === opt;  // Kiểm tra nếu đáp án này là đúng
-      const isAnswerCorrect = isUserSelected && isCorrect;  // Đáp án người dùng chọn đúng
-      const isAnswerIncorrect = isUserSelected && !isCorrect;  // Đáp án người dùng chọn sai
+          <div className="course-result__summary">
+            <p className="course-result__summary-item">Số câu đúng: {correctCount}</p>
+            <p className="course-result__summary-item">Số câu sai: {incorrectCount}</p>
+          </div>
+        </div>
+        <div className="course-ex__exercise-section">
+          <ul className="course-ex__exercise-list">
+            {exercises.length > 0 ? (
+              exercises.map((ex, idx) => (
+                <li key={ex._id} className="course-ex__exercise-item">
+                  <Card
+                    title={`${idx + 1}. ${ex.question}`}
+                    className={`course-ex__exercise-card ${allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer === ex.correctAnswer ? 'course-ex__correct-card' : 'course-ex__incorrect-card'}`}
+                  >
+                    {ex.type === "multiple-choice" && (
+                      <ul className="course-ex__options-list">
+                        {ex.options.map((opt, i) => {
+                          const userAnswerObj = allAnswers.find((a) => a.exerciseId === ex._id);
+                          const isUserSelected = userAnswerObj?.selectedAnswer === opt;  // Kiểm tra nếu người dùng chọn đáp án này
+                          const isCorrect = ex.correctAnswer === opt;  // Kiểm tra nếu đáp án này là đúng
+                          const isAnswerCorrect = isUserSelected && isCorrect;  // Đáp án người dùng chọn đúng
+                          const isAnswerIncorrect = isUserSelected && !isCorrect;  // Đáp án người dùng chọn sai
 
-      return (
-        <li key={i} className="course-ex__options-item">
-          <input
-            type="radio"
-            name={ex._id}
-            value={opt}
-            defaultChecked={isUserSelected}
-            disabled
-          />
-          <label className={isUserSelected ? (isAnswerCorrect ? 'course-ex__correct-answer' : 'course-ex__incorrect-answer') : ''}>
-            {opt}
-            {reviewMode && isUserSelected && (
-              <span className={`answer-icon ${isAnswerCorrect ? 'correct' : isAnswerIncorrect ? 'incorrect' : ''}`}>
-                {isAnswerCorrect ? '✔️' : isAnswerIncorrect ? '❌' : ''}
-              </span>
+                          return (
+                            <li key={i} className="course-ex__options-item">
+                              <input
+                                type="radio"
+                                name={ex._id}
+                                value={opt}
+                                defaultChecked={isUserSelected}
+                                disabled
+                              />
+                              <label className={isUserSelected ? (isAnswerCorrect ? 'course-ex__correct-answer' : 'course-ex__incorrect-answer') : ''}>
+                                {opt}
+                                {reviewMode && isUserSelected && (
+                                  <span className={`answer-icon ${isAnswerCorrect ? 'correct' : isAnswerIncorrect ? 'incorrect' : ''}`}>
+                                    {isAnswerCorrect ? '✔️' : isAnswerIncorrect ? '❌' : ''}
+                                  </span>
+                                )}
+                              </label>
+                            </li>
+                          );
+                        })}
+                        {reviewMode && allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer !== ex.correctAnswer && (
+                          <p className="course-ex__correct-answer">
+                            Đáp án đúng: {ex.correctAnswer}
+                          </p>
+                        )}
+                      </ul>
+                    )}
+
+
+                    {ex.type === "checkbox" && (
+                      <ul className="course-ex__options-list">
+                        {ex.options.map((opt, i) => {
+                          const userAnswerObj = allAnswers.find((a) => a.exerciseId === ex._id);
+                          const selected = Array.isArray(userAnswerObj?.selectedAnswer)
+                            ? userAnswerObj.selectedAnswer.includes(opt)
+                            : false;
+                          const isCorrect = selected && userAnswerObj?.selectedAnswer.includes(opt);
+                          const isUserSelected = selected;
+                          const answerClass = reviewMode
+                            ? isCorrect
+                              ? 'course-ex__correct-answer'
+                              : 'course-ex__incorrect-answer'
+                            : '';
+
+                          return (
+                            <li key={i} className="course-ex__options-item">
+                              <input
+                                type="checkbox"
+                                value={opt}
+                                defaultChecked={selected}
+                                disabled
+                              />
+                              <label className={answerClass}>
+                                {opt}
+                                {reviewMode && isUserSelected && (
+                                  <span className={`answer-icon ${isCorrect ? 'correct' : 'incorrect'}`}>
+                                    {isCorrect ? '✔️' : '❌'}
+                                  </span>
+                                )}
+                              </label>
+                            </li>
+                          );
+                        })}
+                        {reviewMode && allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer !== ex.correctAnswer && (
+                          <p className="course-ex__correct-answer">
+                            Đáp án đúng: {ex.correctAnswer}
+                          </p>
+                        )}
+                      </ul>
+                    )}
+
+                    {ex.type === "fill-in-the-blank" && (
+                      <div className="course-ex__exercise-fill-in">
+                        <input
+                          type="text"
+                          value={allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer || ""}
+                          readOnly
+                          className={reviewMode
+                            ? (allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer === ex.correctAnswer
+                              ? 'course-ex__correct-answer'
+                              : 'course-ex__incorrect-answer')
+                            : ''}
+                        />
+                        {reviewMode && allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer !== ex.correctAnswer && (
+                          <div className="course-ex__correct-answer-container">
+                            <p className="course-ex__correct-answer">
+                              Đáp án đúng: {ex.correctAnswer}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                  </Card>
+
+                </li>
+              ))
+            ) : (
+              <p className="course-ex__no-exercises">Chưa có bài tập cho bài học này.</p>
             )}
-          </label>
-        </li>
-      );
-    })}
-    {reviewMode && allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer !== ex.correctAnswer && (
-      <p className="course-ex__correct-answer">
-        Đáp án đúng: {ex.correctAnswer}
-      </p>
-    )}
-  </ul>
-)}
+          </ul>
+          <button className="course-ex__back-button" onClick={handleBack}>
+            Quay lại
+          </button>
 
-
-{ex.type === "checkbox" && (
-  <ul className="course-ex__options-list">
-    {ex.options.map((opt, i) => {
-      const userAnswerObj = allAnswers.find((a) => a.exerciseId === ex._id);
-      const selected = Array.isArray(userAnswerObj?.selectedAnswer)
-        ? userAnswerObj.selectedAnswer.includes(opt)
-        : false;
-      const isCorrect = selected && userAnswerObj?.selectedAnswer.includes(opt);
-      const isUserSelected = selected;
-      const answerClass = reviewMode
-        ? isCorrect
-          ? 'course-ex__correct-answer'
-          : 'course-ex__incorrect-answer'
-        : '';
-
-      return (
-        <li key={i} className="course-ex__options-item">
-          <input
-            type="checkbox"
-            value={opt}
-            defaultChecked={selected}
-            disabled
-          />
-          <label className={answerClass}>
-            {opt}
-            {reviewMode && isUserSelected && (
-              <span className={`answer-icon ${isCorrect ? 'correct' : 'incorrect'}`}>
-                {isCorrect ? '✔️' : '❌'}
-              </span>
-            )}
-          </label>
-        </li>
-      );
-    })}
-    {reviewMode && allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer !== ex.correctAnswer && (
-      <p className="course-ex__correct-answer">
-        Đáp án đúng: {ex.correctAnswer}
-      </p>
-    )}
-  </ul>
-)}
-
-{ex.type === "fill-in-the-blank" && (
-  <div className="course-ex__exercise-fill-in">
-    <input
-      type="text"
-      value={allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer || ""}
-      readOnly
-      className={reviewMode
-        ? (allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer === ex.correctAnswer
-          ? 'course-ex__correct-answer'
-          : 'course-ex__incorrect-answer')
-        : ''}
-    />
-    {reviewMode && allAnswers.find((a) => a.exerciseId === ex._id)?.selectedAnswer !== ex.correctAnswer && (
-      <div className="course-ex__correct-answer-container">
-        <p className="course-ex__correct-answer">
-          Đáp án đúng: {ex.correctAnswer}
-        </p>
+        </div>
       </div>
-    )}
-  </div>
-)}
-
-</Card>
-
-              </li>
-            ))
-          ) : (
-            <p className="course-ex__no-exercises">Chưa có bài tập cho bài học này.</p>
-          )}
-        </ul>
-        <button className="course-ex__back-button" onClick={handleBack}>
-          Quay lại
-        </button>
-
-      </div>
-    </div>
     </>
   );
-  
+
 };
 
 export default CourseReview;

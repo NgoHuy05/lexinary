@@ -17,26 +17,23 @@ const Progress = () => {
   const userId = Cookies.get("id");
   const navigate = useNavigate();
 
-  // Lấy dữ liệu tiến trình user
   useEffect(() => {
     const fetchProgress = async () => {
-      setLoading(true); // bật loading khi bắt đầu
+      setLoading(true);
       try {
         const response = await getUserProgress(userId);
         setProgressData(response.data);
       } catch (error) {
         message.error("Không thể lấy dữ liệu tiến trình.");
       }
-      // Không tắt loading ở đây, đợi lấy lessons xong
     };
     fetchProgress();
   }, [userId]);
 
-  // Lấy chi tiết bài học khi progressData.lessons thay đổi
   useEffect(() => {
     if (progressData.lessons?.length > 0) {
       const fetchLessons = async () => {
-        setLoading(true); // bật loading khi bắt đầu lấy lessons
+        setLoading(true);
         try {
           const lessons = await Promise.all(
             progressData.lessons.map(async (lessonProgress) => {
@@ -51,19 +48,17 @@ const Progress = () => {
         } catch (error) {
           message.error("Không thể lấy thông tin bài học.");
         } finally {
-          setLoading(false); // tắt loading sau khi lấy xong lessons
+          setLoading(false);
         }
       };
       fetchLessons();
     } else {
-      // Nếu không có bài học nào, tắt loading luôn
       setLessonsData([]);
       setLoading(false);
     }
   }, [progressData.lessons]);
 
-  // Hàm convert data cho biểu đồ (không đổi)
-
+  // Hàm convert data cho biểu đồ 
   const convertToChartData = (history = []) => {
     const dateMap = {};
     history.forEach((item) => {

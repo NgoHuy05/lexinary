@@ -5,25 +5,23 @@ module.exports.index = async (req, res) => {
   try {
     const userId = req.user.id;
     const notes = await Note.find({ userId }).sort({ createdAt: -1 });
-    res.json({ notes });  // Đảm bảo backend trả về { notes: [...] }
+    res.json({ notes });
   } catch (err) {
     res.status(500).json({ message: "Lỗi khi lấy danh sách ghi chú" });
   }
 };
 module.exports.createNote = async (req, res) => {
   try {
-    const { title, content, tasks } = req.body;  // Lấy title, content, tasks từ request body
+    const { title, content, tasks } = req.body;
     const userId = req.user.id;  // Lấy userId từ token
-
-    // Kiểm tra xem có ít nhất một trong hai trường content hoặc tasks không rỗng
     if ((content.trim() === "" && (!tasks || tasks.length === 0))) {
       return res.status(400).json({ message: "Cần ít nhất một trong hai: content hoặc tasks." });
     }
 
     const newNote = new Note({
       title,
-      content: content || "",  // Nếu không có content thì mặc định là chuỗi rỗng
-      tasks: tasks || [],  // Nếu không có tasks thì mặc định là mảng rỗng
+      content: content || "",
+      tasks: tasks || [],
       userId
     });
 
@@ -41,12 +39,11 @@ module.exports.updateNote = async (req, res) => {
   try {
     const noteId = req.params.id;
 
-    const { title, content, tasks } = req.body;  // Chỉ lấy tasks từ request body
+    const { title, content, tasks } = req.body;
 
-    // Cập nhật ghi chú chỉ với tasks
     const updatedNote = await Note.findByIdAndUpdate(
       noteId,
-      {  title, content, tasks }, 
+      { title, content, tasks },
       { new: true }
     );
 

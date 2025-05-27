@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = `${process.env.REACT_APP_API_BASE_URL}/api/v1/flashcards`
 
-// Lấy flashcard theo topicId (sửa phần này lại)
+// Lấy flashcard theo topicId 
 export const getFlashcardsByTopic = async (topicId) => {
   try {
     const res = await axios.get(`${BASE_URL}/topic/${topicId}`, {
@@ -14,6 +14,7 @@ export const getFlashcardsByTopic = async (topicId) => {
     throw err;
   }
 };
+// Lấy chi tiết flashcard theo id 
 export const getFlashcards = async (flashcardId) => {
   try {
     const res = await axios.get(`${BASE_URL}/${flashcardId}`, {

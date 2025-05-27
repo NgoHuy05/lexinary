@@ -2,22 +2,22 @@ const express = require("express");
 const router = express.Router();
 const exerciseController = require("../controllers/exercise.controller");
 
-// Tạo mới bài tập
+// [POST] /api/v1/exercises/create - Tạo mới bài tập
 router.post("/create", exerciseController.createExercise);
 
-// Lấy tất cả bài tập
+// [GET] /api/v1/exercises/ - Lấy tất cả bài tập
 router.get("/", exerciseController.getAllExercises);
 
-// Lấy bài tập theo lessonId
+// [GET] /api/v1/exercises/lesson/:lessonId - Lấy danh sách bài tập theo lessonId
 router.get("/lesson/:lessonId", exerciseController.getExercisesByLesson);
 
-// Lấy bài tập theo ID
+// [GET] /api/v1/exercises/detail/:id - Lấy chi tiết bài tập theo ID
 router.get("/detail/:id", exerciseController.getExerciseById);
 
-// Cập nhật bài tập
+// [PUT] /api/v1/exercises/update/:id - Cập nhật bài tập theo ID
 router.put("/update/:id", exerciseController.updateExercise);
 
-// Xóa bài tập
+// [DELETE] /api/v1/exercises/delete/:id - Xóa bài tập theo ID
 router.delete("/delete/:id", exerciseController.deleteExercise);
 
 module.exports = router;

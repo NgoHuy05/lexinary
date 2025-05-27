@@ -10,44 +10,44 @@ const Topic = require("../models/Topic.models");
 const Flashcard = require("../models/Flashcard.models");
 
 exports.getAdminStats = async (req, res) => {
-  try {
-    const [
-      users,
-      courses,
-      chapters,
-      lessons,
-      vocabularies,
-      sentences,
-      exercises,
-      topics,
-      flashcards
-    ] = await Promise.all([
-      User.countDocuments(),
-      Course.countDocuments(),
-      Chapter.countDocuments(),
-      Lesson.countDocuments(),
-      Vocabulary.countDocuments(),
-      Sentence.countDocuments(),
-      Exercises.countDocuments(),
-      Topic.countDocuments(),
-      Flashcard.countDocuments()
-    ]);
+    try {
+        const [
+            users,
+            courses,
+            chapters,
+            lessons,
+            vocabularies,
+            sentences,
+            exercises,
+            topics,
+            flashcards
+        ] = await Promise.all([
+            User.countDocuments(),
+            Course.countDocuments(),
+            Chapter.countDocuments(),
+            Lesson.countDocuments(),
+            Vocabulary.countDocuments(),
+            Sentence.countDocuments(),
+            Exercises.countDocuments(),
+            Topic.countDocuments(),
+            Flashcard.countDocuments()
+        ]);
 
-    res.status(200).json({
-      users,
-      courses,
-      chapters,
-      lessons,
-      vocabularies,
-      sentences,
-      exercises,
-      topics,
-      flashcards
-    });
-  } catch (error) {
-    console.error("Lỗi lấy thống kê:", error);
-    res.status(500).json({ message: "Lỗi server", error });
-  }
+        res.status(200).json({
+            users,
+            courses,
+            chapters,
+            lessons,
+            vocabularies,
+            sentences,
+            exercises,
+            topics,
+            flashcards
+        });
+    } catch (error) {
+        console.error("Lỗi lấy thống kê:", error);
+        res.status(500).json({ message: "Lỗi server", error });
+    }
 };
 
 // Lấy danh sách khóa học với phân trang và tìm kiếm
@@ -219,23 +219,6 @@ module.exports.deleteCourse = async (req, res) => {
     }
 };
 
-// Thay đổi trạng thái của nhiều khóa học
-module.exports.changeStatus = async (req, res) => {
-    try {
-        const { ids, status } = req.body;
-
-        const updatedCourses = await Course.updateMany({ _id: { $in: ids } }, { status });
-
-        res.json({
-            code: 200,
-            message: "Cập nhật trạng thái thành công",
-            updatedCourses
-        });
-    } catch (error) {
-        console.error("Lỗi thay đổi trạng thái:", error);
-        res.status(500).json({ message: "Lỗi server" });
-    }
-};
 
 // Thay đổi nhiều khóa học cùng lúc
 module.exports.changeMulti = async (req, res) => {

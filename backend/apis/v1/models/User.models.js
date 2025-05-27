@@ -16,19 +16,19 @@
         default: false
       },
       deletedAt: Date,
-      birthday: Date , // Ngày sinh
+      birthday: Date , 
       gender: { 
         type: String, 
-        enum: ['male', 'female', 'other'], // Các giá trị hợp lệ cho giới tính
-        default: 'male' // Mặc định là nam
+        enum: ['male', 'female', 'other'], 
+        default: 'male'
       },
       role: {
         type: String,
         enum: ["user", "admin"],
         default: "user"
       },      
-      phone: { type: String }, // Số điện thoại
-      address: { type: String } // Địa chỉ
+      phone: { type: String }, 
+      address: { type: String } 
     },
     { timestamps: true }
   );

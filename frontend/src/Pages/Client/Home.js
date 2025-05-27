@@ -1,16 +1,16 @@
 import React from "react";
-import { Button, Card, Col, Row } from "antd"; // Import từ Ant Design
-import { NavLink, useNavigate } from "react-router-dom"; // Điều hướng giữa các trang
+import { Button, Card, Col, Row } from "antd";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../../UI/Home.scss";
 import Cookies from "js-cookie";
 
 function Home() {
     const navigate = useNavigate();
-      const userId = Cookies.get("id");
+    const userId = Cookies.get("id");
     const features = [
         {
-            title: "Học từ vựng theo chủ đề",
-            description: "Học từ vựng dễ dàng hơn bằng cách chia theo các chủ đề phổ biến.",
+            title: "Học từ vựng, ngữ pháp, mẫu câu theo chủ đề",
+            description: "Học từ vựng, ngữ pháp, mẫu câu  dễ dàng hơn bằng cách chia theo các chủ đề phổ biến.",
             items: ["Chủ đề đa dạng", "Bài tập theo chủ đề"],
             link: "/courses",
         },
@@ -21,8 +21,8 @@ function Home() {
             link: "/note",
         },
         {
-            title: "Học từ vựng hiệu quả",
-            description: "Phương pháp học bằng flashcard thú vị.",
+            title: "Học từ vựng với flashcard",
+            description: "Phương pháp học bằng flashcard.",
             items: ["Flashcards thông minh", "Ôn luyện bằng flashcard",],
             link: "/flashcard",
         },
@@ -44,15 +44,15 @@ function Home() {
                     <div className="text022">thông minh </div>
                 </div>
                 {userId ? (
-    <Button className="ant-btn1" type="primary" onClick={() => navigate("/courses")}>Vào thư viện khóa học</Button>
-) : (
-    <div className="login-register">
-        <Button className="ant-btn1" type="primary" onClick={() => navigate("/register")}>Bạn là người mới? Đăng ký</Button>
-        <Button className="ant-btn2" type="primary" onClick={() => navigate("/login")}>Bạn đã có tài khoản? Đăng nhập</Button>
-    </div>
-)}
+                    <Button className="ant-btn1" type="primary" onClick={() => navigate("/courses")}>Vào thư viện khóa học</Button>
+                ) : (
+                    <div className="login-register">
+                        <Button className="ant-btn1" type="primary" onClick={() => navigate("/register")}>Bạn là người mới? Đăng ký</Button>
+                        <Button className="ant-btn2" type="primary" onClick={() => navigate("/login")}>Bạn đã có tài khoản? Đăng nhập</Button>
+                    </div>
+                )}
 
-                
+
             </div>
 
             <div className="homeTarget">

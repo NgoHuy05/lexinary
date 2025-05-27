@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Divider, message } from "antd";
-import { GoogleOutlined, FacebookOutlined } from "@ant-design/icons";
+import { Form, Input, Button, message } from "antd";
 import "../../../UI/RegisterForm.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Header } from "antd/es/layout/layout";
@@ -8,27 +7,22 @@ import logo from "../../../assets/images/logo.webp";
 import { registerUser } from "../../../api/apiUser";
 
 function Register() {
-    // Xử lý khi form được submit
     const navigate = useNavigate();
     const onFinish = async (values) => {
         try {
-            // eslint-disable-next-line
-            const response = await registerUser(values.name,values.email, values.password,);
-            // Xử lý thành công
+            const response = await registerUser(values.name, values.email, values.password,);
             message.success("Đăng ký thành công!");
-            navigate("/login");  // Chuyển hướng sau khi đăng ký thành công
+            navigate("/login");
         } catch (error) {
-    
+
             if (error.response && error.response.data && error.response.data.errors) {
-                // Duyệt qua các lỗi và hiển thị thông báo tương ứng
                 error.response.data.errors.forEach((err) => {
                     if (err.param === "email" && err.msg === "Email đã tồn tại") {
-                        message.error("Email đã tồn tại!");  // Hiển thị thông báo lỗi email đã tồn tại
+                        message.error("Email đã tồn tại!");
                     } else if (err.param === "password" && err.msg === "Mật khẩu phải có ít nhất 8 ký tự") {
-                        message.error("Mật khẩu phải có ít nhất 8 ký tự!");  // Hiển thị thông báo mật khẩu ngắn
+                        message.error("Mật khẩu phải có ít nhất 8 ký tự!");
                     } else {
-                        // Xử lý các lỗi khác (nếu có)
-                        message.error(err.msg);  // Hiển thị lỗi chung
+                        message.error(err.msg);
                     }
                 });
             } else {
@@ -36,9 +30,9 @@ function Register() {
             }
         }
     };
-    
-    
-    
+
+
+
 
     return (
         <>

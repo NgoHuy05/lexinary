@@ -20,7 +20,6 @@ const CourseExercise = () => {
   const { courseId, lessonId, chapterId } = useParams();
   const navigate = useNavigate();
   const userId = Cookies.get("id");
-  // Load chapters
 useEffect(() => {
   setLoading(true);
   getChapters(courseId)
@@ -58,7 +57,6 @@ useEffect(() => {
     .finally(() => setLoading(false));
 }, [selectedLesson]);
 
-  // Xử lý chọn đáp án cho các loại bài tập
   const handleAnswerSelect = (exerciseId, selectedAnswer, correctAnswer) => {
     setUserAnswers((prev) => {
       const updated = prev.filter((ans) => ans.exerciseId !== exerciseId);
@@ -139,7 +137,6 @@ useEffect(() => {
       },
     });
   }
-  // Hàm nộp bài
 const handleSubmit = () => {
   try {
     const completed = [...userAnswers];
@@ -170,17 +167,14 @@ const handleSubmit = () => {
         : a.selectedAnswer !== a.correctAnswer
     );
 
-    // Gọi API để đánh dấu bài học đã hoàn thành
     markLessonCompleted(userId, lessonId)
   .then(() => {
-    // Cập nhật tiến trình học khi nộp bài
     updateProgress({
       userId,
       lessonId,
    
     })
     .then(() => {
-      // Nếu cập nhật tiến trình thành công, tiếp tục thực hiện các hành động khác (lưu lịch sử, chuyển hướng...)
       createHistory({
         userId,
         courseId,
@@ -198,7 +192,6 @@ const handleSubmit = () => {
         }),
         allAnswers: completed,
       });
-      // Chuyển hướng tới trang kết quả
       navigate(`/courses/${courseId}/chapter/${chapterId}/lesson/${lessonId}/result`, {
         state: {
           courseId,
@@ -224,15 +217,12 @@ const handleSubmit = () => {
   })
   .catch((error) => {
     if (error.response) {
-      // Lỗi trả về từ server
       console.error("Lỗi từ server:", error.response.data);
       console.error("Mã lỗi:", error.response.status);
       console.error("Headers:", error.response.headers);
     } else if (error.request) {
-      // Lỗi do không nhận được phản hồi từ server
       console.error("Không nhận được phản hồi từ server:", error.request);
     } else {
-      // Lỗi xảy ra khi thiết lập yêu cầu
       console.error("Lỗi thiết lập yêu cầu:", error.message);
     }
   });

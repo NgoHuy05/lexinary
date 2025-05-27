@@ -5,7 +5,7 @@
       height: 70vh;
       margin: 50px 100px;
       align-items: center;
-      position: relative; /* Để có thể dùng absolute position cho phần tử con */
+      position: relative; 
     }
   
     &__title {
@@ -42,9 +42,9 @@
         border: none;
         color: $primary-color;
         cursor: pointer;
-        position: absolute; /* Đặt nút ở vị trí tuyệt đối */
-        bottom: 20px; /* Căn nút cách dưới của Card 20px */
-        right: 20px; /* Căn nút sang bên phải của Card */
+        position: absolute; 
+        bottom: 20px; 
+        right: 20px; 
         
         &:hover {
           text-decoration: underline;

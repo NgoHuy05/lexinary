@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, message, Button, Space} from "antd";
+import { Table, message, Button, Space } from "antd";
 import { getPublicTopics } from "../../api/apiTopic";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
@@ -60,14 +60,14 @@ function AllTopics() {
     <div className="admin__page" style={{ padding: 20 }}>
       <h2>Danh sách chủ đề</h2>
       <Table
-  columns={columns}
-  dataSource={topics}
-  rowKey="_id"
-  loading={loading}
-  pagination={{ pageSize: 10 }}
-/>
+        columns={columns}
+        dataSource={topics}
+        rowKey="_id"
+        loading={loading}
+        pagination={{ pageSize: 10 }}
+      />
 
- 
+
     </div>
   );
 }

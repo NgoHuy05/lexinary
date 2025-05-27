@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getHistoryByUser } from "../../../api/apiHistory";  // Import API functions
+import { getHistoryByUser } from "../../../api/apiHistory";
 import "../../../UI/CourseHistory.scss";
-import { Table, Button } from "antd";  // Thêm Modal và Button từ Ant Design
+import { Table, Button } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const CourseHistory = () => {
@@ -17,28 +17,28 @@ const CourseHistory = () => {
     incorrectAnswers = [],
     reviewPath = `/courses/${courseId}/chapter/${chapterId}/lesson/${lessonId}/review`,
   } = location.state || {};
-  const [historyData, setHistoryData] = useState([]);  // Lưu trữ lịch sử làm bài
-  const [loading, setLoading] = useState(true);  // Trạng thái loading khi tải dữ liệu
+  const [historyData, setHistoryData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (userId && courseId && chapterId && lessonId) {
       setLoading(true);
       getHistoryByUser(userId, courseId, chapterId, lessonId)
-  .then((res) => {
-    if (Array.isArray(res.data.history)) {
-      setHistoryData(res.data.history);  // Sử dụng mảng history
-    } else {
-      console.error("Dữ liệu 'history' không phải là mảng");
-    }
-  })
-  .catch((err) => {
-    console.error("Lỗi khi tải lịch sử làm bài:", err);
-  })
-  .finally(() => setLoading(false));
+        .then((res) => {
+          if (Array.isArray(res.data.history)) {
+            setHistoryData(res.data.history);
+          } else {
+            console.error("Dữ liệu 'history' không phải là mảng");
+          }
+        })
+        .catch((err) => {
+          console.error("Lỗi khi tải lịch sử làm bài:", err);
+        })
+        .finally(() => setLoading(false));
 
     }
   }, [userId, courseId, chapterId, lessonId]);
-  
+
   const handleReview = (record) => {
     navigate(`/courses/${courseId}/chapter/${chapterId}/lesson/${lessonId}/review`, {
       state: {
@@ -52,8 +52,6 @@ const CourseHistory = () => {
       }
     });
   };
-  
-  // Cấu trúc bảng hiển thị lịch sử làm bài
   const columns = [
     {
       title: "Mã bài tập",
@@ -84,16 +82,13 @@ const CourseHistory = () => {
         record.createdAt ? new Date(record.createdAt).toLocaleString() : "Không rõ"
     },
     {
-        title: "Chi tiết",
-        key: "detail",
-        render: (record) => (
-          <Button onClick={() => handleReview(record)}>Xem chi tiết</Button>
-        )
-      }
+      title: "Chi tiết",
+      key: "detail",
+      render: (record) => (
+        <Button onClick={() => handleReview(record)}>Xem chi tiết</Button>
+      )
+    }
   ];
-  
-
-
 
   return (
     <div className="course-history">
@@ -101,11 +96,11 @@ const CourseHistory = () => {
       <Table
         columns={columns}
         dataSource={historyData}
-        rowKey="_id"  // Sử dụng `_id` làm khóa duy nhất cho mỗi dòng
+        rowKey="_id"
         loading={loading}
-        pagination={false}  // Tắt phân trang nếu không cần
+        pagination={false}
       />
-        
+
     </div>
   );
 };

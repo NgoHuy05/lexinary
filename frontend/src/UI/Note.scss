@@ -1,10 +1,9 @@
-/* Thiết lập toàn bộ trang với flex */
 @use "./variables.scss" as *;
 
 .note-page {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Đảm bảo chiều cao của trang tối thiểu là 100% của viewport */
+    min-height: 100vh; 
     background-color: #f4f7fc;
     padding: 20px;
 }
@@ -17,8 +16,8 @@
 }
 
 .note-page__item {
-    flex-basis: calc(33.33% - 16px); /* Đảm bảo card chiếm 1/3 chiều rộng */
-    min-width: 300px; /* Đảm bảo mỗi item có chiều rộng tối thiểu */
+    flex-basis: calc(33.33% - 16px); 
+    min-width: 300px; 
     box-sizing: border-box;
     padding: 8px;
 }
@@ -106,7 +105,7 @@
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    width: 400px; /* Điều chỉnh kích thước của modal */
+    width: 400px; 
 }
 
 .note-page__modal-input,

@@ -1,42 +1,34 @@
-/* src/styles/FlashcardPage.scss */
 
-/* Block: flashcard-page */
 .flashcard-page {
     display: flex;
-    height: 100vh; /* Đảm bảo full chiều cao màn hình */
+    height: 100vh; 
 }
 
-/* Phần Sidebar */
 .flashcard-page__sider {
     padding-top: 15px;
     background-color: #f0f2f5;
 }
 
-/* Phần menu */
 .flashcard-page__menu {
     background-color: #f0f2f5;
-    border-right: none; /* Xóa border bên phải của sidebar */
+    border-right: none;
 }
 
-/* Áp dụng cho các menu item */
 .flashcard-page__menu .ant-menu-item {
     font-size: 16px;
     color: #000;
-    transition: background-color 0.3s; /* Thêm hiệu ứng khi hover */
+    transition: background-color 0.3s;
 }
 
-/* Hover effect */
 .flashcard-page__menu .ant-menu-item:hover {
-    background-color: #e0e0e0; /* Màu nền khi hover */
+    background-color: #e0e0e0;
 }
 
-/* Selected item style */
 .flashcard-page__menu .ant-menu-item-selected {
-    background-color: #1890ff !important; /* Màu nền khi item được chọn */
-    color: #fff !important; /* Màu chữ khi chọn */
+    background-color: #1890ff !important; 
+    color: #fff !important;
 }
 
-/* Phần content */
 .flashcard-page__content {
     margin: 0;
     min-height: 280px;

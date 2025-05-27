@@ -79,17 +79,14 @@
     font-size: 1.1rem;
   }
 
-  /* Tạo khoảng cách giữa các flashcard */
   .create-topic__flashcard:not(:last-child) {
     margin-bottom: 24px;
   }
 
-  /* Hiệu ứng hover cho nút "Thêm Flashcard" */
   .create-topic__add-flashcard:hover {
     background-color: #f0f5ff;
   }
 
-  /* Hiệu ứng cho nút xóa flashcard */
   .create-topic__delete-flashcard {
     position: absolute;
     top: 10px;
@@ -111,7 +108,6 @@
     background-color: #ff7875;
   }
 
-  /* Thêm một hiệu ứng nhẹ cho các input */
   .ant-input, .ant-input-textarea {
     border-radius: 8px;
     padding: 10px;
@@ -122,7 +118,6 @@
     border-color: #1890ff;
   }
 
-  /* Tạo khoảng cách cho các item */
   .ant-row {
     margin-bottom: 16px;
   }

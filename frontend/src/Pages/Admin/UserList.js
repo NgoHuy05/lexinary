@@ -8,8 +8,6 @@ const { confirm } = Modal;
 function UserList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // modal edit
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
 
@@ -128,16 +126,16 @@ function UserList() {
           >
             <Input />
           </Form.Item>
-<Form.Item
-  name="role"
-  label="Role"
-  rules={[{ required: true, message: "Vui lòng chọn role" }]}
->
-  <Select placeholder="Chọn role">
-    <Select.Option value="admin">Admin</Select.Option>
-    <Select.Option value="user">User</Select.Option>
-  </Select>
-</Form.Item>
+          <Form.Item
+            name="role"
+            label="Role"
+            rules={[{ required: true, message: "Vui lòng chọn role" }]}
+          >
+            <Select placeholder="Chọn role">
+              <Select.Option value="admin">Admin</Select.Option>
+              <Select.Option value="user">User</Select.Option>
+            </Select>
+          </Form.Item>
         </Form>
       </Modal>
     </div>

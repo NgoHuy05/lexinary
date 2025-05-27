@@ -43,20 +43,14 @@ module.exports.getGrammarById = async (req, res) => {
 // Thêm một ngữ pháp mới
 module.exports.createGrammar = async (req, res) => {
   try {
-    const grammarsData = req.body; // Mảng ngữ pháp
-
-    // Kiểm tra nếu tất cả các grammar đều có lessonId
+    const grammarsData = req.body;
     const lessonId = grammarsData[0].lesson;
     const lesson = await Lesson.findById(lessonId);
     if (!lesson) {
       return res.status(400).json({ message: "Lesson không tồn tại" });
     }
-
-    // Tạo ngữ pháp hàng loạt
     const savedGrammars = await Grammar.insertMany(grammarsData);
-
-    // Cập nhật lesson với các grammar mới
-    lesson.grammar = lesson.grammar.concat(savedGrammars.map(g => g._id)); // Thêm grammar vào lesson
+    lesson.grammar = lesson.grammar.concat(savedGrammars.map(g => g._id));
     await lesson.save();
 
     res.status(201).json({ message: "Tạo ngữ pháp thành công", grammars: savedGrammars });
@@ -71,7 +65,6 @@ module.exports.updateGrammar = async (req, res) => {
   const { grammarId } = req.params;
   const { title, structure, explanation, examples, tips, lesson } = req.body;
 
-  // Kiểm tra title và explanation phải là mảng
   if (!Array.isArray(title) || !Array.isArray(explanation)) {
     return res.status(400).json({ message: "title và explanation phải là mảng." });
   }
@@ -100,7 +93,6 @@ module.exports.deleteGrammar = async (req, res) => {
       return res.status(404).json({ message: "Ngữ pháp không tồn tại" });
     }
 
-    // Cập nhật lại lesson sau khi xóa grammar
     const lesson = await Lesson.findById(deletedGrammar.lesson);
     if (lesson) {
       lesson.grammar = lesson.grammar.filter(g => g.toString() !== grammarId);

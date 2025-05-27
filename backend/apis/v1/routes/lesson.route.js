@@ -2,12 +2,19 @@ const express = require("express");
 const router = express.Router();
 const lessonController = require("../controllers/lesson.controller");
 
-// Routes cho Lesson
-router.get("/:chapterId", lessonController.getLessons);  // Lấy danh sách bài học theo chương học
-router.get("/detail/:id", lessonController.getLessonDetail);  // Lấy chi tiết bài học theo lessonId
+// [GET] /api/v1/lessons/:chapterId - Lấy danh sách bài học theo chương học
+router.get("/:chapterId", lessonController.getLessons);
 
-router.post("/create", lessonController.createLesson);  // Tạo bài học
-router.patch("/update/:id", lessonController.updateLesson);  // Cập nhật bài học
-router.delete("/delete/:id", lessonController.deleteLesson);  // Xóa bài học
+// [GET] /api/v1/lessons/detail/:id - Lấy chi tiết bài học theo lessonId
+router.get("/detail/:id", lessonController.getLessonDetail);
+
+// [POST] /api/v1/lessons/create - Tạo bài học mới
+router.post("/create", lessonController.createLesson);
+
+// [PATCH] /api/v1/lessons/update/:id - Cập nhật bài học theo lessonId
+router.patch("/update/:id", lessonController.updateLesson);
+
+// [DELETE] /api/v1/lessons/delete/:id - Xóa bài học theo lessonId
+router.delete("/delete/:id", lessonController.deleteLesson);
 
 module.exports = router;

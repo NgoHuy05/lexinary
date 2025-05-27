@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/images/logo.webp";
-import { Form, Input, Button, Divider, message } from "antd";
-import { GoogleOutlined, FacebookOutlined } from "@ant-design/icons";
+import { Form, Input, Button, message } from "antd";
 import "../../../UI/LoginForm.scss";
 import { Header } from "antd/es/layout/layout";
 import Cookies from "js-cookie";
@@ -11,35 +10,32 @@ import { createProgress, getUserProgress } from "../../../api/apiProgress";
 
 const Login = () => {
     const navigate = useNavigate();
-        const userId = Cookies.get("id");
-        useEffect(() => {
-            if (userId) {
+    const userId = Cookies.get("id");
+    useEffect(() => {
+        if (userId) {
             navigate("/");
-            }
-        }, []);
-    
+        }
+    }, []);
+
     const onFinish = async (values) => {
         try {
-            // Gửi request đăng nhập
             const response = await loginUser(values.email, values.password);
 
             if (response.data.code === 200) {
                 const userInfoResponse = await getUserProfile();
-
-                // Lưu thông tin người dùng vào cookie
                 const userData = userInfoResponse.data.user;
                 Cookies.set("id", userData._id, { expires: 1, path: "/" });
                 Cookies.set("name", userData.name, { expires: 1, path: "/" });
                 Cookies.set("email", userData.email, { expires: 1, path: "/" });
                 Cookies.set("status", true, { expires: 1, path: "/" });
                 Cookies.set("role", userData.role, { expires: 1, path: "/" });
-                
+
                 const progressResponse = await getUserProgress(userData._id);
                 if (progressResponse.data.message === "Progress not found") {
-                    await createProgress({ userId: userData._id });  
+                    await createProgress({ userId: userData._id });
                 }
                 message.success("Đăng nhập thành công!");
-                navigate("/");  // Chuyển hướng về trang chủ
+                navigate("/");
                 window.location.reload();
             } else {
                 message.error("Đăng nhập thất bại!");

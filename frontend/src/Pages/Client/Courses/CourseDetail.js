@@ -26,37 +26,37 @@ const CourseDetail = () => {
   const navigate = useNavigate();
   const specialCourses = ["Du lịch", "Phỏng vấn và Văn phòng", "Học thuật"];
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      setLoading(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
 
-      const courseResponse = await getCourseDetail(courseId);
-      setCourse(courseResponse.data);
+        const courseResponse = await getCourseDetail(courseId);
+        setCourse(courseResponse.data);
 
-      const chaptersResponse = await getChapters(courseId);
-      const chaptersData = chaptersResponse.data || [];
-      setChapters(chaptersData);
+        const chaptersResponse = await getChapters(courseId);
+        const chaptersData = chaptersResponse.data || [];
+        setChapters(chaptersData);
 
-      const lessonsIds = chaptersData.reduce((ids, chapter) => {
-        return ids.concat(chapter.lessons);
-      }, []);
-      if (lessonsIds.length > 0) {
-        const lessonResponses = await Promise.all(
-          lessonsIds.map((lesson) => getLessonDetail(lesson._id))
-        );
-        setLessons(lessonResponses.map((res) => res.data));
+        const lessonsIds = chaptersData.reduce((ids, chapter) => {
+          return ids.concat(chapter.lessons);
+        }, []);
+        if (lessonsIds.length > 0) {
+          const lessonResponses = await Promise.all(
+            lessonsIds.map((lesson) => getLessonDetail(lesson._id))
+          );
+          setLessons(lessonResponses.map((res) => res.data));
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error("Lỗi khi tải dữ liệu:", error);
+        setLoading(false);
       }
+    };
 
-      setLoading(false);
-    } catch (error) {
-      console.error("Lỗi khi tải dữ liệu:", error);
-      setLoading(false);
-    }
-  };
-
-  fetchData();
-}, [courseId]);
+    fetchData();
+  }, [courseId]);
 
 
 
@@ -66,7 +66,6 @@ useEffect(() => {
     const fetchCompletedLessons = async () => {
       try {
         const response = await getCompletedLessons(userId);
-        // Kiểm tra xem 'completedLessons' có phải là mảng không
         if (Array.isArray(response.data.completedLessons)) {
           const completedLessonIds = response.data.completedLessons.map(lesson => lesson._id); // Chỉ lấy ID bài học
           setCompletedLessons(completedLessonIds); // Lưu trữ các ID bài học đã hoàn thành
@@ -86,12 +85,10 @@ useEffect(() => {
 
 
   useEffect(() => {
-    // Kiểm tra xem trạng thái đã chọn trước đó trong sessionStorage
     const storedMenuKey = sessionStorage.getItem(`course-${courseId}-menu`);
     if (storedMenuKey) {
-      setSelectedMenuKey(storedMenuKey); // Nếu có, phục hồi trạng thái đã lưu
+      setSelectedMenuKey(storedMenuKey);
     } else {
-      // Mặc định chọn tổng quan
       setSelectedMenuKey("overview");
     }
   }, [courseId]);
@@ -99,7 +96,7 @@ useEffect(() => {
   const handleMenuClick = (e) => {
     setSelectedMenuKey(e.key);
     sessionStorage.setItem(`course-${courseId}-menu`, e.key);
-    
+
     if (e.key !== 'overview') {
       const lesson = lessons.find((lesson) => lesson._id === e.key);
       setSelectedLesson(lesson);
@@ -114,21 +111,19 @@ useEffect(() => {
     }
   };
   const handleSubMenuClick = (lessonId, chapterId, type) => {
-    // Điều hướng tới các trang con của bài học: Từ vựng hoặc Bài tập
     navigate(`/courses/${courseId}/chapter/${chapterId}/lesson/${lessonId}/${type}`);
   };
 
-if (loading || !course || chapters.length === 0) {
-  return (
-    <div style={{ textAlign: "center", padding: 100 }}>
-      <Spin size="large" tip="Đang tải dữ liệu..." />
-    </div>
-  );
-}
+  if (loading || !course || chapters.length === 0) {
+    return (
+      <div style={{ textAlign: "center", padding: 100 }}>
+        <Spin size="large" tip="Đang tải dữ liệu..." />
+      </div>
+    );
+  }
 
   return (
     <Layout className="course-detail">
-      {/* Sider */}
       <Sider
         className="course-detail__sider"
         width={380}
@@ -151,7 +146,6 @@ if (loading || !course || chapters.length === 0) {
             items={[
               { key: "overview", label: collapsed ? "T" : "Tổng quan" },
               ...chapters.map((chapter, index) => {
-                // Kiểm tra xem chapter có lesson hay không
                 const lessonItems = chapter.lessons.map(lesson => ({
                   key: lesson._id,
                   label: (
@@ -175,8 +169,6 @@ if (loading || !course || chapters.length === 0) {
                     }
                   ]
                 }));
-
-                // Trả về chapter nếu có lesson, không có lesson thì bỏ qua
                 if (lessonItems.length > 0) {
                   return {
                     key: chapter._id,
@@ -189,8 +181,8 @@ if (loading || !course || chapters.length === 0) {
                   };
                 }
 
-                return null;  // Nếu không có lesson thì không trả về chapter
-              }).filter(item => item !== null) // Loại bỏ các phần tử null
+                return null;
+              }).filter(item => item !== null)
             ]}
           />
         )
@@ -203,7 +195,6 @@ if (loading || !course || chapters.length === 0) {
                 items={[
                   { key: "overview", label: collapsed ? "T" : "Tổng quan" },
                   ...chapters.map((chapter, index) => {
-                    // Kiểm tra xem chapter có lesson hay không
                     const lessonItems = chapter.lessons.map(lesson => ({
                       key: lesson._id,
                       label: (
@@ -219,7 +210,6 @@ if (loading || !course || chapters.length === 0) {
 
                     }));
 
-                    // Trả về chapter nếu có lesson, không có lesson thì bỏ qua
                     if (lessonItems.length > 0) {
                       return {
                         key: chapter._id,
@@ -232,8 +222,8 @@ if (loading || !course || chapters.length === 0) {
                       };
                     }
 
-                    return null;  // Nếu không có lesson thì không trả về chapter
-                  }).filter(item => item !== null) // Loại bỏ các phần tử null
+                    return null;
+                  }).filter(item => item !== null)
                 ]}
               />
             </>
@@ -253,12 +243,18 @@ if (loading || !course || chapters.length === 0) {
 
                       return {
                         key: lesson._id,
-                        label: lesson.title,
+                        label: (
+                          <div>
+                            {completedLessons.includes(lesson._id) && (
+                              <span className="green-checkmark">✔️</span>
+                            )}
+                            {lesson.title}
+                          </div>
+                        ),
                         onClick: () => handleSubMenuClick(lesson._id, chapter._id, type),
                       };
                     });
 
-                    // Kiểm tra xem chapter có lesson hay không
                     if (lessonItems.length > 0) {
                       return {
                         key: chapter._id,
@@ -271,8 +267,8 @@ if (loading || !course || chapters.length === 0) {
                       };
                     }
 
-                    return null; // Nếu không có lesson thì không trả về chapter
-                  }).filter(item => item !== null), // Loại bỏ các phần tử null
+                    return null;
+                  }).filter(item => item !== null),
                 ]}
               />
             )
@@ -285,13 +281,12 @@ if (loading || !course || chapters.length === 0) {
                     items={[
                       { key: "overview", label: collapsed ? "T" : "Tổng quan" },
                       ...chapters.map((chapter, index) => {
-                        // Kiểm tra xem chapter có lesson hay không
                         const lessonItems = chapter.lessons.map(lesson => ({
                           key: lesson._id,
                           label: (
                             <div>
                               {completedLessons.includes(lesson._id) && (
-                                <span className="green-checkmark">✔️</span>  // Dấu tích xanh
+                                <span className="green-checkmark">✔️</span>
                               )}
                               {lesson.title}
                             </div>
@@ -310,7 +305,6 @@ if (loading || !course || chapters.length === 0) {
                           ]
                         }));
 
-                        // Trả về chapter nếu có lesson, không có lesson thì bỏ qua
                         if (lessonItems.length > 0) {
                           return {
                             key: chapter._id,
@@ -323,8 +317,8 @@ if (loading || !course || chapters.length === 0) {
                           };
                         }
 
-                        return null;  // Nếu không có lesson thì không trả về chapter
-                      }).filter(item => item !== null) // Loại bỏ các phần tử null
+                        return null;
+                      }).filter(item => item !== null)
                     ]}
                   />
 
@@ -333,32 +327,27 @@ if (loading || !course || chapters.length === 0) {
 
       </Sider>
 
-      {/* Content */}
       <Layout className="course-detail__layout">
         <Content className="course-detail__content">
           {selectedMenuKey === "overview" ? (
             <div className="course-detail__overview">
               <h2 className="course-detail__overview-header">{course?.title}</h2>
 
-              {/* Mô tả khóa học */}
               <div className="course-detail__overview-section">
                 <h3 className="course-detail__overview-title">Mô tả</h3>
                 <p className="course-detail__overview-description">{course?.description}</p>
               </div>
 
-              {/* Nội dung khóa học */}
               <div className="course-detail__overview-section">
                 <h3 className="course-detail__overview-title">Nội dung khóa học</h3>
                 <p className="course-detail__overview-description">{course?.content}</p>
               </div>
 
-              {/* Đối tượng học viên */}
               <div className="course-detail__overview-item">
                 <h3 className="course-detail__overview-title">Đối tượng học viên</h3>
                 <p className="course-detail__overview-item-description">{course?.audience}</p>
               </div>
 
-              {/* Mục tiêu khóa học */}
               <div className="course-detail__overview-item">
                 <h3 className="course-detail__overview-title">Mục tiêu</h3>
                 <p className="course-detail__overview-item-description">{course?.target}</p>

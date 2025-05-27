@@ -46,7 +46,10 @@ export const markLessonCompleted = (userId, lessonId) =>
 export const getCompletedLessons = (userId) =>
   axios.get(`${BASE_URL}/${userId}/completed-lessons`, { withCredentials: true });
 
+// Cập nhật hồ sơ người dùng theo id
 export const updateUserById = (id, data) =>
   axios.patch(`${BASE_URL}/update/${id}`, data , { withCredentials: true });
+
+// Xóa người dùng theo id
 export const deleteUserById = (id) =>
   axios.delete(`${BASE_URL}/delete/${id}` , { withCredentials: true });

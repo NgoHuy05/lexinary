@@ -1,54 +1,57 @@
 const Vocabulary = require("../models/Vocabulary.models");
 const Lesson = require("../models/Lesson.models");
 
-// Get all vocabulary
+// Lấy tất cả từ vựng, đồng thời populate thông tin lesson
 exports.getAllVocabulary = async (req, res) => {
-    try {
-      const vocabulary = await Vocabulary.find().populate("lesson");
-      res.status(200).json(vocabulary);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
+  try {
+    const vocabulary = await Vocabulary.find().populate("lesson");
+    res.status(200).json(vocabulary);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Lấy từ vựng theo ID, nếu không tìm thấy trả về lỗi 404
+exports.getVocabularyById = async (req, res) => {
+  try {
+    const vocabulary = await Vocabulary.findById(req.params.id).populate("lesson");
+    if (!vocabulary) {
+      return res.status(404).json({ message: "Vocabulary not found" });
     }
-  };
-  
-  // Get vocabulary by ID
-  exports.getVocabularyById = async (req, res) => {
-    try {
-      const vocabulary = await Vocabulary.findById(req.params.id).populate("lesson");
-      if (!vocabulary) {
-        return res.status(404).json({ message: "Vocabulary not found" });
-      }
-      res.status(200).json(vocabulary);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
-    }
-  };
-  
-  exports.getVocabularyByLesson = async (req, res) => {
-    try {
-      const { lessonId } = req.params;
-  
-      const vocabularies = await Vocabulary.find({ lesson: lessonId });
-      res.status(200).json(vocabularies);
-    } catch (error) {
-      console.error("Server error getVocabulary:", error);
-      res.status(500).json({ message: "Server error" });
-    }
-  };
-// Create new vocabulary
+    res.status(200).json(vocabulary);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Lấy danh sách từ vựng theo lessonId
+exports.getVocabularyByLesson = async (req, res) => {
+  try {
+    const { lessonId } = req.params;
+    const vocabularies = await Vocabulary.find({ lesson: lessonId });
+    res.status(200).json(vocabularies);
+  } catch (error) {
+    console.error("Server error getVocabulary:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Tạo nhiều từ vựng cùng lúc, đồng thời cập nhật mảng vocabulary trong Lesson
 exports.createVocabulary = async (req, res) => {
   try {
-    const vocabularyArray = req.body; // Mảng từ vựng
+    const vocabularyArray = req.body;
 
+    // Lưu mảng từ vựng vào database
     const savedVocabulary = await Vocabulary.insertMany(vocabularyArray);
 
-    // Cập nhật lesson
-    const lessonId = vocabularyArray[0].lesson; // 🛠 đúng field là 'lesson' chứ không phải 'lessonId'
+    // Lấy lessonId từ từ vựng đầu tiên trong mảng
+    const lessonId = vocabularyArray[0].lesson;
     const lesson = await Lesson.findById(lessonId);
     if (!lesson) {
       return res.status(400).json({ message: "Lesson không tồn tại" });
     }
 
+    // Cập nhật danh sách từ vựng trong lesson
     lesson.vocabulary.push(...savedVocabulary.map(vocab => vocab._id));
     await lesson.save();
 
@@ -58,8 +61,7 @@ exports.createVocabulary = async (req, res) => {
   }
 };
 
-
-// Update vocabulary
+// Cập nhật từ vựng theo ID, trả về bản ghi mới sau khi cập nhật
 exports.updateVocabulary = async (req, res) => {
   try {
     const vocabulary = await Vocabulary.findByIdAndUpdate(
@@ -76,25 +78,22 @@ exports.updateVocabulary = async (req, res) => {
   }
 };
 
-
-
-// Delete vocabulary
+// Xóa từ vựng theo ID và cập nhật lại mảng vocabulary trong Lesson
 exports.deleteVocabulary = async (req, res) => {
-    try {
-      const vocabulary = await Vocabulary.findByIdAndDelete(req.params.id);
-      if (!vocabulary) {
-        return res.status(404).json({ message: "Vocabulary not found" });
-      }
-  
-      // Sau khi xóa từ vựng, xóa luôn ID từ vựng đó trong Lesson
-      await Lesson.findByIdAndUpdate(
-        vocabulary.lesson, // Lấy lessonId từ vocabulary
-        { $pull: { vocabulary: vocabulary._id } } // Pull từ mảng vocabulary trong Lesson
-      );
-  
-      res.status(200).json({ message: "Vocabulary deleted successfully" });
-    } catch (error) {
-      res.status(400).json({ message: error.message });
+  try {
+    const vocabulary = await Vocabulary.findByIdAndDelete(req.params.id);
+    if (!vocabulary) {
+      return res.status(404).json({ message: "Vocabulary not found" });
     }
-  };
-  
+
+    // Xóa id từ vựng khỏi lesson
+    await Lesson.findByIdAndUpdate(
+      vocabulary.lesson,
+      { $pull: { vocabulary: vocabulary._id } }
+    );
+
+    res.status(200).json({ message: "Vocabulary deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

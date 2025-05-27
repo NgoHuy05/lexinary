@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
 import { Layout, Menu, Avatar, Dropdown, Space, message } from "antd";
-import {
-  DashboardOutlined,
-  UserOutlined,
-  SettingOutlined,
-  MenuOutlined,
-  MoonOutlined,
-  SunOutlined,
-  BookOutlined,       // thêm
-  AppstoreOutlined,  
-} from "@ant-design/icons";
+import { DashboardOutlined, UserOutlined, SettingOutlined, MenuOutlined, MoonOutlined, SunOutlined, BookOutlined, AppstoreOutlined, } from "@ant-design/icons";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "../UI/LayoutAdmin.scss";
 import { logoutUser } from "../api/apiUser";
@@ -24,7 +15,7 @@ function LayoutAdmin() {
   const navigate = useNavigate();
   const roleAd = Cookies.get("role");
 
-  
+
   useEffect(() => {
     if (roleAd !== "admin") {
       message.warning("TVui lòng đăng nhập");
@@ -63,41 +54,41 @@ function LayoutAdmin() {
     },
   ];
 
-const items = [
-  {
-    key: "1",
-    icon: <DashboardOutlined />,
-    label: <NavLink to="/admin">Dashboard</NavLink>,
-  },
-  {
-    key: "2",
-    icon: <UserOutlined />,
-    label: <NavLink to="/admin/users">Users</NavLink>,
-  },
-  {
-    key: "3",
-    icon: <BookOutlined />,  // thêm icon
-    label: "Courses",
-    children: [
-      { key: "3-1", label: <NavLink to="/admin/courses/all">All Courses</NavLink> },
-      { key: "3-2", label: <NavLink to="/admin/courses/add">Add Courses</NavLink>  },
-    ],
-  },
-  {
-    key: "4",
-    icon: <AppstoreOutlined />, // thêm icon
-    label: "Topics",
-    children: [
-      { key: "4-1", label: <NavLink to="/admin/topics/all">All Topics</NavLink> },
-      { key: "4-2", label: <NavLink to="/admin/topics/add">Add Topics</NavLink> },
-    ],
-  },
-  {
-    key: "5",
-    icon: <SettingOutlined />,
-    label: <NavLink to="/admin/setting">Setting</NavLink>,
-  },
-];
+  const items = [
+    {
+      key: "1",
+      icon: <DashboardOutlined />,
+      label: <NavLink to="/admin">Dashboard</NavLink>,
+    },
+    {
+      key: "2",
+      icon: <UserOutlined />,
+      label: <NavLink to="/admin/users">Users</NavLink>,
+    },
+    {
+      key: "3",
+      icon: <BookOutlined />,
+      label: "Courses",
+      children: [
+        { key: "3-1", label: <NavLink to="/admin/courses/all">All Courses</NavLink> },
+        { key: "3-2", label: <NavLink to="/admin/courses/add">Add Courses</NavLink> },
+      ],
+    },
+    {
+      key: "4",
+      icon: <AppstoreOutlined />,
+      label: "Topics",
+      children: [
+        { key: "4-1", label: <NavLink to="/admin/topics/all">All Topics</NavLink> },
+        { key: "4-2", label: <NavLink to="/admin/topics/add">Add Topics</NavLink> },
+      ],
+    },
+    {
+      key: "5",
+      icon: <SettingOutlined />,
+      label: <NavLink to="/admin/setting">Setting</NavLink>,
+    },
+  ];
 
 
   return (

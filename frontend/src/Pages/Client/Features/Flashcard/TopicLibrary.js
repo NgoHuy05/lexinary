@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  List,
-  Spin,
-  message,
-  Empty,
-  Popconfirm,
-  Button,
-  Space,
-} from "antd";
-import {
-  deleteTopic,
-  getUserTopics,
-} from "../../../../api/apiTopic";
+import { Card, List, Spin, message, Empty, Popconfirm, Button, Space, } from "antd";
+import { deleteTopic, getUserTopics, } from "../../../../api/apiTopic";
 import { useNavigate } from "react-router-dom";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
@@ -23,7 +11,7 @@ const TopicLibrary = () => {
 
   useEffect(() => {
     fetchTopics();
-  }, []); // Chỉ chạy 1 lần khi component mount
+  }, []);
 
   const fetchTopics = async () => {
     setLoading(true);
@@ -74,7 +62,7 @@ const TopicLibrary = () => {
               title={
                 <Space
                   style={{ justifyContent: "space-between", width: "100%" }}
-                  onClick={(e) => e.stopPropagation()} // Dừng sự kiện click khi nhấn vào chỉnh sửa/xóa
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <span>{topic.title}</span>
                   <Space>
@@ -82,7 +70,7 @@ const TopicLibrary = () => {
                       type="text"
                       icon={<EditOutlined />}
                       onClick={(e) => {
-                        e.stopPropagation(); // Dừng sự kiện click khi nhấn chỉnh sửa
+                        e.stopPropagation();
                         handleEditTopic(topic._id);
                       }}
                     />

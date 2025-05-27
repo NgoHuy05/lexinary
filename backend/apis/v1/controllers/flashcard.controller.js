@@ -13,17 +13,17 @@ module.exports.index = async (req, res) => {
 // Lấy flashcard theo ID
 module.exports.getFlashcardById = async (req, res) => {
   try {
-    const flashcardId = req.params.id; // Lấy ID từ params
-    const flashcard = await Flashcard.findById(flashcardId); // Tìm flashcard theo ID
+    const flashcardId = req.params.id;
+    const flashcard = await Flashcard.findById(flashcardId);
 
     if (!flashcard) {
-      return res.status(404).json({ message: "Không tìm thấy flashcard" }); // Nếu không tìm thấy flashcard
+      return res.status(404).json({ message: "Không tìm thấy flashcard" });
     }
 
-    res.json({ flashcard }); // Trả về flashcard nếu tìm thấy
+    res.json({ flashcard });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Lỗi khi lấy thông tin flashcard" }); // Lỗi server
+    res.status(500).json({ message: "Lỗi khi lấy thông tin flashcard" });
   }
 };
 
@@ -42,20 +42,16 @@ module.exports.createFlashcard = async (req, res) => {
       userId
     });
 
-    // Lưu flashcard mới vào cơ sở dữ liệu
     await newFlashcard.save();
 
-    // Cập nhật topic với ObjectId của flashcard vừa tạo
     const topic = await Topic.findById(topicId);
     if (!topic) {
       return res.status(404).json({ message: "Topic không tồn tại!" });
     }
 
-    // Thêm ObjectId của flashcard vào mảng flashcards trong topic
     topic.flashcards.push(newFlashcard._id);
     await topic.save();
 
-    // Trả về phản hồi thành công
     res.status(201).json({ message: "Tạo flashcard thành công", flashcard: newFlashcard });
   } catch (err) {
     console.error(err);
@@ -67,7 +63,6 @@ module.exports.createManyFlashcards = async (req, res) => {
   try {
     const flashcardsData = req.body;
 
-    // Đảm bảo topicId được lấy từ flashcardsData trước khi sử dụng
     const topicId = flashcardsData[0].topicId;
 
     const topic = await Topic.findById(topicId);
@@ -75,14 +70,10 @@ module.exports.createManyFlashcards = async (req, res) => {
       return res.status(400).json({ message: "Topic không tồn tại" });
     }
 
-    // Tạo nhiều flashcard
     const savedflashcards = await Flashcard.insertMany(flashcardsData);
 
-    // Cập nhật topic với các flashcard mới
     topic.flashcards.push(...savedflashcards.map(flashcard => flashcard._id));
     await topic.save();
-
-    // Trả về phản hồi thành công
     res.status(201).json({ message: "Tạo flashcard thành công", flashcards: savedflashcards });
   } catch (err) {
     console.error(err);
@@ -94,11 +85,11 @@ module.exports.createManyFlashcards = async (req, res) => {
 module.exports.updateFlashcard = async (req, res) => {
   try {
     const flashcardId = req.params.id;
-    const { term, definition, example, pronunciation,  topicId } = req.body;
+    const { term, definition, example, pronunciation, topicId } = req.body;
 
     const updated = await Flashcard.findByIdAndUpdate(
       flashcardId,
-      { term, definition, example, pronunciation,  topicId },
+      { term, definition, example, pronunciation, topicId },
       { new: true }
     );
 
@@ -113,12 +104,8 @@ module.exports.updateFlashcard = async (req, res) => {
 // Xoá flashcard
 module.exports.deleteFlashcard = async (req, res) => {
   try {
-
-    // Tìm flashcard trước để lấy topicId
     const flashcard = await Flashcard.findByIdAndDelete(req.params.id);
     if (!flashcard) return res.status(404).json({ message: "Không tìm thấy flashcard" });
-
-    // Cập nhật topic: xoá flashcardId khỏi mảng flashcards
     await Topic.findByIdAndUpdate(flashcard.topicId, {
       $pull: { flashcards: flashcard._id },
     });
@@ -136,7 +123,6 @@ module.exports.getFlashcardsByTopic = async (req, res) => {
     const topicId = req.params.id;
     const currentUserId = req.user.id;
     const currentUserRole = req.user.role;
-
     const topic = await Topic.findById(topicId);
 
     if (!topic) {

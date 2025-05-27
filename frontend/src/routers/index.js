@@ -15,7 +15,6 @@ import Note from "../Pages/Client/Features/Note";
 import FlashcardPage from "../Pages/Client/Features/Flashcard/FlashcardPage";
 import CreateTopicAndFlashcards from "../Pages/Client/Features/Flashcard/CreateTopicAndFlashcards";
 import TopicDetail from "../Pages/Client/Features/Flashcard/TopicDetails";
-import { Navigate } from "react-router-dom";
 import TopicLibrary from "../Pages/Client/Features/Flashcard/TopicLibrary";
 import TopicHome from "../Pages/Client/Features/Flashcard/TopicHome";
 import EditTopic from "../Pages/Client/Features/Flashcard/EditTopic";
@@ -40,6 +39,7 @@ import AddTopic from "../Pages/Admin/AddTopic";
 import CourseExercise from "../Pages/Client/Courses/CourseExercise";
 import CourseVocabulary from "../Pages/Client/Courses/CourseVocabulary";
 import SettingAdminPage from "../Pages/Admin/SettingAdmin";
+import { Navigate } from "react-router-dom";
 
 export const routers = [
   {

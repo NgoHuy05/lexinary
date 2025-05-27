@@ -11,13 +11,13 @@ const historySchema = new mongoose.Schema({
     {
       question: String,
       correctAnswer: String,
-      userAnswer: String, // Thêm trường userAnswer để lưu đáp án người dùng chọn
+      userAnswer: String, 
     },
   ],
   allAnswers: [
     {
       exerciseId: { type: mongoose.Schema.Types.ObjectId, ref: "Exercise" },
-      selectedAnswer: { type: String },  // hoặc kiểu dữ liệu mảng nếu có nhiều lựa chọn
+      selectedAnswer: { type: String },  
       correctAnswer: { type: String },
       question: { type: String },
     },

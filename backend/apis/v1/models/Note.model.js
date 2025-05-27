@@ -8,7 +8,7 @@ const taskSchema = new mongoose.Schema({
 const noteSchema = new mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String },
-  tasks: [taskSchema],  // Thêm mảng tasks vào schema ghi chú
+  tasks: [taskSchema],  
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 }, { timestamps: true });
 

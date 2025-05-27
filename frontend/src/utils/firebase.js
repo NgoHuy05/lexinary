@@ -5,7 +5,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDHQfcWpDoESCC22k9pdQds7t8RQWykyTU",
   authDomain: "lexinary-f8283.firebaseapp.com",
   projectId: "lexinary-f8283",
-  storageBucket: "lexinary-f8283.appspot.com", // sửa lại .app thành .app**spot**.com
+  storageBucket: "lexinary-f8283.appspot.com", 
   messagingSenderId: "242345196530",
   appId: "1:242345196530:web:d7597479bf6232ec7e896b"
 };

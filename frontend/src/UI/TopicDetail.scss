@@ -46,8 +46,8 @@
   align-items: center;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #e5e2e2; /* Màu xanh nhạt gần trắng */
-  color: #333333; /* Chữ màu đen để dễ đọc */
+  background-color: #e5e2e2; 
+  color: #333333; 
 }
 
 .front {
@@ -56,7 +56,7 @@
 }
 
 .back {
-  background-color: #e5e2e2; /* Màu xanh nhạt gần trắng */
+  background-color: #e5e2e2; 
     padding: 20px;
   text-align: left;
   transform: rotateY(180deg);
@@ -67,7 +67,7 @@
   gap: 16px;
   font-size: 16px;
   border-radius: 8px;
-  color: #333333; /* Chữ màu đen */
+  color: #333333; 
 }
 
 .back .pronunciation {

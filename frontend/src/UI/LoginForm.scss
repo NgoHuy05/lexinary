@@ -3,7 +3,7 @@
     
     display: flex ;
     align-items: center;
-    justify-content: space-between; // Căn chỉnh logo và phần text bên phải
+    justify-content: space-between; 
     background: $primary-color;
     padding: 20px 50px;
     height: 100px;
@@ -32,23 +32,22 @@
 
 .header__greeting {
     display: flex;
-    flex-direction: column; /* Sắp xếp theo cột */
-    align-items: center; /* Căn giữa phần tử theo trục ngang */
-    justify-content: center; /* Căn giữa theo trục dọc */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
     color: white;
-    font-size: 20px; /* Đặt kích thước font */
-    font-weight: normal; /* Đặt font weight cho văn bản */
-    text-align: center; /* Căn chỉnh chữ theo chiều ngang */
+    font-size: 20px; 
+    font-weight: normal; 
+    text-align: center; 
 
 
     span {
-        margin: 0px; /* Khoảng cách giữa 2 dòng */
+        margin: 0px; 
     }
 
     span:hover {
-        transform: translateX(5px);  // Hiệu ứng dịch chuyển khi hover
+        transform: translateX(5px);  
     }
-    /* Thêm các thuộc tính font riêng biệt cho từng dòng nếu cần */
     span:first-child {
         font-size: 22px;
         font-weight: bold;
@@ -72,8 +71,8 @@
 }
 
 .card {
-    width: 500px; /* Tăng kích thước card */
-    padding: 32px; /* Giãn cách nội dung bên trong */
+    width: 500px; 
+    padding: 32px; 
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -195,8 +194,8 @@
 
     &:hover  {
         border: 1px solid black;
-        background-color: rgba(0, 0, 0, 0.1)!important; /* Tạo lớp phủ xám nhẹ */
-        filter: brightness(1.05)!important; /* Giảm mức độ sáng nhẹ */
+        background-color: rgba(0, 0, 0, 0.1)!important; 
+        filter: brightness(1.05)!important; 
     }
 }
 

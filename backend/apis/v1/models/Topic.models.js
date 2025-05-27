@@ -9,7 +9,7 @@
       visibility: {
         type: String,
         enum: ['public', 'private'],
-        default: 'private', // Mặc định là private cho user
+        default: 'private',
       },
     },
     { timestamps: true }

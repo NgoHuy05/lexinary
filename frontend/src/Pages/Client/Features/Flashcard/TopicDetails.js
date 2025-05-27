@@ -8,7 +8,7 @@ import { getPublicTopicById, getUserTopicById } from "../../../../api/apiTopic";
 const TopicDetail = () => {
   const { id } = useParams();
   const location = useLocation();
-  const navigate = useNavigate(); // Thêm hook navigate
+  const navigate = useNavigate();
 
   const [flashcards, setFlashcards] = useState([]);
   const [topicName, setTopicName] = useState("");
@@ -75,13 +75,13 @@ const TopicDetail = () => {
   const handlePaginationChange = (newPage) => {
     if (transitioning) return;
 
-    const direction = newPage > page ? 1 : -1; // Tính toán hướng (1 = next, -1 = previous)
+    const direction = newPage > page ? 1 : -1;
 
     setTransitionClass(direction === 1 ? "slide-in-right" : "slide-in-left");
     setTransitioning(true);
 
     setPage(newPage);
-    setCurrentFlashcardIndex((newPage - 1) * flashcardsPerPage); // Cập nhật lại chỉ số flashcard
+    setCurrentFlashcardIndex((newPage - 1) * flashcardsPerPage);
 
     setTimeout(() => {
       setFlipped({});
@@ -95,9 +95,8 @@ const TopicDetail = () => {
 
   const currentFlashcard = flashcards[currentFlashcardIndex];
 
-  // Thêm hàm navigate
   const handleReviewFlashcards = () => {
-    navigate(`/flashcard/review/${id}`); // Điều hướng tới trang ôn tập
+    navigate(`/flashcard/review/${id}`);
   };
 
   return (
@@ -148,8 +147,6 @@ const TopicDetail = () => {
             pageSize={flashcardsPerPage}
             onChange={handlePaginationChange}
           />
-
-          {/* Nút điều hướng đến trang ôn tập flashcards */}
           <Button
             type="primary"
             onClick={handleReviewFlashcards}

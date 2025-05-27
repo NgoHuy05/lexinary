@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createTopic } from "../../../../api/apiTopic";
 import { createFlashcard } from "../../../../api/apiFlashcard";
 import "../../../../UI/CreateTopicAndFlashcards.scss";
-import { DeleteOutlined } from "@ant-design/icons"; // Import icon thùng rác
+import { DeleteOutlined } from "@ant-design/icons";
 
 const { Content } = Layout;
 
@@ -29,7 +29,7 @@ const CreateTopicAndFlashcards = () => {
 
   const handleDeleteFlashcard = (index) => {
     const updated = [...flashcards];
-    updated.splice(index, 1); // Xóa flashcard tại index
+    updated.splice(index, 1);
     setFlashcards(updated);
   };
   const handleSubmitAll = async () => {
@@ -37,8 +37,7 @@ const CreateTopicAndFlashcards = () => {
       message.warning("Vui lòng nhập tiêu đề và mô tả chủ đề!");
       return;
     }
-  
-    // Kiểm tra xem có flashcard nào thiếu term hoặc definition không
+
     const hasInvalidFlashcard = flashcards.some(
       (fc) => !fc.term || !fc.definition
     );
@@ -46,16 +45,12 @@ const CreateTopicAndFlashcards = () => {
       message.warning("Tất cả flashcard đều phải có Thuật ngữ và Định nghĩa!");
       return;
     }
-  
+
     setLoading(true);
     try {
-      // Gửi request tạo chủ đề
       const topicRes = await createTopic(topicTitle, topicDescription);
-  
       if (topicRes && topicRes.message === "Tạo topic thành công") {
         const topicId = topicRes.topic._id;
-  
-        // Tạo các flashcard
         let flashcardSuccess = true;
         for (let fc of flashcards) {
           try {
@@ -66,7 +61,6 @@ const CreateTopicAndFlashcards = () => {
               fc.pronunciation,
               topicId
             );
-  
             if (
               !flashcardRes ||
               flashcardRes.message !== "Tạo flashcard thành công"
@@ -80,7 +74,7 @@ const CreateTopicAndFlashcards = () => {
             break;
           }
         }
-  
+
         if (flashcardSuccess) {
           message.success("Tạo chủ đề và flashcards thành công!");
           navigate("/flashcard/home");
@@ -96,7 +90,7 @@ const CreateTopicAndFlashcards = () => {
       setLoading(false);
     }
   };
-  
+
   return (
     <>
       <h1 className="create-topic__title--main">Tạo một học phần mới cho riêng bạn</h1>
@@ -128,10 +122,8 @@ const CreateTopicAndFlashcards = () => {
               className="create-topic__flashcard"
             >
               <h3 className="create-topic__title">Flashcard {index + 1}</h3>
-
-              {/* Nút xóa flashcard */}
               <Button
-              className="create-topic__delete-flashcard"
+                className="create-topic__delete-flashcard"
                 type="danger"
                 onClick={() => handleDeleteFlashcard(index)}
                 style={{ marginBottom: "10px" }}
@@ -178,7 +170,6 @@ const CreateTopicAndFlashcards = () => {
               {index < flashcards.length - 1 && <Divider />}
             </Form>
           ))}
-
           <Button
             type="dashed"
             onClick={handleAddFlashcard}

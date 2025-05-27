@@ -1,7 +1,6 @@
 @use "./variables.scss" as *;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
-// Layout tổng thể
 .layout {
   background: $background-color;
   display: flex;
@@ -10,13 +9,12 @@
   
 }
 
-// Header
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: $primary-color;
-  padding: 0 50px;  // padding 2 bên
+  padding: 0 50px;  
   height: 100px;
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -46,8 +44,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow: 1;  // chiếm khoảng giữa giữa logo và button
-    gap: 40px;     // cách đều các nav-link
+    flex-grow: 1;  
+    gap: 40px;     
 
     &--left {
       display: flex;
@@ -131,7 +129,6 @@
   }
 }
 
-// Dropdown menu
 .ant-dropdown-menu {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -151,13 +148,11 @@
   }
 }
 .ant-layout-content {
-  // overflow-x: hidden!important;
   overflow-x: hidden;
   overflow-y: visible !important;  
  
 }
 
-// Content
 .content {
   background: white;
   border-radius: 8px;
@@ -167,7 +162,6 @@
   
 }
 
-// Footer
 .footer {
   background: $primary-color;
   padding: 40px;
@@ -234,167 +228,6 @@
 
       div {
         color: rgba(255, 255, 255, 0.697);
-      }
-    }
-  }
-}
-// Media query cho màn hình nhỏ hơn 1024px (tablet)
-@media (max-width: 1024px) {
-  .header {
-    padding: 15px 30px;
-    height: 80px;
-
-    &__logo {
-      img {
-        height: 50px;
-      }
-    }
-
-    &__brand {
-      font-size: 22px;
-    }
-
-    .header__nav {
-      justify-content: flex-start;
-
-      &--left {
-        position: static;
-        gap: 25px;
-        flex-wrap: wrap;
-        justify-content: center;
-        left: auto;
-        transform: none;
-
-        a, .nav-link {
-          font-size: 16px;
-        }
-      }
-
-      &--right {
-        position: static;
-        margin-top: 10px;
-        gap: 10px;
-
-        .btn__login,
-        .btn__register {
-          padding: 15px 25px;
-          font-size: 16px;
-          border-radius: 25px;
-        }
-      }
-    }
-  }
-
-  .content {
-    margin-top: 90px;
-    padding: 0 15px;
-  }
-
-  .footer {
-    padding: 30px 20px;
-
-    &__content {
-      flex-direction: column;
-      gap: 20px;
-      margin: 0 0 20px;
-
-      &--left,
-      &--mid,
-      &--right {
-        font-size: 16px;
-        h3 {
-          margin-bottom: 15px;
-        }
-      }
-    }
-
-    &__title {
-      flex-direction: column;
-      gap: 10px;
-
-      h2 {
-        font-size: 24px;
-      }
-
-      .btn__footer {
-        width: 90px;
-        height: 45px;
-      }
-    }
-  }
-}
-
-// Media query cho màn hình nhỏ hơn 480px (mobile)
-@media (max-width: 480px) {
-  .header {
-    flex-direction: column;
-    height: auto;
-    padding: 10px 15px;
-
-    &__logo {
-      justify-content: center;
-      margin-bottom: 10px;
-
-      img {
-        height: 40px;
-      }
-    }
-
-    &__brand {
-      font-size: 18px;
-    }
-
-    .header__nav {
-      &--left {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      &--right {
-        gap: 8px;
-        justify-content: center;
-        margin-top: 10px;
-
-        .btn__login,
-        .btn__register {
-          padding: 10px 15px;
-          font-size: 14px;
-          border-radius: 20px;
-        }
-      }
-    }
-  }
-
-  .content {
-    margin-top: 80px;
-    padding: 0 10px;
-  }
-
-  .footer {
-    padding: 20px 10px;
-
-    &__content {
-      gap: 15px;
-
-      &--left,
-      &--mid,
-      &--right {
-        font-size: 14px;
-        h3 {
-          margin-bottom: 10px;
-        }
-      }
-    }
-
-    &__title {
-      h2 {
-        font-size: 20px;
-      }
-
-      .btn__footer {
-        width: 80px;
-        height: 40px;
       }
     }
   }

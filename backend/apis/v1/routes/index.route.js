@@ -11,6 +11,7 @@ const historyRoutes = require("./history.route");
 const sentenceRoutes = require("./sentence.route");
 const grammarRoutes = require("./grammar.route");
 const progressRoutes = require("./progress.route");
+
 module.exports = (app) => {
     const version = "/api/v1";
     app.use(version + "/courses", courseRoutes);

@@ -4,7 +4,7 @@ import "../../../UI/Courses.scss";
 import { useNavigate } from "react-router-dom";
 import { getCourses } from "../../../api/apiCourse";
 import Cookies from "js-cookie";
-import { message } from "antd"; // Thêm dòng này đầu file
+import { message } from "antd"; 
 
 const { Title, Paragraph } = Typography;
 
@@ -28,22 +28,19 @@ export default function CourseLibrary() {
   }, []);
   
   useEffect(() => {
-    // Lấy dữ liệu từ API khi component được render
     setLoading(true);
 
     const fetchCourses = async () => {
       try {
-        const response = await getCourses(); // Đảm bảo gọi đúng hàm
+        const response = await getCourses(); 
         setCourses(response.data);
-
-        // Phân loại các khóa học dựa vào categoryType
         const categorizedCourses = {
           skill: response.data.filter(course => course.categoryType === "Skill"),
           level: response.data.filter(course => course.categoryType === "Level"),
           purpose: response.data.filter(course => course.categoryType === "Purpose"),
         };
 
-        setFilteredCourses(categorizedCourses);  // Cập nhật dữ liệu phân loại
+        setFilteredCourses(categorizedCourses); 
         setLoading(false);
 
       } catch (error) {
@@ -53,11 +50,9 @@ export default function CourseLibrary() {
       }
     };
 
-    fetchCourses();  // Gọi API khi component mount
-  }, []); // Chỉ gọi API khi component mount
+    fetchCourses(); 
+  }, []); 
 
-
-  // Tiêu đề phân loại theo categoryType
   const getCategoryTitle = (categoryType) => {
     switch (categoryType) {
       case "Skill":
@@ -88,9 +83,7 @@ export default function CourseLibrary() {
           Hệ thống khóa học tiếng Anh thông minh giúp bạn ghi nhớ dễ dàng và khoa học hơn.
         </Paragraph>
 
-        {/* Các phần hiển thị khóa học */}
         <div className="course-library__section">
-          {/* Tiêu đề phân loại động */}
           {["Skill", "Level", "Purpose"].map((categoryType) => {
             const categoryCourses = filteredCourses[categoryType.toLowerCase()];
             if (categoryCourses.length > 0) {
@@ -104,8 +97,6 @@ export default function CourseLibrary() {
                           hoverable
                           className="course-library__card"
                           bodyStyle={{ padding: "30px", backgroundColor: course.color }}
-
-                          // Thay alert bằng message
                           onClick={() => {
                             if (userId) {
                               navigate(`/courses/${course._id}`);

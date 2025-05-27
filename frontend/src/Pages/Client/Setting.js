@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from "react";
-import {
-  Layout,
-  Menu,
-  Form,
-  Input,
-  Button,
-  Upload,
-  Avatar,
-  message,
-  Divider,
-  Spin,
-  Radio,
-  Col,
-  Row
-} from "antd";
-import {
-  UploadOutlined,
-  UserOutlined,
-  LockOutlined,
-  EditOutlined
-} from "@ant-design/icons";
+import { useEffect, useState } from "react";
+import { Layout, Menu, Form, Input, Button, Upload, Avatar, message, Divider, Spin, Radio, Col, Row } from "antd";
+import { UploadOutlined, UserOutlined, LockOutlined, EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
-import "../../UI/Setting.scss";
 import ChangePassword from "./Auth/ChangePassword";
 import Cookies from "js-cookie";
 import { getUserProfile, updateUserProfile } from "../../api/apiUser";
+import "../../UI/Setting.scss";
+
 const { Sider, Content } = Layout;
-export default function SettingPage() {
+
+function SettingPage() {
   const [selectedKey, setSelectedKey] = useState("account");
   const [user, setUser] = useState(null);
   const [form] = useForm();
@@ -136,7 +119,7 @@ export default function SettingPage() {
             )}
           </>
         );
-  
+
       case "security":
         return (
           <>
@@ -171,3 +154,4 @@ export default function SettingPage() {
     </Layout>
   );
 }
+export default SettingPage;

@@ -16,92 +16,90 @@ const CourseSentence = () => {
     const [sentences, setSentences] = useState([]);
     const [loading, setLoading] = useState(false);
     const { courseId, lessonId, chapterId } = useParams();
-      const userId = Cookies.get("id");
-    
-useEffect(() => {
-    setLoading(true);
-    getChapters(courseId)
-        .then((res) => {
-            const chapterList = res.data || [];
-            setChapters(chapterList);
-            const chapter = chapterList.find((chap) => chap._id === chapterId);
-            setSelectedChapter(chapter || chapterList[0]);
-        })
-        .catch((err) => {
-            console.error("Lỗi khi tải chương:", err);
-        })
-        .finally(() => setLoading(false)); // 👉 gom vào .finally cho gọn
-}, [courseId, chapterId]);
+    const userId = Cookies.get("id");
 
-    // Load bài học theo chương
-useEffect(() => {
-    if (selectedChapter && selectedChapter.lessons) {
-        const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
-        if (lesson) {
-            setSelectedLesson(lesson);
-            setLoading(false); // 👉 cần có dòng này khi tìm thấy luôn trong chapter
-        } else {
-            setLoading(true); // 👉 bật loading khi gọi API
-            getLessonDetail(lessonId)
-                .then((res) => setSelectedLesson(res.data))
-                .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err))
-                .finally(() => setLoading(false));
-        }
-    }
-}, [selectedChapter, lessonId]);
-
-    // Load từ vựng theo bài học
-useEffect(() => {
-    if (selectedLesson && selectedLesson._id) {
+    useEffect(() => {
         setLoading(true);
-        getSentenceByLesson(selectedLesson._id)
-            .then((res) => setSentences(res.data || []))
-            .catch((err) => {
-                console.error("Lỗi khi tải từ vựng:", err);
-                setSentences([]);
+        getChapters(courseId)
+            .then((res) => {
+                const chapterList = res.data || [];
+                setChapters(chapterList);
+                const chapter = chapterList.find((chap) => chap._id === chapterId);
+                setSelectedChapter(chapter || chapterList[0]);
             })
-            .finally(() => setLoading(false)); // 👉 dùng finally để tránh lặp
-    } else {
-        setSentences([]);
-        setLoading(false); // 👉 reset loading nếu không có bài học
-    }
-}, [selectedLesson]);
+            .catch((err) => {
+                console.error("Lỗi khi tải chương:", err);
+            })
+            .finally(() => setLoading(false));
+    }, [courseId, chapterId]);
+
+    useEffect(() => {
+        if (selectedChapter && selectedChapter.lessons) {
+            const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
+            if (lesson) {
+                setSelectedLesson(lesson);
+                setLoading(false);
+            } else {
+                setLoading(true);
+                getLessonDetail(lessonId)
+                    .then((res) => setSelectedLesson(res.data))
+                    .catch((err) => console.error("Lỗi khi tải chi tiết bài học:", err))
+                    .finally(() => setLoading(false));
+            }
+        }
+    }, [selectedChapter, lessonId]);
+
+    useEffect(() => {
+        if (selectedLesson && selectedLesson._id) {
+            setLoading(true);
+            getSentenceByLesson(selectedLesson._id)
+                .then((res) => setSentences(res.data || []))
+                .catch((err) => {
+                    console.error("Lỗi khi tải từ vựng:", err);
+                    setSentences([]);
+                })
+                .finally(() => setLoading(false));
+        } else {
+            setSentences([]);
+            setLoading(false);
+        }
+    }, [selectedLesson]);
 
     const handleSubmit = () => {
-      try {
-        markLessonCompleted(userId, lessonId)
-            .then(() => {
-                updateProgress({
-                userId,
-                lessonId,
+        try {
+            markLessonCompleted(userId, lessonId)
+                .then(() => {
+                    updateProgress({
+                        userId,
+                        lessonId,
+                    })
+                        .catch((error) => {
+                            console.error("Lỗi khi cập nhật tiến trình học:", error);
+                        });
                 })
-            .catch((error) => {
-            console.error("Lỗi khi cập nhật tiến trình học:", error);
-            });
-        })
-      } catch (error) {
-        console.error("Lỗi khi nộp bài:", error);
-      }
+        } catch (error) {
+            console.error("Lỗi khi nộp bài:", error);
+        }
     };
-    // Table cột từ vựng
+
     const columns = [
         {
             title: "STT",
             key: "index",
-            render: (text, record, index) => index + 1,  // Đếm số thứ tự từ 1
+            render: (text, record, index) => index + 1,
         },
         { title: "Mẫu câu", dataIndex: "sentence", key: "sentence" },
         { title: "Ý nghĩa", dataIndex: "meaning", key: "meaning" },
         { title: "Ví dụ", dataIndex: "example", key: "example" },
     ];
 
-  if (loading ) {
-  return (
-    <div style={{ textAlign: "center", padding: 100 }}>
-      <Spin size="large" tip="Đang tải dữ liệu..." />
-    </div>
-  );
-}
+    if (loading) {
+        return (
+            <div style={{ textAlign: "center", padding: 100 }}>
+                <Spin size="large" tip="Đang tải dữ liệu..." />
+            </div>
+        );
+    }
 
     return (
         <div className="course-stc">

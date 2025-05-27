@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const sentenceSchema = new mongoose.Schema(
   {
-    sentence: { type: String, required: true }, // Nội dung câu
-    meaning: { type: String }, // Dịch nghĩa câu
-    example: { type: String }, // Ví dụ sử dụng câu
+    sentence: { type: String, required: true }, 
+    meaning: { type: String }, 
+    example: { type: String }, 
     lesson: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson", required: true }, 
-    deleted: { type: Boolean, default: false } // Trạng thái đã bị xóa
+    deleted: { type: Boolean, default: false } 
   },
   { timestamps: true }
 );

@@ -24,20 +24,20 @@
       }
       .text02 {
           display: flex;
-          flex-direction: column; /* Sắp xếp theo cột */
-          align-items: center; /* Căn giữa phần tử theo trục ngang */
-          justify-content: center; /* Căn giữa theo trục dọc */
+          flex-direction: column; 
+          align-items: center;
+          justify-content: center; 
           color: white;
-          font-size: 20px; /* Đặt kích thước font */
-          font-weight: normal; /* Đặt font weight cho văn bản */
-          text-align: center; /* Căn chỉnh chữ theo chiều ngang */
+          font-size: 20px; 
+          font-weight: normal; 
+          text-align: center; 
 
           .text021 {
               font-size: 50px;
               font-weight: bold;
               color: white;
               margin: 10px 0;
-              width: 22ch; /* Đặt chiều rộng theo số ký tự */
+              width: 22ch; 
               white-space: nowrap;
               overflow: hidden;
               animation: typing 2s steps(20) 0.5s forwards;
@@ -50,23 +50,19 @@
               font-weight: bold;
               color: white;
               margin: 10px 0;
-              width: 22ch; /* Đặt chiều rộng theo số ký tự */
+              width: 22ch; 
               white-space: nowrap;
               overflow: hidden;
               animation: typing 2s steps(20) 2.2s forwards;
           }
-          
-
-          
-
-      }   
-      
+      }
+    
       @keyframes typing {
           from {
               width: 0;
           }
           to {
-              width: 22ch; /* Chiều rộng tối đa của đoạn văn */
+              width: 22ch; 
           }
       }
 

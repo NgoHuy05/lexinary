@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getFlashcardsByTopic } from "../../../../api/apiFlashcard";
 import { message, Button, Spin, Card } from "antd";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons"; // Import icon
-import { Pie } from "react-chartjs-2"; // Import Pie chart từ react-chartjs-2
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"; // Cấu hình cho Chart.js
+import { RightOutlined } from "@ant-design/icons";
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import "../../../../UI/ReviewFlashcards.scss";
 
-// Đăng ký các thành phần của Chart.js
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ReviewFlashcards = () => {
@@ -81,11 +80,11 @@ const ReviewFlashcards = () => {
 
   const handleNext = () => {
     const currentFlashcard = flashcards[currentIndex];
-  
+
     if (!selected) {
       setWrongAnswers((prev) => [...prev, currentFlashcard]);
     }
-  
+
     if (currentIndex < flashcards.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
@@ -93,7 +92,7 @@ const ReviewFlashcards = () => {
       message.success("✅ Bạn đã hoàn thành ôn tập!", 2);
     }
   };
-  
+
 
   const handleReviewWrong = () => {
     setFlashcards(wrongAnswers);
@@ -108,7 +107,6 @@ const ReviewFlashcards = () => {
     navigate("/flashcard/library");
   };
 
-  // Cấu hình dữ liệu cho biểu đồ Pie
   const chartData = {
     labels: ["Đúng", "Sai"],
     datasets: [
@@ -131,12 +129,7 @@ const ReviewFlashcards = () => {
       <div className="review-container">
         <div className="review-result">
           <h2>Kết quả ôn tập</h2>
-
-
-          {/* Biểu đồ Pie của Chart.js */}
           <Pie data={chartData} options={{ responsive: true, plugins: { tooltip: { enabled: true } } }} />
-
-
           {wrongAnswers.length > 0 && (
             <Button type="primary" onClick={handleReviewWrong} style={{ marginTop: 24 }}>
               Ôn lại những câu sai
@@ -161,15 +154,14 @@ const ReviewFlashcards = () => {
         {options.map((opt, idx) => (
           <Card
             key={idx}
-            className={`option-card ${
-              selected
+            className={`option-card ${selected
                 ? opt.isCorrect
                   ? "correct"
                   : opt === selected
-                  ? "wrong"
-                  : "disabled"
+                    ? "wrong"
+                    : "disabled"
                 : ""
-            }`}
+              }`}
             onClick={() => !selected && handleSelect(opt)}
           >
             {opt.text}
@@ -179,12 +171,12 @@ const ReviewFlashcards = () => {
 
       <div className="buttons">
 
-        <Button 
-          type="primary" 
-          onClick={handleNext} 
+        <Button
+          type="primary"
+          onClick={handleNext}
           className="next-button"
         >
-          {currentIndex === flashcards.length - 1 ? "Hoàn thành" : ""} 
+          {currentIndex === flashcards.length - 1 ? "Hoàn thành" : ""}
           Tiếp theo <RightOutlined />
         </Button>
       </div>
