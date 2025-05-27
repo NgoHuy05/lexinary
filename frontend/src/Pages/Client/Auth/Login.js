@@ -10,9 +10,9 @@ import { createProgress, getUserProgress } from "../../../api/apiProgress";
 
 const Login = () => {
     const navigate = useNavigate();
-    const userId = Cookies.get("id");
+    const token = Cookies.get("token");
     useEffect(() => {
-        if (userId) {
+        if (token) {
             navigate("/");
         }
     }, []);
