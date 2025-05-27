@@ -1,5 +1,5 @@
 @use "./variables.scss" as *;
-.header {
+.Header {
     
     display: flex ;
     align-items: center;
@@ -11,18 +11,18 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.header__logo {
+.Header__logo {
     margin: 0px 100px;
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.header__logo img {
+.Header__logo img {
     height: 60px;
 }
 
-.header__brand {
+.Header__brand {
     font-size: 28px;
     font-weight: bold;
     color: white;
@@ -30,7 +30,7 @@
 
 
 
-.header__greeting {
+.Header__greeting {
     display: flex;
     flex-direction: column; 
     align-items: center; 

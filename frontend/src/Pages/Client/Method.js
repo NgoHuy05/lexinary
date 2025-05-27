@@ -407,10 +407,51 @@ function Method() {
           </div>
         </li>
 
-        <h3 className="method__title">8. Video hay giúp thay đổi mindset cách học tiếng anh</h3>
-        <div className="method__content--main">
-          <iframe width="1521" height="800" src="https://www.youtube.com/embed/_nuQ39Y4T5Q" title="Cách Tự Học Tiếng Anh | Áp dụng cho mọi người (phương pháp + tài liệu gợi ý) VyVocab Ep.110" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-        </div>
+<h3 className="method__title">Các video hay giúp thay đổi mindset cách học tiếng Anh</h3>
+<div className="method__content--main">
+  <div className="video-item">
+    <a 
+      href="https://www.youtube.com/watch?v=_nuQ39Y4T5Q" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="video-link"
+    >
+      1. Cách Tự Học Tiếng Anh | Áp dụng cho mọi người (phương pháp + tài liệu gợi ý) VyVocab Ep.110
+    </a>
+  </div>
+  <div className="video-item">
+    <a 
+      href="https://www.youtube.com/watch?v=kwg4ZMEsSBg" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="video-link"
+    >
+      2. Cách Luyện KIÊN TRÌ Học tiếng Anh
+    </a>
+  </div>
+  <div className="video-item">
+    <a 
+      href="https://www.youtube.com/watch?v=LUMSV0oU7cc" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="video-link"
+    >
+      3. 4 cách tự học tiếng Anh cực kỳ hiệu quả - Xem đi để giỏi
+    </a>
+  </div>
+  <div className="video-item">
+    <a 
+      href="https://www.youtube.com/watch?v=RMoF5uRgu8Q" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="video-link"
+    >
+      4. Mình nói tiếng Anh lưu loát nhờ cách học này | Lộ trình tự học + nguồn học + FREE Plan chi tiết
+    </a>
+  </div>
+</div>
+
+
       </ul>
     </>
   );

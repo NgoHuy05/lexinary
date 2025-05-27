@@ -106,7 +106,7 @@ function UserList() {
 
       <Modal
         title="Chỉnh sửa người dùng"
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleUpdate}
         onCancel={() => setIsModalVisible(false)}
         okText="Lưu"

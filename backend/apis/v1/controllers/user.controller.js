@@ -74,8 +74,8 @@ module.exports.loginUser = async (req, res) => {
 module.exports.logoutUser = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    secure: true,
+    sameSite: "None",
   });
 
   return res.status(200).json({

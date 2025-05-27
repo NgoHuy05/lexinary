@@ -58,55 +58,56 @@ function LayoutDefault() {
   return (
     <>
     <Layout>
-      <Header className="header">
-        <NavLink to="/">
-          <div className="header__logo">
-            <img src={logo} alt="logo" />
-            <span className="header__brand">Lexinary</span>
-          </div>
-        </NavLink>
-        <div className="header__nav">
-          <div className="header__nav--left">
-            <NavLink to="/">TRANG CHỦ</NavLink>
-            <NavLink to="/courses">KHÓA HỌC</NavLink>
-            <NavLink to="/method">PHƯƠNG PHÁP HỌC</NavLink>
-            <NavLink to="/quotes">TRÍCH DẪN</NavLink>
+     <Header className="header">
+  <div className="header__container">
+    {/* Logo - Trái */}
+    <div className="header__left">
+      <NavLink to="/" className="header__logo">
+        <img src={logo} alt="logo" />
+        <span className="header__brand">Lexinary</span>
+      </NavLink>
+    </div>
 
-            <Dropdown menu={{ items: menuItemsFeature }}>
-              <a onClick={(e) => e.preventDefault()}>
-                <Space>
-                  TÍNH NĂNG
-                  <DownOutlined />
-                </Space>
-              </a>
-            </Dropdown>
-          </div>
+    {/* Menu - Giữa */}
+    <div className="header__center">
+      <NavLink to="/">TRANG CHỦ</NavLink>
+      <NavLink to="/courses">KHÓA HỌC</NavLink>
+      <NavLink to="/method">PHƯƠNG PHÁP HỌC</NavLink>
+      <NavLink to="/quotes">TRÍCH DẪN</NavLink>
+      <Dropdown menu={{ items: menuItemsFeature }}>
+        <a onClick={(e) => e.preventDefault()}>
+          <Space>
+            TÍNH NĂNG
+            <DownOutlined />
+          </Space>
+        </a>
+      </Dropdown>
+    </div>
 
-          <div className="header__nav--right">
-            {status && name ? (
-              <div className="user__info">
-                <Dropdown menu={{ items: menuItemSetting }}>
-                  <a onClick={(e) => e.preventDefault()}>
-                    <Space>
-                      <Avatar src={null} icon={<UserOutlined />} />
-                    </Space>
-                  </a>
-                </Dropdown>
-              
-              </div>
-            ) : (
-              <>
-                <Button className="btn__login" type="primary" shape="round">
-                  <NavLink to="/login">ĐĂNG NHẬP</NavLink>
-                </Button>
-                <Button className="btn__register" type="primary" shape="round">
-                  <NavLink to="/register">ĐĂNG KÍ</NavLink>
-                </Button>
-              </>
-            )}
-          </div>
-        </div>
-      </Header>
+    {/* Người dùng - Phải */}
+    <div className="header__right">
+      {status && name ? (
+        <Dropdown menu={{ items: menuItemSetting }}>
+          <a onClick={(e) => e.preventDefault()}>
+            <Space>
+              <Avatar src={null} icon={<UserOutlined />} />
+            </Space>
+          </a>
+        </Dropdown>
+      ) : (
+        <>
+          <Button className="btn__login" type="primary" shape="round">
+            <NavLink to="/login">ĐĂNG NHẬP</NavLink>
+          </Button>
+          <Button className="btn__register" type="primary" shape="round">
+            <NavLink to="/register">ĐĂNG KÍ</NavLink>
+          </Button>
+        </>
+      )}
+    </div>
+  </div>
+</Header>
+
 
       <Content className="content">
         <Outlet />

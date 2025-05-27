@@ -25,6 +25,7 @@ const CourseDetail = () => {
   const userId = Cookies.get("id");
   const navigate = useNavigate();
   const specialCourses = ["Du lịch", "Phỏng vấn và Văn phòng", "Học thuật"];
+  const levelCourses = ["A0 - A2", "B1 - B2", "C1 - C2"];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,7 +118,8 @@ const CourseDetail = () => {
   if (loading || !course || chapters.length === 0) {
     return (
       <div style={{ textAlign: "center", padding: 100 }}>
-        <Spin size="large" tip="Đang tải dữ liệu..." />
+        <Spin size="large" />
+        <div style={{ marginTop: 16 }}>Đang tải dữ liệu...</div>
       </div>
     );
   }
@@ -151,7 +153,7 @@ const CourseDetail = () => {
                   label: (
                     <div>
                       {completedLessons.includes(lesson._id) && (
-                        <span className="green-checkmark">✔️</span>  // Dấu tích xanh
+                        <span className="green-checkmark">✔️</span>
                       )}
                       {lesson.title}
                     </div>
@@ -200,7 +202,7 @@ const CourseDetail = () => {
                       label: (
                         <div>
                           {completedLessons.includes(lesson._id) && (
-                            <span className="green-checkmark">✔️</span>  // Dấu tích xanh
+                            <span className="green-checkmark">✔️</span>
                           )}
                           {lesson.title}
                         </div>
@@ -272,6 +274,50 @@ const CourseDetail = () => {
                 ]}
               />
             )
+              : levelCourses.includes(course?.title) ? (
+                <Menu
+                  mode="inline"
+                  selectedKeys={[selectedMenuKey]}
+                  onClick={handleMenuClick}
+                  items={[
+                    { key: "overview", label: collapsed ? "T" : "Tổng quan" },
+                    ...chapters.map((chapter, index) => {
+                      const lessonItems = chapter.lessons.map((lesson) => {
+                        let type = "exercise";
+                        if (lesson.title === "Từ vựng") type = "vocabulary";
+                        else if (lesson.title === "Mẫu câu") type = "sentence";
+                        else if (lesson.title === "Ngữ pháp") type = "grammar";
+
+                        return {
+                          key: lesson._id,
+                          label: (
+                            <div>
+                              {completedLessons.includes(lesson._id) && (
+                                <span className="green-checkmark">✔️</span>
+                              )}
+                              {lesson.title}
+                            </div>
+                          ),
+                          onClick: () => handleSubMenuClick(lesson._id, chapter._id, type),
+                        };
+                      });
+
+                      if (lessonItems.length > 0) {
+                        return {
+                          key: chapter._id,
+                          label: (
+                            <div title={chapter.title}>
+                              {collapsed ? `C${index + 1}` : chapter.title}
+                            </div>
+                          ),
+                          children: lessonItems,
+                        };
+                      }
+                      return null;
+                    }).filter(item => item !== null),
+                  ]}
+                />
+              )
               : (
                 <>
                   <Menu

@@ -99,16 +99,22 @@ const TopicDetail = () => {
     navigate(`/flashcard/review/${id}`);
   };
 
+  if (loading) {
+  return (
+    <div style={{ textAlign: "center", padding: 100 }}>
+      <Spin size="large" />
+      <div style={{ marginTop: 16 }}>Đang tải dữ liệu...</div>
+    </div>
+  );
+}
+  if ( flashcards.length === 0) {
+    return <Empty description="Chưa có flashcard nào" />;
+  }
+
+
   return (
     <div style={{ padding: 24, display: "flex", flexDirection: "column", alignItems: "center" }}>
       <h2>{topicName}</h2>
-
-      {loading ? (
-        <Spin size="large" />
-      ) : flashcards.length === 0 ? (
-        <Empty description="Chưa có flashcard nào" />
-      ) : (
-        <>
           <div className={`flashcard-container ${transitionClass}`}>
             <div
               key={currentFlashcard._id}
@@ -154,8 +160,6 @@ const TopicDetail = () => {
           >
             Ôn tập Flashcards
           </Button>
-        </>
-      )}
     </div>
   );
 };

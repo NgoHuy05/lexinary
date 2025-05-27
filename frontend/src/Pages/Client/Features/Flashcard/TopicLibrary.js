@@ -44,7 +44,14 @@ const TopicLibrary = () => {
     }
   };
 
-  if (loading) return <Spin size="large" />;
+  if (loading) {
+  return (
+    <div style={{ textAlign: "center", padding: 100 }}>
+      <Spin size="large" />
+      <div style={{ marginTop: 16 }}>Đang tải dữ liệu...</div>
+    </div>
+  );
+}
   if (!topics || topics.length === 0) return <Empty description="Không có học phần nào" />;
 
   return (

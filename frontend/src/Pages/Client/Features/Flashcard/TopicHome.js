@@ -71,7 +71,14 @@ const TopicHome = () => {
     navigate(`/flashcard/update/${id}`);
   };
 
-  if (loading) return <Spin size="large" />;
+  if (loading) {
+  return (
+    <div style={{ textAlign: "center", padding: 100 }}>
+      <Spin size="large" />
+      <div style={{ marginTop: 16 }}>Đang tải dữ liệu...</div>
+    </div>
+  );
+}
   if (!filteredTopics || filteredTopics.length === 0)
     return <Empty description="Không có topic nào phù hợp" />;
 

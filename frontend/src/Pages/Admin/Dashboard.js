@@ -42,7 +42,7 @@ function AdminDashboard() {
       <Row gutter={[16, 16]}>
         {Object.entries(stats).map(([key, value]) => (
           <Col xs={24} sm={12} md={8} lg={6} key={key}>
-            <Card title={displayNames[key] || key} bordered className="stat-card">
+            <Card title={displayNames[key] || key} variant className="stat-card">
               <h2>{value}</h2>
             </Card>
           </Col>

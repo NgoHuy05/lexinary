@@ -103,7 +103,8 @@ const CourseGrammar = () => {
   if (loading) {
     return (
       <div style={{ textAlign: "center", padding: 100 }}>
-        <Spin size="large" tip="Đang tải dữ liệu..." />
+        <Spin size="large" />
+        <div style={{ marginTop: 16 }}>Đang tải dữ liệu...</div>
       </div>
     );
   }
