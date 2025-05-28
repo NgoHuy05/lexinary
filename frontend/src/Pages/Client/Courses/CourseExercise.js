@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Spin } from "antd";
+import { Card, message, Spin } from "antd";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { getChapters } from "../../../api/apiChapter";
 import { getLessonDetail } from "../../../api/apiLesson";
@@ -175,6 +175,8 @@ const CourseExercise = () => {
 
           })
             .then(() => {
+              message.success("Bạn đã hoàn thành bài học thành công!");
+            }).then(() => {
               createHistory({
                 userId,
                 courseId,

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Spin, Table } from "antd";
+import { message, Spin, Table } from "antd";
 import { useParams } from "react-router-dom";
 import { getChapters } from "../../../api/apiChapter";
 import { getLessonDetail } from "../../../api/apiLesson";
 import { getVocabularyByLesson } from "../../../api/apiVocabulary";
 import "../../../UI/CourseVoca.scss";
+import { markLessonCompleted } from "../../../api/apiUser";
+import { updateProgress } from "../../../api/apiProgress";
+import Cookies from "js-cookie";
 
 const CourseVocabulary = () => {
     const [chapters, setChapters] = useState([]);
@@ -13,6 +16,7 @@ const CourseVocabulary = () => {
     const [vocabularies, setVocabularies] = useState([]);
     const [loading, setLoading] = useState(false);
     const { courseId, lessonId, chapterId } = useParams();
+    const userId = Cookies.get("id");
 
     useEffect(() => {
         setLoading(true);
@@ -60,6 +64,25 @@ const CourseVocabulary = () => {
         }
     }, [selectedLesson]);
 
+    const handleSubmit = () => {
+        markLessonCompleted(userId, lessonId)
+            .then(() => {
+                return updateProgress({
+                    userId,
+                    lessonId,
+                });
+            })
+            .then(() => {
+                message.success("Bạn đã hoàn thành bài học thành công!");
+            })
+            .catch((error) => {
+                console.error("Lỗi khi nộp bài hoặc cập nhật tiến trình học:", error);
+                message.error("Có lỗi xảy ra, vui lòng thử lại.");
+            });
+    };
+
+
+
     const columns = [
         {
             title: "STT",
@@ -99,13 +122,18 @@ const CourseVocabulary = () => {
             {loading ? (
                 <p className="course-voca__loading">Đang tải dữ liệu...</p>
             ) : vocabularies.length > 0 ? (
-                <Table
-                    columns={columns}
-                    dataSource={vocabularies}
-                    rowKey="_id"
-                    pagination={false}
-                    className="course-voca__vocabulary-table"
-                />
+                <>
+                    <Table
+                        columns={columns}
+                        dataSource={vocabularies}
+                        rowKey="_id"
+                        pagination={false}
+                        className="course-voca__vocabulary-table"
+                    />
+                    <button className="course-stc__submit-button" onClick={handleSubmit}>
+                        Hoàn thành
+                    </button>
+                </>
             ) : (
                 <p className="course-voca__no-vocabularies">Chưa có từ vựng cho bài học này.</p>
             )}

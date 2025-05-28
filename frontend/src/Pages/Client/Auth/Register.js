@@ -36,14 +36,14 @@ function Register() {
 
     return (
         <>
-            <Header className="header">
+            <Header className="Header">
                 <NavLink to="/">
-                    <div className="header__logo">
+                    <div className="Header__logo">
                         <img src={logo} alt="logo" />
-                        <span className="header__brand">Lexinary</span>
+                        <span className="Header__brand">Lexinary</span>
                     </div>
                 </NavLink>
-                <div className="header__greeting">
+                <div className="Header__greeting">
                     <span>Hi, my name is Lexinary.</span>
                     <span>Welcome back!</span>
                 </div>

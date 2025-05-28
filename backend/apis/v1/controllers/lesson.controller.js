@@ -46,40 +46,40 @@ module.exports.getLessonDetail = async (req, res) => {
   }
 };
 
-// Tạo nhiều bài học
-module.exports.createLesson = async (req, res) => {
-  try {
-    const lessonsData = req.body;
+  // Tạo nhiều bài học
+  module.exports.createLesson = async (req, res) => {
+    try {
+      const lessonsData = req.body;
 
-    const chapter = await Chapter.findById(lessonsData[0].chapterId);
-    if (!chapter) {
-      return res.status(400).json({ message: "Chương học không tồn tại" });
+      const chapter = await Chapter.findById(lessonsData[0].chapterId);
+      if (!chapter) {
+        return res.status(400).json({ message: "Chương học không tồn tại" });
+      }
+
+      const courseId = lessonsData[0].courseId;
+
+      const newLessons = lessonsData.map(lesson => ({
+        title: lesson.title,
+        description: lesson.description,
+        course: courseId,
+        chapter: lesson.chapterId,
+        order: lesson.order,
+        vocabulary: lesson.vocabulary || [],
+        exercises: lesson.exercises || [],
+        grammar: lesson.grammar || [],
+        sentence: lesson.sentence || []
+      }));
+
+      const savedLessons = await Lesson.insertMany(newLessons);
+      chapter.lessons.push(...savedLessons.map(lesson => lesson._id));
+      await chapter.save();
+
+      res.status(201).json({ message: "Tạo bài học thành công", lessons: savedLessons });
+    } catch (error) {
+      console.error("Lỗi khi tạo bài học:", error);
+      res.status(500).json({ message: "Lỗi server" });
     }
-
-    const courseId = lessonsData[0].courseId;
-
-    const newLessons = lessonsData.map(lesson => ({
-      title: lesson.title,
-      description: lesson.description,
-      course: courseId,
-      chapter: lesson.chapterId,
-      order: lesson.order,
-      vocabulary: lesson.vocabulary || [],
-      exercises: lesson.exercises || [],
-      grammar: lesson.grammar || [],
-      sentence: lesson.sentence || []
-    }));
-
-    const savedLessons = await Lesson.insertMany(newLessons);
-    chapter.lessons.push(...savedLessons.map(lesson => lesson._id));
-    await chapter.save();
-
-    res.status(201).json({ message: "Tạo bài học thành công", lessons: savedLessons });
-  } catch (error) {
-    console.error("Lỗi khi tạo bài học:", error);
-    res.status(500).json({ message: "Lỗi server" });
-  }
-};
+  };
 
 //  Chỉnh sửa bài học
 module.exports.updateLesson = async (req, res) => {

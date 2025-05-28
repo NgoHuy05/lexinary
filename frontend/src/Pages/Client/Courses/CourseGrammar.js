@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Table, Spin, Alert } from "antd";
+import { Table, Spin, Alert, message } from "antd";
 import { useParams } from "react-router-dom";
 import { getChapters } from "../../../api/apiChapter";
 import { getLessonDetail } from "../../../api/apiLesson";
 import { getGrammarByLesson } from "../../../api/apiGrammar";
 import "../../../UI/CourseGrammar.scss"
+import Cookies from "js-cookie";
+import { markLessonCompleted } from "../../../api/apiUser";
+import { updateProgress } from "../../../api/apiProgress";
+
 const CourseGrammar = () => {
   const [chapters, setChapters] = useState([]);
   const [selectedChapter, setSelectedChapter] = useState(null);
@@ -12,6 +16,7 @@ const CourseGrammar = () => {
   const [grammars, setGrammars] = useState([]);
   const [loading, setLoading] = useState(false);
   const { courseId, lessonId, chapterId } = useParams();
+  const userId = Cookies.get("id");
 
   useEffect(() => {
     setLoading(true);
@@ -53,6 +58,23 @@ const CourseGrammar = () => {
       .finally(() => setLoading(false));
 
   }, [selectedLesson]);
+
+  const handleSubmit = () => {
+    markLessonCompleted(userId, lessonId)
+      .then(() => {
+        return updateProgress({
+          userId,
+          lessonId,
+        });
+      })
+      .then(() => {
+        message.success("Bạn đã hoàn thành bài học thành công!");
+      })
+      .catch((error) => {
+        console.error("Lỗi khi nộp bài hoặc cập nhật tiến trình học:", error);
+        message.error("Có lỗi xảy ra, vui lòng thử lại.");
+      });
+  };
 
   const columns = [
     {
@@ -126,13 +148,18 @@ const CourseGrammar = () => {
       {loading ? (
         <p className="course-grammar__loading">Đang tải dữ liệu...</p>
       ) : grammars.length > 0 ? (
-        <Table
-          columns={columns}
-          dataSource={grammars}
-          rowKey="_id"
-          pagination={false}
-          className="course-grammar__grammar-table"
-        />
+        <>
+          <Table
+            columns={columns}
+            dataSource={grammars}
+            rowKey="_id"
+            pagination={false}
+            className="course-grammar__grammar-table"
+          />
+          <button className="course-stc__submit-button" onClick={handleSubmit}>
+            Hoàn thành
+          </button>
+        </>
       ) : (
         <p className="course-grammar__no-grammars">Chưa có ngữ pháp cho bài học này.</p>
       )}

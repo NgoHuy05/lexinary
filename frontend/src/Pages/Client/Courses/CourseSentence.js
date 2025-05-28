@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Spin, Table } from "antd";
+import { message, Spin, Table } from "antd";
 import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import { getChapters } from "../../../api/apiChapter";
@@ -64,23 +64,23 @@ const CourseSentence = () => {
             setLoading(false);
         }
     }, [selectedLesson]);
-
     const handleSubmit = () => {
-        try {
-            markLessonCompleted(userId, lessonId)
-                .then(() => {
-                    updateProgress({
-                        userId,
-                        lessonId,
-                    })
-                        .catch((error) => {
-                            console.error("Lỗi khi cập nhật tiến trình học:", error);
-                        });
-                })
-        } catch (error) {
-            console.error("Lỗi khi nộp bài:", error);
-        }
+        markLessonCompleted(userId, lessonId)
+            .then(() => {
+                return updateProgress({
+                    userId,
+                    lessonId,
+                });
+            })
+            .then(() => {
+                message.success("Bạn đã hoàn thành bài học thành công!");
+            })
+            .catch((error) => {
+                console.error("Lỗi khi nộp bài hoặc cập nhật tiến trình học:", error);
+                message.error("Có lỗi xảy ra, vui lòng thử lại.");
+            });
     };
+
 
     const columns = [
         {

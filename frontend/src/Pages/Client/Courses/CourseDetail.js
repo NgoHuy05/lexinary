@@ -104,7 +104,7 @@ const CourseDetail = () => {
       const chapter = chapters.find((chapter) => chapter.lessons.includes(e.key));
       setSelectedChapter(chapter);
 
-      if (!specialCourses.includes(course?.title) && lesson && (course?.title !== "MẪU CÂU")) {
+      if (!specialCourses.includes(course?.title) && !levelCourses.includes(course?.title) && lesson && (course?.title !== "MẪU CÂU") ) {
         navigate(`/courses/${courseId}/lesson/${lesson._id}`);
       }
     } else {

@@ -50,14 +50,7 @@ export const routers = [
         index: true,
         element: <Home />,
       },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
+
       {
         path: "progress",
         element: <Progress />,
@@ -104,6 +97,7 @@ export const routers = [
           },
         ]
       },
+      
       {
         path: "courses/:courseId/chapter/:chapterId/lesson/:lessonId/result",
         element: <CourseResult />
@@ -160,7 +154,16 @@ export const routers = [
         element: <ErrorPage />,
       },
     ],
+    
   },
+  {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
   {
     path: "/admin",
     element: <LayoutAdmin />,
