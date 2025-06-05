@@ -8,7 +8,7 @@ module.exports.getChapters = async (req, res) => {
     const courseId = req.params.courseId;
 
     // Tìm khóa học và lấy các chương học
-    const chapters = await Chapter.find({ course: courseId }).populate("lessons");
+    const chapters = await Chapter.find({ course: courseId }).populate("lessons").sort({ order: 1 });
     res.json(chapters);
   } catch (error) {
     console.error("Lỗi khi lấy chương học:", error);

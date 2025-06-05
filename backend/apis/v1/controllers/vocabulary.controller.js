@@ -4,7 +4,7 @@ const Lesson = require("../models/Lesson.models");
 // Lấy tất cả từ vựng, đồng thời populate thông tin lesson
 exports.getAllVocabulary = async (req, res) => {
   try {
-    const vocabulary = await Vocabulary.find().populate("lesson");
+    const vocabulary = await Vocabulary.find().populate("lesson").sort({ word: 1});
     res.status(200).json(vocabulary);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -14,7 +14,7 @@ exports.getAllVocabulary = async (req, res) => {
 // Lấy từ vựng theo ID, nếu không tìm thấy trả về lỗi 404
 exports.getVocabularyById = async (req, res) => {
   try {
-    const vocabulary = await Vocabulary.findById(req.params.id).populate("lesson");
+    const vocabulary = await Vocabulary.findById(req.params.id).populate("lesson").sort({ word: 1});
     if (!vocabulary) {
       return res.status(404).json({ message: "Vocabulary not found" });
     }
@@ -28,7 +28,7 @@ exports.getVocabularyById = async (req, res) => {
 exports.getVocabularyByLesson = async (req, res) => {
   try {
     const { lessonId } = req.params;
-    const vocabularies = await Vocabulary.find({ lesson: lessonId });
+    const vocabularies = await Vocabulary.find({ lesson: lessonId }).sort({ word: 1});
     res.status(200).json(vocabularies);
   } catch (error) {
     console.error("Server error getVocabulary:", error);

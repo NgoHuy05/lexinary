@@ -59,7 +59,7 @@ module.exports.index = async (req, res) => {
             find.categoryType = req.query.categoryType;
         }
 
-        const courses = await Course.find(find);
+        const courses = await Course.find(find).sort({ order: 1 });
         res.json(courses);
     } catch (error) {
         console.error("Lỗi lấy dữ liệu khóa học:", error);

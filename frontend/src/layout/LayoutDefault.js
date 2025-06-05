@@ -46,6 +46,7 @@ function LayoutDefault() {
   const menuItemSetting = [
     { key: "progress", label: <NavLink to="/progress">Tiến trình học tập</NavLink> },
     { key: "setting", label: <NavLink to="/setting">Cài đặt</NavLink> },
+    
     { key: "logout", label: (
       <span onClick={handleLogout} style={{ cursor: "pointer", color: "red" }}>
         Đăng xuất
