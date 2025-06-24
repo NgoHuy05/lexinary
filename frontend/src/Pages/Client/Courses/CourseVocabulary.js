@@ -38,6 +38,7 @@ const CourseVocabulary = () => {
             const lesson = selectedChapter.lessons.find((l) => l._id === lessonId);
             if (lesson) {
                 setSelectedLesson(lesson);
+                setLoading(false); 
             } else {
                 setLoading(true);
                 getLessonDetail(lessonId)
