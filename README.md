@@ -72,7 +72,6 @@ Biến môi trường REACT_APP_API_URL sẽ giúp frontend tự động gọi A
 
 ### 5. Demo
 
-## USER
 # Login
 ![Login](https://github.com/user-attachments/assets/b05fed3b-11c0-4a13-b118-486bc753ff10)
 # Home
@@ -91,8 +90,6 @@ Biến môi trường REACT_APP_API_URL sẽ giúp frontend tự động gọi A
 ![Note](https://github.com/user-attachments/assets/65668e02-a2ae-490d-b062-7cebeccaf9c1)
 # Progress
 ![Progress](https://github.com/user-attachments/assets/c28a27e2-612b-4e64-8d9b-d57c3614fd4c)
-
-ADMIN
 # Dashboard Admin
 ![Dashboard Admin](https://github.com/user-attachments/assets/0230d3ff-4cf3-4e9a-9c09-d1400e46ca42)
 # ManageCourse
